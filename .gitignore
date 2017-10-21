@@ -224,3 +224,7 @@ TSWLatexianTemp*
 
 # idea
 .idea*
+
+# python
+*__pycache__*
+.cache
