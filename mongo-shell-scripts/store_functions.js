@@ -47,11 +47,11 @@ var feq = function(property, value) {
     else if (property[3] <= value[0] || property[0] >= value[3])
         total = 0;
 
-    else if (property[3] > value[0] || property[2] < value[1])
+    else if (property[3] > value[0] && property[2] < value[1])
         total = (property[3]-value[0]) / ((value[1]-value[0]) - (property[2]-property[3]));
 
     else {
-        total = 2 - (value[3]-property[0]) / ((property[1]-property[0]) - (value[2]-value[3]));
+        total = (value[3]-property[0]) / ((property[1]-property[0]) - (value[2]-value[3]));
     }
 
     return total
