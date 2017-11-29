@@ -38,5 +38,5 @@ def test_incompatible_types_with_string(collection):
     query = {'$where': 'trapezoid("some string")'}
     print(query)
 
-    #with pytest.raises(OperationFailure, message='Incompatible types'):
+    # with pytest.raises(OperationFailure, message='Incompatible types'):
     collection.find_one(query)
