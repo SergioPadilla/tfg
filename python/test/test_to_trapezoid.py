@@ -4,8 +4,9 @@ __author__ = 'Sergio Padilla'
 """
 import pytest
 from pymongo import MongoClient
-from scripts.store_javascript_functions import store_functions
 from pymongo.errors import OperationFailure
+
+from scripts.store_javascript_functions import store_functions
 
 
 @pytest.fixture

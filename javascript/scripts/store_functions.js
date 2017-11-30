@@ -1,10 +1,9 @@
 // Execute this example directly in a mongo shell.
-// To execute, write in terminal:
+// To execute, write in terthresholdal:
 //      mongo <mongo_server>:<port>/<database> path_to_this_script
 //
 // Example:
 //      mongo localhost:27017/fuzzy mongo-shell-scripts/store_functions.js
-
 
 var trapezoid = function(x) {
     if (Object.prototype.toString.call(x) !== '[object Array]' &&
@@ -14,7 +13,7 @@ var trapezoid = function(x) {
     if (Object.prototype.toString.call(x) === '[object Array]') {
         for (var i = 0; i < x.length; i++) {
             if (Object.prototype.toString.call(x[i]) !== '[object Number]')
-                    throw 'Incompatible type';
+                throw 'Incompatible type';
         }
     }
 
@@ -22,6 +21,7 @@ var trapezoid = function(x) {
     if (Object.prototype.toString.call(x) === '[object Number]')
         v = [x];
 
+    v = v.sort();
     switch(v.length) {
         case 1:
             return [v[0], v[0], v[0], v[0]];
@@ -30,25 +30,25 @@ var trapezoid = function(x) {
         case 3:
             return [v[0], v[1], v[1], v[2]];
         case 4:
-            return v.sort();
+            return v;
         default:
             throw 'Length must be smaller than 4';
     }
 };
 
-var evaluate = function (total, min) {
-    if (min !== null) {
-        if (min === 0)
-            return total > min;
+var evaluate = function (total, threshold) {
+    if (threshold !== null) {
+        if (threshold === 0)
+            return total > threshold;
 
         else
-            return total >= min;
+            return total >= threshold;
     }
     else
         return total
 };
 
-var feq = function(property, value, min=null) {
+var feq = function(property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -65,18 +65,18 @@ var feq = function(property, value, min=null) {
     else
         total = (value[3]-property[0]) / ((property[1]-property[0]) - (value[2]-value[3]));
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var nfeq = function (property, value, min=null) {
+var nfeq = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
-    
+
     if ((property[1] <= value[0] && property[0] !== value[1]) || (property[2] >= value[3] && property[3] !== value[2]))
         total = 0;
 
-	else if (property[0] < value[1])
+    else if (property[0] < value[1])
         if (property[3] > value[2])
             total = Math.min(
                 (property[1] - value[0]) / ((value[1] - value[0]) - (property[0] - property[1])),
@@ -91,11 +91,11 @@ var nfeq = function (property, value, min=null) {
 
     else
         total = 1;
-    
-    return evaluate(total, min)
+
+    return evaluate(total, threshold)
 };
 
-var fgt = function (property, value, min=null) {
+var fgt = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -109,10 +109,10 @@ var fgt = function (property, value, min=null) {
     else
         total = (property[3] - value[2]) / ((value[3] - value[2]) - (property[2] - property[3]));  // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var nfgt = function (property, value, min=null) {
+var nfgt = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -126,10 +126,10 @@ var nfgt = function (property, value, min=null) {
     else
         total = (property[1] - value[2]) / ((value[3] - value[2]) - (property[0] - property[1]));  // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var flt = function (property, value, min=null) {
+var flt = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -143,10 +143,10 @@ var flt = function (property, value, min=null) {
     else
         total = (property[0] - value[1]) / ((value[0] - value[1]) - (property[1] - property[0]));  // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var nflt = function (property, value, min=null) {
+var nflt = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -160,10 +160,10 @@ var nflt = function (property, value, min=null) {
     else
         total = (property[2] - value[1]) / ((value[0] - value[1]) - (property[3] - property[2]));  // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var fgte = function (property, value, min=null) {
+var fgte = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -177,10 +177,10 @@ var fgte = function (property, value, min=null) {
     else
         total = (property[3] - value[0]) / ((value[1] - value[0]) - (property[2] - property[3]));  // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var nfgte = function (property, value, min=null) {
+var nfgte = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -194,10 +194,10 @@ var nfgte = function (property, value, min=null) {
     else
         total = (property[1] - value[0]) / ((value[1] - value[0]) - (property[0] - property[1]));  // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var flte = function (property, value, min=null) {
+var flte = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -211,10 +211,10 @@ var flte = function (property, value, min=null) {
     else
         total = (value[3] - property[0]) / ((property[1] - property[0]) - (value[2] - value[3])); // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
 };
 
-var nflte = function (property, value, min=null) {
+var nflte = function (property, value, threshold=null) {
     property = trapezoid(property);
     value = trapezoid(value);
     var total = 0;
@@ -228,7 +228,101 @@ var nflte = function (property, value, min=null) {
     else
         total = (value[3] - property[2]) / ((property[3] - property[2]) - (value[2] - value[3])); // TODO: round 2
 
-    return evaluate(total, min)
+    return evaluate(total, threshold)
+};
+
+var fuzzy_find = function (collection, query, projection) {
+    if (Object.prototype.toString.call(query) !== '[object Object]' ||
+        Object.prototype.toString.call(projection) !== '[object Object]' ||
+        Object.prototype.toString.call(collection) !== '[object String]')
+        throw 'Incompatible type';
+
+    collection = db[collection];
+
+    // Parse query
+    // {
+    //      precio: {
+    //          $feq: [1,2,3],
+    //          $thold: 0.4
+    //      }
+    // }
+    var where_query = '';
+    for(var property in query) {
+        var subquery = query[property];
+        var is_fuzzy = false;
+
+        if (subquery.hasOwnProperty('$feq')) {
+            is_fuzzy = true;
+            var value = subquery['$feq'];
+
+            var threshold = 0;
+            if (subquery.hasOwnProperty('$thold'))
+                threshold = subquery['$thold'];
+
+            if (where_query.length != 0)
+                where_query += ' && ';
+
+            where_query = where_query + 'feq(this.' + property + ', [' + value + '], ' + threshold + ')'
+        }
+
+        if (subquery.hasOwnProperty('$nfeq')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$fgt')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$nfgt')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$nfgt')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$flt')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$nflt')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$fgte')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$nfgte')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$flte')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (subquery.hasOwnProperty('$nflte')) {
+            is_fuzzy = true;
+            // TODO
+        }
+
+        if (is_fuzzy)
+            delete query[property];
+    }
+
+    query['$where'] = where_query;
+    print(where_query);
+
+    return collection.find(query);
 };
 
 db.system.js.save({_id: 'trapezoid', value: trapezoid});
@@ -243,5 +337,7 @@ db.system.js.save({_id: 'fgte', value: fgte});
 db.system.js.save({_id: 'nfgte', value: nfgte});
 db.system.js.save({_id: 'flte', value: flte});
 db.system.js.save({_id: 'nflte', value: nflte});
+
+db.system.js.save({_id: 'fuzzy_find', value: fuzzy_find});
 
 print('Funciones almacenadas corectamente.');

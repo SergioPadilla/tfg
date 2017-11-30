@@ -6,7 +6,7 @@ import pytest
 from pymongo import MongoClient
 from pymongo.errors import OperationFailure
 
-from python-scripts.store_javascript_functions import store_functions
+from scripts.store_javascript_functions import store_functions
 
 
 CASA = {
