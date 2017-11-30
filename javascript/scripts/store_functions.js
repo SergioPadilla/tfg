@@ -1,5 +1,5 @@
 // Execute this example directly in a mongo shell.
-// To execute, write in terthresholdal:
+// To execute, write in terminal:
 //      mongo <mongo_server>:<port>/<database> path_to_this_script
 //
 // Example:
@@ -249,74 +249,52 @@ var fuzzy_find = function (collection, query, projection) {
     var where_query = '';
     for(var property in query) {
         var subquery = query[property];
-        var is_fuzzy = false;
+        var operator = null;
 
-        if (subquery.hasOwnProperty('$feq')) {
-            is_fuzzy = true;
-            var value = subquery['$feq'];
+        if (subquery.hasOwnProperty('$feq'))
+            operator = 'feq';
 
+        if (subquery.hasOwnProperty('$nfeq'))
+            operator = 'nfeq';
+
+        if (subquery.hasOwnProperty('$fgt'))
+            operator = 'fgt';
+
+        if (subquery.hasOwnProperty('$nfgt'))
+            operator = 'nfgt';
+
+        if (subquery.hasOwnProperty('$flt'))
+            operator = 'flt';
+
+        if (subquery.hasOwnProperty('$nflt'))
+            operator = 'nflt';
+
+        if (subquery.hasOwnProperty('$fgte'))
+            operator = 'fgte';
+
+        if (subquery.hasOwnProperty('$nfgte'))
+            operator = 'nfgte';
+
+        if (subquery.hasOwnProperty('$flte'))
+            operator = 'flte';
+
+        if (subquery.hasOwnProperty('$nflte'))
+            operator = 'nflte';
+
+        if (operator !== null) {
+            var value = subquery['$'+operator];
             var threshold = 0;
+
             if (subquery.hasOwnProperty('$thold'))
                 threshold = subquery['$thold'];
 
             if (where_query.length != 0)
                 where_query += ' && ';
 
-            where_query = where_query + 'feq(this.' + property + ', [' + value + '], ' + threshold + ')'
-        }
+            where_query = where_query + operator + '(this.' + property + ', [' + value + '], ' + threshold + ')';
 
-        if (subquery.hasOwnProperty('$nfeq')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$fgt')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$nfgt')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$nfgt')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$flt')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$nflt')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$fgte')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$nfgte')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$flte')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (subquery.hasOwnProperty('$nflte')) {
-            is_fuzzy = true;
-            // TODO
-        }
-
-        if (is_fuzzy)
             delete query[property];
+        }
     }
 
     query['$where'] = where_query;
