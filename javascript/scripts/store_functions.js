@@ -238,6 +238,7 @@ var fuzzy_find = function (collection, query, projection) {
         throw 'Incompatible type';
 
     collection = db[collection];
+    var fuzzy_properties = {};
 
     // Parse query
     // {
@@ -247,7 +248,7 @@ var fuzzy_find = function (collection, query, projection) {
     //      }
     // }
     var where_query = '';
-    for(var property in query) {
+    for (var property in query) {
         var subquery = query[property];
         var operator = null;
 
@@ -283,6 +284,9 @@ var fuzzy_find = function (collection, query, projection) {
 
         if (operator !== null) {
             var value = subquery['$'+operator];
+
+            fuzzy_properties[property] = {'operator': operator, 'value': value};
+
             var threshold = 0;
 
             if (subquery.hasOwnProperty('$thold'))
@@ -298,9 +302,51 @@ var fuzzy_find = function (collection, query, projection) {
     }
 
     query['$where'] = where_query;
-    print(where_query);
 
-    return collection.find(query);
+    var map = new function () {
+        // parse projection
+        // {
+        //     _id: 0,
+        //     precio: 1,
+        //     precio_cdeg: 1
+        // }
+        value = this;
+
+        for (var property in projection) {
+            if (property.includes('_cdeg')) {
+                if (projection[property] == true) {
+                    var to_project = property.replace('_cdeg', '');
+                    var operator = fuzzy_properties[to_project]['operator'];
+                    value[property] = eval(operator)(value[to_project], fuzzy_properties[to_project]['value'])
+                }
+            }
+        }
+
+        emit(value._id, value);
+    };
+
+    var reduce = new function (key, value) {
+        var doc = {};
+
+        if (!projection.hasOwnProperty('_id') || projection['_id'] == true)
+            doc['_id'] = key;
+
+        for (var property in projection) {
+            if (projection[property] == true)
+                doc[property] = value[property];
+        }
+
+        return doc;
+    };
+
+    return collection.mapReduce(
+        map,
+        reduce,
+        {
+            'out': {"inline":1},
+            'query': query
+        }
+    );
 };
 
 db.system.js.save({_id: 'trapezoid', value: trapezoid});
