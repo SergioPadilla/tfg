@@ -231,22 +231,18 @@ var nflte = function (property, value, threshold=null) {
     return evaluate(total, threshold)
 };
 
-var fuzzy_find = function (collection, query, projection) {
+var fuzzy_find = function (collection, query, projection={}, out=null) {
     if (Object.prototype.toString.call(query) !== '[object Object]' ||
         Object.prototype.toString.call(projection) !== '[object Object]' ||
         Object.prototype.toString.call(collection) !== '[object String]')
         throw 'Incompatible type';
 
-    collection = db[collection];
+    if (out === null)
+        out = {inline: 1};
+
     var fuzzy_properties = {};
 
-    // Parse query
-    // {
-    //      precio: {
-    //          $feq: [1,2,3],
-    //          $thold: 0.4
-    //      }
-    // }
+    // 1. Parse query to create where clause with fuzzy properties
     var where_query = '';
     for (var property in query) {
         var subquery = query[property];
@@ -301,50 +297,61 @@ var fuzzy_find = function (collection, query, projection) {
         }
     }
 
+    // 2. Set where clause
     query['$where'] = where_query;
 
-    var map = new function () {
-        // parse projection
-        // {
-        //     _id: 0,
-        //     precio: 1,
-        //     precio_cdeg: 1
-        // }
-        value = this;
+    // 3. Create map function to project the final document and calculate the special fuzzy projections
+    function map() {
+        var doc = {};
 
-        for (var property in projection) {
-            if (property.includes('_cdeg')) {
-                if (projection[property] == true) {
-                    var to_project = property.replace('_cdeg', '');
-                    var operator = fuzzy_properties[to_project]['operator'];
-                    value[property] = eval(operator)(value[to_project], fuzzy_properties[to_project]['value'])
+        if (Object.keys(projection).length === 0)  // if not projection, show all values
+            doc = this;
+
+        for (var fproperty in projection) {
+            if (projection[fproperty] == true) {
+                if (fproperty.includes('_cdeg')) {
+                    var property = fproperty.replace('_cdeg', '');
+                    var operator = fuzzy_properties[property]['operator'];
+                    //var func = operator + "(" + doc[property] + ", " + fuzzy_properties[property]['value'] + ")";
+                    //doc[fproperty] = eval("(" + func + ")");
+                    doc[fproperty] = functions[operator](doc[property], fuzzy_properties[property]['value'])
                 }
+                else
+                    doc[fproperty] = this[fproperty]
             }
         }
 
-        emit(value._id, value);
-    };
+        emit(this._id, doc);
+    }
 
-    var reduce = new function (key, value) {
-        var doc = {};
-
-        if (!projection.hasOwnProperty('_id') || projection['_id'] == true)
-            doc['_id'] = key;
-
-        for (var property in projection) {
-            if (projection[property] == true)
-                doc[property] = value[property];
-        }
-
-        return doc;
-    };
-
-    return collection.mapReduce(
-        map,
-        reduce,
+    // 4. Execute map-reduce
+    return db.runCommand(
         {
-            'out': {"inline":1},
-            'query': query
+            mapReduce: collection,
+            map: map,
+            reduce: function (key, value) {
+                return value;
+            },
+            out: out,
+            query: query,
+            scope: {
+                projection: projection,
+                fuzzy_properties: fuzzy_properties,
+                functions: {
+                    feq: feq,
+                    nfeq: nfeq,
+                    fgt: fgt,
+                    nfgt: nfgt,
+                    flt: flt,
+                    nflt: nflt,
+                    fgte: fgte,
+                    nfgte: nfgte,
+                    fgte: fgte,
+                    nfgte: nfgte,
+                    flte: flte,
+                    nflte: nflte
+                }
+            }
         }
     );
 };
@@ -361,7 +368,6 @@ db.system.js.save({_id: 'fgte', value: fgte});
 db.system.js.save({_id: 'nfgte', value: nfgte});
 db.system.js.save({_id: 'flte', value: flte});
 db.system.js.save({_id: 'nflte', value: nflte});
-
 db.system.js.save({_id: 'fuzzy_find', value: fuzzy_find});
 
 print('Funciones almacenadas corectamente.');
