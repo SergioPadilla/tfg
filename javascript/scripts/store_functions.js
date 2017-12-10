@@ -298,7 +298,8 @@ var fuzzy_find = function (collection, query, projection={}, out=null) {
     }
 
     // 2. Set where clause
-    query['$where'] = where_query;
+    if (where_query !== '')
+        query['$where'] = where_query;
 
     // 3. Create map function to project the final document and calculate the special fuzzy projections
     function map() {
