@@ -165,9 +165,7 @@ function fuzzy_find(collection, filter, projection) {
         throw 'Incompatible type';
 
     let match_stage = get_match(filter);
-
-    print(JSON.stringify(match_stage));
-
+    
     return  db.runCommand(
         {
             aggregate: "Tab_25",
