@@ -1,5 +1,3 @@
-let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
-
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  MATCHES function
@@ -20,15 +18,15 @@ function feq(field_name, value, threshold) {
             $and: [
                 {$lte: [
                     {$add: [
-                        {$multiply: [{arrayElemAt: [field_name, 1]}, threshold]},
-                        {$multiply: [{arrayElemAt: [field_name, 0]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
                     ]},
                     U_CT
                 ]},
                 {$gte: [
                     {$add: [
-                        {$multiply: [{arrayElemAt: [field_name, 2]}, threshold]},
-                        {$multiply: [{arrayElemAt: [field_name, 3]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
                     ]},
                     L_CT
                 ]}
@@ -51,15 +49,15 @@ function nfeq(field_name, value, threshold) {
             $and: [
                 {$gte: [
                     {$add: [
-                        {$multiply: [{arrayElemAt: [field_name, 1]}, threshold]},
-                        {$multiply: [{arrayElemAt: [field_name, 0]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
                     ]},
                     U_CT
                 ]},
                 {$lte: [
                     {$add: [
-                        {$multiply: [{arrayElemAt: [field_name, 2]}, threshold]},
-                        {$multiply: [{arrayElemAt: [field_name, 3]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
                     ]},
                     L_CT
                 ]}
@@ -78,8 +76,8 @@ function fgt(field_name, value, threshold) {
         $expr: {
             $gte: [
                 {$add: [
-                    {$multiply: [{arrayElemAt: [field_name, 2]}, threshold]},
-                    {$multiply: [{arrayElemAt: [field_name, 3]}, one_thold]}
+                    {$multiply: [{$arrayElemAt: [['$'+field_name], 2]}, threshold]},
+                    {$multiply: [{$arrayElemAt: [['$'+field_name], 3]}, one_thold]}
                 ]},
                 L_CT
             ]
@@ -93,21 +91,12 @@ function fgt(field_name, value, threshold) {
 //
 ////////////////////////////////////////////////////////////////////////////////////
 
-function fuzzy_find(collection, filter, projection) {
-    // 1. Check types
-    if (Object.prototype.toString.call(filter) !== '[object Object]' ||
-        Object.prototype.toString.call(projection) !== '[object Object]' ||
-        Object.prototype.toString.call(collection) !== '[object String]')
-        throw 'Incompatible type';
-
-    let match_stage = get_match(filter);
-}
-
 function split_queries(query) {
     // remove all fuzzy properties
+    let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
     let fquery = {};
-    for (let property in fquery) {
-        let prop_query = fquery[property];
+    for (let property in query) {
+        let prop_query = query[property];
         if (Object.prototype.toString.call(prop_query) === '[object Object]') {
             let is_fuzzy = false;
             for (let i = 0; i < fuzzy_operators.length && !is_fuzzy; i++) {
@@ -115,9 +104,10 @@ function split_queries(query) {
                     is_fuzzy = true;
             }
 
-            if (is_fuzzy)
+            if (is_fuzzy) {
                 fquery[property] = prop_query;
                 delete query[property]
+            }
         }
     }
 
@@ -125,6 +115,7 @@ function split_queries(query) {
 }
 
 function parse_fuzzy(fquery) {
+    let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
     let query = {};
 
     for (let fproperty in fquery) {
@@ -137,7 +128,8 @@ function parse_fuzzy(fquery) {
                 let func = operator.toString().substring(1);
                 let value = fsubquery[operator];
                 let threshold = fsubquery.hasOwnProperty('$thold') ? fsubquery['$thold'] : 0;
-                let match = eval(func + '(' + fproperty + ', ' + value + ', ' + threshold + ')')
+                let to_eval = func + '("' + fproperty + '", [' + value + '], ' + threshold + ')';
+                let match = eval(to_eval);
                 for (let property in match) {
                     query[property] = match[property];
                 }
@@ -164,3 +156,34 @@ function get_match(filter) {
 
     return match_stage;
 }
+
+function fuzzy_find(collection, filter, projection) {
+    // 1. Check types
+    if (Object.prototype.toString.call(filter) !== '[object Object]' ||
+        Object.prototype.toString.call(projection) !== '[object Object]' ||
+        Object.prototype.toString.call(collection) !== '[object String]')
+        throw 'Incompatible type';
+
+    let match_stage = get_match(filter);
+
+    print(JSON.stringify(match_stage));
+
+    return  db.runCommand(
+        {
+            aggregate: "Tab_25",
+            pipeline: [match_stage],
+            cursor: {}
+        }
+    );
+}
+
+db.system.js.save({_id: 'feq', value: feq});
+db.system.js.save({_id: 'nfeq', value: nfeq});
+db.system.js.save({_id: 'fgt', value: fgt});
+
+db.system.js.save({_id: 'split_queries', value: split_queries});
+db.system.js.save({_id: 'parse_fuzzy', value: parse_fuzzy});
+db.system.js.save({_id: 'get_match', value: get_match});
+db.system.js.save({_id: 'fuzzy_find', value: fuzzy_find});
+
+print('Funciones almacenadas corectamente.');

@@ -10,15 +10,15 @@ var feq = {
         $and: [
             {$lte: [
                 {$add: [
-                    {$multiply: [{arrayElemAt: [field_name, 1]}, threshold]},
-                    {$multiply: [{arrayElemAt: [field_name, 0]}, one_thold]}
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
                 ]},
                 U_CT
             ]},
             {$gte: [
                 {$add: [
-                    {$multiply: [{arrayElemAt: [field_name, 2]}, threshold]},
-                    {$multiply: [{arrayElemAt: [field_name, 3]}, one_thold]}
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
                 ]},
                 L_CT
             ]}
@@ -33,15 +33,15 @@ var nfeq = {
         $and: [
             {$gte: [
                 {$add: [
-                        {$multiply: [{arrayElemAt: [field_name, 1]}, threshold]},
-                        {$multiply: [{arrayElemAt: [field_name, 0]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
                     ]},
                 U_CT
             ]},
             {$lte: [
                 {$add: [
-                        {$multiply: [{arrayElemAt: [field_name, 2]}, threshold]},
-                        {$multiply: [{arrayElemAt: [field_name, 3]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
                     ]},
                 L_CT
             ]}
@@ -56,8 +56,8 @@ var fgt = {
     $expr: {
         $gte: [
             {$add: [
-                {$multiply: [{arrayElemAt: [field_name, 2]}, threshold]},
-                {$multiply: [{arrayElemAt: [field_name, 3]}, one_thold]}
+                {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
+                {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
             ]},
             L_CT
         ]
@@ -71,8 +71,8 @@ var flt = {
     $expr: {
         $lte: [
             {$add: [
-                {$multiply: [{arrayElemAt: [field_name, 1]}, threshold]},
-                {$multiply: [{arrayElemAt: [field_name, 0]}, one_thold]}
+                {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
             ]},
             U_CT
         ]
