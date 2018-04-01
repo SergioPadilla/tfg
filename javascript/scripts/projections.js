@@ -69,7 +69,7 @@ var nfeq = {
         {$cond: [
             {$lt: [{$arrayElemAt: [field_name, 0]}, value[1]]},
             {$cond: [
-                {$gt: [{$arrayElemAt: [field_name, 3]}, value[2]]},,
+                {$gt: [{$arrayElemAt: [field_name, 3]}, value[2]]},
                 {$min: [
                     {$divide: [
                         {$subtract: [
