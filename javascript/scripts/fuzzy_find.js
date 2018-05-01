@@ -1,3 +1,17 @@
+/*
+To use this scripts follow this steps:
+    1 - Execute mongo server (mongod command)
+    2 - Execute the command to load this script in the database
+            ej: mongo localhost/test fuzzy_find.js
+    3 - Open mongo shell (mongo command)
+    4 - Use database where you loaded script before
+            ej: use test
+    5 - Load server functions (db.loadServerScripts(); command)
+    6 - Execute query
+            ej: fuzzy_find('Tab_25', {'trape': {'$feq': [100000,110000,120000,130000], '$thold': 0.6}}, {'trape_cdeg': 1})
+ */
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  MATCHES function
@@ -91,6 +105,401 @@ function fgt(field_name, value, threshold) {
 //
 ////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////
+//
+//  PROJECTION function
+//
+////////////////////////////////////////////////////////////////////////////////////
+
+function feq_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$and: [
+                {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]},
+                {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[2]]}
+            ]},
+            1,
+            {$cond: [
+                {$or: [
+                    {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
+                    {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[3]]}
+                ]},
+                0,
+                {$cond: [
+                    {$and: [
+                        {$gt: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
+                        {$lt: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]}
+                    ]},
+                    {$divide: [
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 3]},
+                            value[0]
+                        ]},
+                        {$subtract: [
+                            {$subtract: [
+                                value[1],
+                                value[0]
+                            ]},
+                            {$subtract: [
+                                {$arrayElemAt: ['$'+field_name, 2]},
+                                {$arrayElemAt: ['$'+field_name, 3]}
+                            ]}
+                        ]}
+                    ]},
+                    {$divide: [
+                        {$subtract: [
+                            value[3],
+                            {$arrayElemAt: ['$'+field_name, 0]}
+                        ]},
+                        {$subtract: [
+                            {$subtract: [
+                                {$arrayElemAt: ['$'+field_name, 1]},
+                                {$arrayElemAt: ['$'+field_name, 0 ]}
+                            ]},
+                            {$subtract: [
+                                value[2],
+                                value[3]
+                            ]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+
+function nfeq_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$or: [
+                {$and: [
+                    {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[0]]},
+                    {$eq: [{$arrayElemAt: ['$'+field_name, 0]}, value[1]]}
+                ]},
+                {$and: [
+                    {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[3]]},
+                    {$eq: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]}
+                ]}
+            ]},
+            0,
+            {$cond: [
+                {$lt: [{$arrayElemAt: ['$'+field_name, 0]}, value[1]]},
+                {$cond: [
+                    {$gt: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]},
+                    {$min: [
+                        {$divide: [
+                            {$subtract: [
+                                {$arrayElemAt: ['$'+field_name, 1]},
+                                value[0]
+                            ]},
+                            {$subtract: [
+                                {$subtract: [
+                                    value[1],
+                                    value[0]
+                                ]},
+                                {$subtract: [
+                                    {$arrayElemAt: ['$'+field_name, 0]},
+                                    {$arrayElemAt: ['$'+field_name, 1]}
+                                ]}
+                            ]}
+                        ]},
+                        {$divide: [
+                            {$subtract: [
+                                {$arrayElemAt: ['$'+field_name, 2]},
+                                value[3]
+                            ]},
+                            {$subtract: [
+                                {$subtract: [
+                                    value[2],
+                                    value[3]
+                                ]},
+                                {$subtract: [
+                                    {$arrayElemAt: ['$'+field_name, 3]},
+                                    {$arrayElemAt: ['$'+field_name, 2]}
+                                ]}
+                            ]}
+                        ]}
+                    ]},
+                    {$divide: [
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 1]},
+                            value[0]
+                        ]},
+                        {$subtract: [
+                            {$subtract: [
+                                value[1],
+                                value[0]
+                            ]},
+                            {$subtract: [
+                                {$arrayElemAt: ['$'+field_name, 0]},
+                                {$arrayElemAt: ['$'+field_name, 1]}
+                            ]}
+                        ]}
+                    ]}
+                ]},
+                {$cond: [
+                    {$gt: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]},
+                    {$divide: [
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 2]},
+                            value[3]
+                        ]},
+                        {$subtract: [
+                            {$subtract: [
+                                value[2],
+                                value[3]
+                            ]},
+                            {$subtract: [
+                                {$arrayElemAt: ['$'+field_name, 3]},
+                                {$arrayElemAt: ['$'+field_name, 2]}
+                            ]}
+                        ]}
+                    ]},
+                    1
+                ]}
+            ]}
+        ]
+    };
+}
+
+function fgt_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[3]]},
+            1,
+            {$cond:[
+                {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 3]},
+                        value[2]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[3],
+                            value[2]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 2]},
+                            {$arrayElemAt: ['$'+field_name, 3]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function nfgt_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[3]]},
+            1,
+            {$cond:[
+                {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[2]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 1]},
+                        value[2]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[3],
+                            value[2]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 0]},
+                            {$arrayElemAt: ['$'+field_name, 1]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function flt_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[0]]},
+            1,
+            {$cond:[
+                {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[1]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 0]},
+                        value[1]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[0],
+                            value[1]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 1]},
+                            {$arrayElemAt: ['$'+field_name, 0]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function nflt_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
+            1,
+            {$cond:[
+                {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 2]},
+                        value[1]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[0],
+                            value[1]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 3]},
+                            {$arrayElemAt: ['$'+field_name, 2]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function fgte_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]},
+            1,
+            {$cond:[
+                {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 3]},
+                        value[0]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[1],
+                            value[0]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 2]},
+                            {$arrayElemAt: ['$'+field_name, 3]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function nfgte_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[1]]},
+            1,
+            {$cond:[
+                {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[0]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 1]},
+                        value[0]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[1],
+                            value[0]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 0]},
+                            {$arrayElemAt: ['$'+field_name, 1]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function flte_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[2]]},
+            1,
+            {$cond:[
+                {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[3]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        value[3],
+                        {$arrayElemAt: ['$'+field_name, 0]}
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 1]},
+                            {$arrayElemAt: ['$'+field_name, 0]}
+                        ]},
+                        {$subtract: [
+                            value[2],
+                            value[3]
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function nflte_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]},
+            1,
+            {$cond:[
+                {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[3]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        value[3],
+                        {$arrayElemAt: ['$'+field_name, 2]}
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 3]},
+                            {$arrayElemAt: ['$'+field_name, 2]}
+                        ]},
+                        {$subtract: [
+                            value[2],
+                            value[3]
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+////////////////////////////////////////////////////////////////////////////////////
+//
+//  end PROJECTION functions
+//
+////////////////////////////////////////////////////////////////////////////////////
+
 function split_queries(query) {
     // remove all fuzzy properties
     let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
@@ -117,6 +526,7 @@ function split_queries(query) {
 function parse_fuzzy(fquery) {
     let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
     let query = {};
+    let foperators = {};
 
     for (let fproperty in fquery) {
         let fsubquery = fquery[fproperty];
@@ -125,6 +535,12 @@ function parse_fuzzy(fquery) {
             let operator = fuzzy_operators[i];
 
             if (fsubquery.hasOwnProperty(operator)) {
+
+                if (foperators.hasOwnProperty(fproperty))
+                    foperators[fproperty].push(operator);
+                else
+                    foperators[fproperty] = [operator];
+
                 let func = operator.toString().substring(1);
                 let value = fsubquery[operator];
                 let threshold = fsubquery.hasOwnProperty('$thold') ? fsubquery['$thold'] : 0;
@@ -137,14 +553,10 @@ function parse_fuzzy(fquery) {
         }
     }
 
-    return query;
+    return [query, foperators];
 }
 
-function get_match(filter) {
-    let queries = split_queries(filter);
-    let query = queries[0];
-    let fquery = parse_fuzzy(queries[1]);
-
+function get_match(query, fquery) {
     let match_stage = {$match: {}};
 
     for (let property in query) {
@@ -157,6 +569,30 @@ function get_match(filter) {
     return match_stage;
 }
 
+function get_projection(fquery, foperators, projection) {
+    let stage = {$project: {}};
+
+    for (let property in projection) {
+        if (property.includes('_cdeg') && projection[property] === 1) {
+            let fproperty = property.replace('_cdeg', '');
+
+            if (foperators[fproperty].length !== 1)
+                throw 'Projection failed';
+
+            let operator = foperators[fproperty][0];
+            let func = operator.toString().substring(1);
+            let value = fquery[fproperty][operator];
+            let to_eval = func + '_cdeg("' + fproperty + '", [' + value + '])';
+            stage['$project'][property] = eval(to_eval);
+        }
+        else {
+            stage['$project'][property] = projection[property];
+        }
+    }
+
+    return stage;
+}
+
 function fuzzy_find(collection, filter, projection) {
     // 1. Check types
     if (Object.prototype.toString.call(filter) !== '[object Object]' ||
@@ -164,24 +600,49 @@ function fuzzy_find(collection, filter, projection) {
         Object.prototype.toString.call(collection) !== '[object String]')
         throw 'Incompatible type';
 
-    let match_stage = get_match(filter);
-    
+    let stages = [];
+    let queries = split_queries(filter);
+    let query = queries[0];
+    let fuzzy = parse_fuzzy(queries[1]);
+    let fquery = fuzzy[0];
+    let foperators = fuzzy[1];
+
+    stages.push(get_match(query, fquery));
+
+    if (Object.keys(projection).length !== 0)  // check for empty object
+        stages.push(get_projection(queries[1], foperators, projection));
+
     return  db.runCommand(
         {
             aggregate: "Tab_25",
-            pipeline: [match_stage],
+            pipeline: stages,
             cursor: {}
         }
     );
 }
 
+// matches functions
 db.system.js.save({_id: 'feq', value: feq});
 db.system.js.save({_id: 'nfeq', value: nfeq});
 db.system.js.save({_id: 'fgt', value: fgt});
 
+// projection functions
+db.system.js.save({_id: 'feq_cdeg', value: feq_cdeg});
+db.system.js.save({_id: 'nfeq_cdeg', value: nfeq_cdeg});
+db.system.js.save({_id: 'fgt_cdeg', value: fgt_cdeg});
+db.system.js.save({_id: 'nfgt_cdeg', value: nfgt_cdeg});
+db.system.js.save({_id: 'flt_cdeg', value: flt_cdeg});
+db.system.js.save({_id: 'nflt_cdeg', value: nflt_cdeg});
+db.system.js.save({_id: 'fgte_cdeg', value: fgte_cdeg});
+db.system.js.save({_id: 'nfgte_cdeg', value: nfgte_cdeg});
+db.system.js.save({_id: 'flte_cdeg', value: flte_cdeg});
+db.system.js.save({_id: 'nflte_cdeg', value: nflte_cdeg});
+
+// functions
 db.system.js.save({_id: 'split_queries', value: split_queries});
 db.system.js.save({_id: 'parse_fuzzy', value: parse_fuzzy});
 db.system.js.save({_id: 'get_match', value: get_match});
+db.system.js.save({_id: 'get_projection', value: get_projection});
 db.system.js.save({_id: 'fuzzy_find', value: fuzzy_find});
 
 print('Funciones almacenadas corectamente.');
