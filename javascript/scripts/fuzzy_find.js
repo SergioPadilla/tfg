@@ -50,30 +50,30 @@ function feq(field_name, value, threshold) {
 }
 
 function nfeq(field_name, value, threshold) {
-    let field_0 = field_name + '.0';
-    let field_3 = field_name + '.3';
+    let field_1 = field_name + '.1';
+    let field_2 = field_name + '.2';
     let one_thold = 1 - threshold;
     let L_CT = threshold*value[1] + one_thold*value[0];
     let U_CT = threshold*value[2] + one_thold*value[3];
 
     return {
-        [field_0]: {$gte: U_CT},
-        [field_3]: {$lte: L_CT},
+        [field_1]: {$gte: U_CT},
+        [field_2]: {$lte: L_CT},
         $expr: {
             $and: [
                 {$gte: [
                     {$add: [
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
                     ]},
-                    U_CT
+                    L_CT
                 ]},
                 {$lte: [
                     {$add: [
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
                     ]},
-                    L_CT
+                    U_CT
                 ]}
             ]
         }
@@ -529,13 +529,13 @@ function trapezoid(x) {
         throw 'Incompatible type: ' + x + ' ' + Object.prototype.toString.call(x);
 
     if (Object.prototype.toString.call(x) === '[object Array]') {
-        for (var i = 0; i < x.length; i++) {
+        for (let i = 0; i < x.length; i++) {
             if (Object.prototype.toString.call(x[i]) !== '[object Number]')
                 throw 'Incompatible type';
         }
     }
 
-    var v = x;
+    let v = x;
     if (Object.prototype.toString.call(x) === '[object Number]')
         v = [x];
 
