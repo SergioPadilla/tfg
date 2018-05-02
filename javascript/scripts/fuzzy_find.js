@@ -523,6 +523,37 @@ function split_queries(query) {
     return [query, fquery];
 }
 
+function trapezoid(x) {
+    if (Object.prototype.toString.call(x) !== '[object Array]' &&
+        Object.prototype.toString.call(x) !== '[object Number]')
+        throw 'Incompatible type: ' + x + ' ' + Object.prototype.toString.call(x);
+
+    if (Object.prototype.toString.call(x) === '[object Array]') {
+        for (var i = 0; i < x.length; i++) {
+            if (Object.prototype.toString.call(x[i]) !== '[object Number]')
+                throw 'Incompatible type';
+        }
+    }
+
+    var v = x;
+    if (Object.prototype.toString.call(x) === '[object Number]')
+        v = [x];
+
+    v = v.sort();
+    switch(v.length) {
+        case 1:
+            return [v[0], v[0], v[0], v[0]];
+        case 2:
+            return [v[0], v[0], v[1], v[1]];
+        case 3:
+            return [v[0], v[1], v[1], v[2]];
+        case 4:
+            return v;
+        default:
+            throw 'Length must be smaller than 4';
+    }
+};
+
 function parse_fuzzy(fquery) {
     let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
     let query = {};
@@ -542,7 +573,7 @@ function parse_fuzzy(fquery) {
                     foperators[fproperty] = [operator];
 
                 let func = operator.toString().substring(1);
-                let value = fsubquery[operator];
+                let value = trapezoid(fsubquery[operator]);
                 let threshold = fsubquery.hasOwnProperty('$thold') ? fsubquery['$thold'] : 0;
                 let to_eval = func + '("' + fproperty + '", [' + value + '], ' + threshold + ')';
                 let match = eval(to_eval);
@@ -581,7 +612,7 @@ function get_projection(fquery, foperators, projection) {
 
             let operator = foperators[fproperty][0];
             let func = operator.toString().substring(1);
-            let value = fquery[fproperty][operator];
+            let value = trapezoid(fquery[fproperty][operator]);
             let to_eval = func + '_cdeg("' + fproperty + '", [' + value + '])';
             stage['$project'][property] = eval(to_eval);
         }
@@ -641,6 +672,7 @@ db.system.js.save({_id: 'nflte_cdeg', value: nflte_cdeg});
 // functions
 db.system.js.save({_id: 'split_queries', value: split_queries});
 db.system.js.save({_id: 'parse_fuzzy', value: parse_fuzzy});
+db.system.js.save({_id: 'trapezoid', value: trapezoid});
 db.system.js.save({_id: 'get_match', value: get_match});
 db.system.js.save({_id: 'get_projection', value: get_projection});
 db.system.js.save({_id: 'fuzzy_find', value: fuzzy_find});
