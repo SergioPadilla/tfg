@@ -90,8 +90,8 @@ function fgt(field_name, value, threshold) {
         $expr: {
             $gte: [
                 {$add: [
-                    {$multiply: [{$arrayElemAt: [['$'+field_name], 2]}, threshold]},
-                    {$multiply: [{$arrayElemAt: [['$'+field_name], 3]}, one_thold]}
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
                 ]},
                 L_CT
             ]
@@ -552,7 +552,7 @@ function trapezoid(x) {
         default:
             throw 'Length must be smaller than 4';
     }
-};
+}
 
 function parse_fuzzy(fquery) {
     let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
