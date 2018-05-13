@@ -624,11 +624,13 @@ function get_projection(fquery, foperators, projection) {
     return stage;
 }
 
-function fuzzy_find(collection, filter, projection) {
+function fuzzy_find(collection, filter, projection, count_name=null) {
     // 1. Check types
     if (Object.prototype.toString.call(filter) !== '[object Object]' ||
         Object.prototype.toString.call(projection) !== '[object Object]' ||
-        Object.prototype.toString.call(collection) !== '[object String]')
+        Object.prototype.toString.call(collection) !== '[object String]'||
+        (Object.prototype.toString.call(count_name) !== '[object String]'
+            && Object.prototype.toString.call(count_name) !== null))
         throw 'Incompatible type';
 
     let stages = [];
@@ -642,6 +644,9 @@ function fuzzy_find(collection, filter, projection) {
 
     if (Object.keys(projection).length !== 0)  // check for empty object
         stages.push(get_projection(queries[1], foperators, projection));
+
+    if (count_name !== null)
+        stages.push({'$count': count_name});
 
     return  db.runCommand(
         {
