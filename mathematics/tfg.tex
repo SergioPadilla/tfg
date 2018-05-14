@@ -247,6 +247,7 @@ Esta aplicación,claramente diferenciable, envía cada punto $p$ de la superfici
 La unión $N_\delta(S)$ de todos los segmentos normales de radio $\delta > 0$ centrados en los puntos de una superficie $S$ orientable es llamada \textit{entorno tubular} de radio $\delta$ si es un abierto como subconjunto de $\rtres$ y la función $F: S x (-\delta, \delta) \longrightarrow N(p)$ definida previamente es un difeomorfismo.
 \end{definition}
 
+% TODO: Demostrar
 \begin{lemma}
 Sea $S$ una superficie, $\forall p \in S$, $\exists V_p$, entorno abierto y orientable y $\delta > 0$ de forma que el conjunto $N_\delta(V_p)$ es un entorno tubular de $V$.
 \end{lemma}
@@ -372,19 +373,29 @@ donde $N \subset O$ es el subconjunto de punto críticos de $\phi$ en $O$ (esto 
 \begin{equation*}
     \int_{\rtres} n(\phi, f) = \int_O f(x)|Jac \phi|(x)dx
 \end{equation*}
-
 \end{theorem}
 
+\begin{theorem}[Fórmula del área en productos]
+Sea $\phi: S \times (a,b) \longrightarrow \rtres$ una apliación diferenciable, con $S$ una superficie compacta y $a,b \in \mathbb{R}$, $a < b$. Sea $f$ una función integrable en $S \times (a,b)$. Entonces, la función $n(\phi, f)$ dada por:
+
+\begin{equation*}
+    n(\phi, f) = \sum_{(p,t) \in \phi^{-1}(x)} f(p,t)
+\end{equation*}
+
+está bien definida para cada $x \in \rtres$ excepto en un conjunto de medida nula y:
+
+\begin{equation*}
+    \int_{\rtres} n(\phi, f) = \int_{S \times (a,b)} f(p,t)|Jac \phi|(p,t)dpdt
+\end{equation*}
+\end{theorem}
 
 \begin{definition}[Campo vectorial diferenciable]
 Sea $A$ un subconjunto de $\rtres$, se define un campo vectorial diferenciable como una aplicación diferenciable $X: A \longrightarrow \rtres$.
 \end{definition}
 
-
 \begin{definition}[Divergencia de un campo vectorial diferenciable]
 Se define la divergencia de X como la función $div X: A \longrightarrow \mathbb{R}$ dada por $divX(p) = Traza(dX)_p$ con $\forall \in A$.
 \end{definition}
-
 
 \begin{theorem}[Teorema de divergencia]
 Sea $S$ una superficie conexa y compacta y $\Omega$ el dominio interior determinado por $S$. Si $X: \bar{\Omega} \longrightarrow \rtres$ es un campo vectorial diferenciable, entonces:
@@ -397,13 +408,37 @@ donde $N: S \longrightarrow \mathbb{S}^2$ es el campo normal interior a lo largo
 \end{theorem}
 
 \begin{definition}[Volumen encerrado por una superficie compacta]
-Si $S$ es una superficie compacta y $\Omega$ su dominio interior. Sea campo vectorial diferenciable identidad $X: \bar{\Omega} \longrightarrow \rtres$ definido por $X(x) = x \quad \forall p \in \bar{\Omega}$. Su divergencia es la función constante 3. Entonces por el teorema de divergencia:
+Si $S$ es una superficie compacta y $\Omega$ su dominio interior. Sea campo vectorial diferenciable identidad $X: \bar{\Omega} \longrightarrow \rtres$ definido por $X(x) = x \quad \forall p \in \bar{\Omega}$. Su divergencia es la función constante. Entonces por el teorema de divergencia:
 \begin{equation*}
     vol \Omega = - \frac{1}{3} \int_S <p, N(p)> dp
 \end{equation*}
 
 donde $N$ es el interior normal unitario de $S$.
 \end{definition}
+
+\begin{theorem}[Teorema de divergencia en superficies]
+Sea $S$ una superficie compacta y $V: S \longrightarrow \rtres$ un campo vectorial diferenciable en $S$. Entonces, tenemos:
+
+\begin{enumerate}
+    \item $\int_S div V = -2 \int_S<V,N>H$
+    \item $\int_S [k_2(p)<(dV)_p(e_1),e_1> + k_1(p)<(dV)_p(e_2),e_2>]dp = -2 \int_S<V,N>K$ donde ${e_1,e_2}$ es una base ortonormal de direcciones principales en $p \in S$.
+\end{enumerate}
+
+donde $H, k_1 y k_2$ son las curvaturas media y principales de la superficie.
+\end{theorem}
+
+\section{Desigualdad Isoperimétrica}
+Por último, en esta sección vamos a definir el resultado que íbamos buscando y  más importante, la desigualdad isoperimétrica en $\rtres$. Para su demostración, necesitamos de algunos elementos que aún no hemos definido. Vamos a verlos como preliminares a la desigualdad.
+
+Vamos a ver las fórmulas de Minkowski que nos serán de utilidad en lo sucesivo.
+\begin{theorem}[Fórmulas de Minkowski]
+Sea $S$ una superficie compacta, $N$ el dominio interior dado por su aplicación de Gauss y sean $H$ y $K$ las curvaturas media y de Gauss de la superficie. Tenemos:
+
+\begin{enumerate}
+    \item \int_S (1+<p, N(p)>H(p))dp = 0
+    \item \int_S (H(p)+<p, N(p)>K(p))dp = 0
+\end{enumerate}
+\end{theorem}
 
 
 
