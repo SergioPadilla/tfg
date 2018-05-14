@@ -506,7 +506,8 @@ function split_queries(query) {
     let fquery = {};
     for (let property in query) {
         let prop_query = query[property];
-        if (Object.prototype.toString.call(prop_query) === '[object Object]') {
+        if (Object.prototype.toString.call(prop_query) === '[object Object]'
+            || Object.prototype.toString.call(prop_query) === '[object BSON]') {
             let is_fuzzy = false;
             for (let i = 0; i < fuzzy_operators.length && !is_fuzzy; i++) {
                 if (prop_query.hasOwnProperty(fuzzy_operators[i]))
@@ -626,11 +627,10 @@ function get_projection(fquery, foperators, projection) {
 
 function fuzzy_find(collection, filter, projection, count_name=null) {
     // 1. Check types
-    if (Object.prototype.toString.call(filter) !== '[object Object]' ||
-        Object.prototype.toString.call(projection) !== '[object Object]' ||
-        Object.prototype.toString.call(collection) !== '[object String]'||
-        (Object.prototype.toString.call(count_name) !== '[object String]'
-            && Object.prototype.toString.call(count_name) !== null))
+    if ((Object.prototype.toString.call(filter) !== '[object Object]' && Object.prototype.toString.call(filter) !== '[object BSON]') ||
+        (Object.prototype.toString.call(projection) !== '[object Object]' && Object.prototype.toString.call(filter) !== '[object BSON]') ||
+        (Object.prototype.toString.call(collection) !== '[object String]' && Object.prototype.toString.call(filter) !== '[object BSON]') ||
+        (count_name !== null && Object.prototype.toString.call(count_name) !== '[object String]'))
         throw 'Incompatible type';
 
     let stages = [];
@@ -648,13 +648,14 @@ function fuzzy_find(collection, filter, projection, count_name=null) {
     if (count_name !== null)
         stages.push({'$count': count_name});
 
-    return  db.runCommand(
-        {
-            aggregate: "Tab_25",
-            pipeline: stages,
-            cursor: {}
-        }
-    );
+    // return  db.runCommand(
+    //     {
+    //         aggregate: "Tab_25",
+    //         pipeline: stages,
+    //         cursor: {}
+    //     }
+    // );
+    return db[collection].aggregate(stages);
 }
 
 // matches functions
