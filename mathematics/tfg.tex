@@ -114,7 +114,7 @@ $\forall p \in S$ $\exists V$ entorno abierto de $p$ en $S$ (con la topología i
 
 Sea $S \subseteq \rtres$ una superficie. Un \textit{campo de vectores} (diferenciable) en $S$ es una aplicación diferenciable $\vmath: S \longrightarrow \rtres$. Si $\vmath_p := \vmath(p) \in \tmath_p S$ para todo $p \in S$, diremos que $\vmath$ es un \textit{campo tangente} a $S$. Si $\vmath_p \bot \tmath_p S$ para todo $p \in S$, diremos que $\vmath$ es un \textit{campo normal} a $S$. Un campo unitario es aquel que cumple $\parallel \vmath_p \parallel = 1$ para todo $p \in S$.
 
-Sea $S \subseteq \rtres$ una superficio orientable, y $p \in S$. Se definen:
+Sea $S \subseteq \rtres$ una superficie orientable, y $p \in S$. Se definen:
 
 Se dice que $S$ es una \textbf{superficie orientable} si admite un campo normal unitario global $\nmath: S \longrightarrow \unitsphere$. A este campo $\nmath$ se le llama \texbf{aplicación de Gauss}.
 
@@ -197,13 +197,30 @@ Además hemos probado, que $C$ contiene una de las dos componentes conexas de $W
 \end{proof}
 
 \begin{definition}[Dominios interior y exterior]
-Llamamos \textit{dominio interior} y notamos como $\Omega$ a la componente conexa acotada limitada por la superficie $S$. Llamamos \textit{dominio exterior} a la componente no acotada $\rtres - \Omega$.
+Llamamos \textit{dominio interior} y notamos como $\Omega$ a la componente conexa acotada limitada por la superficie $S$. Llamamos \textit{dominio exterior} a la componente no acotada $\rtres - \Omega=\Omega_{*}$.
+\end{definition}
+
+\begin{lemma}
+Sea S una superficie y $p \in S$. $\exists W \subset \rtres$ entorno abierto y conexo de $p$ y $\exists G: W \longrightarrow B$ difeomorfismo que cumple $G(W\cap S) = B\cap P$ con $B$ una bola abierta y $P$ un plano, ambos de $\rtres$.
+\end{lemma}
+
+\begin{definition}
+Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\parallel v \parallel=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha es regular$ y $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon > 0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}.
 \end{definition}
 
 \begin{theorem}[Teorema de Brower-Samelson]
 Toda superficie compacta en un espacio euclideo es orientable.
 \end{theorem}
 \begin{proof}
+La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\prep}$ con $\parallel v \parallel=1$ tenemos que $v$ es interior o bien $-v$ es interior.
+
+Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos.
+
+Supongamos que $v$ y $-v$ son interiores. Esto implicaría que $\alpha(0,\epsilon) \subset \Omega$ y $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$, y por definición, $\alpha(-\epsilon, \epsilon) \cap S \neq \emptyset$.
+
+Tomemos ahora $v \in (T_pS)^{\prep}$ con $\parallel v \parallel=1$ interior (si no fuese interior, tomamos -v). Vamos a buscar un entorno abierto de $p \in S$ para construir la orientación $N: V \longrightarrow \rtres$. Donde $N$ es un campo unitario normal diferenciable con $N(q)$ interior $\forall q \in V.$
+
+Por el lema previo, tenemos que $\exists W$ entorno de abierto y conexo de $p$. Definimos el entorno $V=W\cap S$ entorno de $p$, homeomorfo a $B\cap P$, luego conexo. Como toda superficie es localmente orientable, podemos suponer que $V$ es orientable.
 
 \end{proof}
 
