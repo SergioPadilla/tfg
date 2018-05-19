@@ -42,7 +42,8 @@
 % 2. Personal data and user ad-hoc commands
 % ****************************************************************************************************
 \newcommand{\myTitle}{Problema isoperimétrico en el espacio y representación de información difusa en base de datos NoSQL\xspace}
-\newcommand{\mySubtitle}{Resolución problema isoperímetrico y propuesta MongoDB\xspace}
+\newcommand{\mySubtitle}{ \xspace}
+%\newcommand{\mySubtitle}{Resolución problema isoperimétrico y propuesta MongoDB\xspace}
 \newcommand{\myWork}{Trabajo Fin de Grado}
 \newcommand{\myDegree}{Doble Grado en Ingeniería Informática y Matemáticas\xspace}
 \newcommand{\myName}{Sergio Padilla López\xspace}
@@ -117,6 +118,22 @@
     %\renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms --> no longer working
     %\renewcommand*{\acsfont}[1]{\textsc{#1}} 
     \renewcommand*{\aclabelfont}[1]{\acsfont{#1}}
+    
+    
+% *********************************************
+% Paquete todonotes. Paquete para intrducir notas en texto pdf generado
+%**********************************************
+% Para activar las notas descomentar la linea siguiente y comentar la segunda
+% Para desactivar las notas descomentar la linea segunda y comentar la primera
+%\usepackage[textwidth=2.2cm]{todonotes}
+%\usepackage[disable]{todonotes}
+%\listoftodos
+% Copiar y modificar los ejemplos de notas de abajo y ubicarlos donde queramos que 
+% aparezca la nota
+
+%\todo[author=JM,color=blue!40,inline,caption={Texto para el indice}]{Entre llaves introduces el texto de la anotación}
+%\todo[author=Sergio,color=green!40,inline,caption={Carlos: Anotaciones de Sergio}]{Entre llaves introduces el texto de la anotacion}
+
 % ****************************************************************************************************
 
 
@@ -144,7 +161,7 @@
 % ****************************************************************************************************
 \usepackage{listings} 
 %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
-\lstset{language=R,%
+\lstset{language=bash,%
     morekeywords={PassOptionsToPackage,selectlanguage},
     keywordstyle=\color{black},%\bfseries,
     basicstyle=\small\color{Periwinkle}\ttfamily,
@@ -190,7 +207,7 @@
     breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
     plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
     hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
-    urlcolor=RoyalBlue, linkcolor=TealBlue, citecolor=Plum, %pagecolor=RoyalBlue,%
+    urlcolor=RoyalBlue, linkcolor=NavyBlue, citecolor=Plum, %pagecolor=RoyalBlue,%
     %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
     pdftitle={\myTitle},%
     pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
