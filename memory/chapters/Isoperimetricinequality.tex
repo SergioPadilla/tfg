@@ -10,3 +10,77 @@ Sea $S$ una superficie compacta, $N$ el dominio interior dado por su aplicación
     \item $\int_S (H(p)+<p, N(p)>K(p))dp = 0$
 \end{enumerate}
 \end{theorem}
+
+\begin{definition}
+Si $A, B$ son dos conjuntos de $\mathbb{R}^n$, definimos la \textbf{suma conjuntista} de $A+B$ como:
+
+\begin{equation*}
+    A+B = \{a+b; a \in A, b \in B\}
+\end{equation*}
+\end{definition}
+
+\begin{lemma}
+Sea $A,B \subset \mathbb{R}^n$. Si uno de los dos conjuntos es abierto, entonces la suma es un abierto.
+\end{lemma}
+\begin{proof}
+Supongamos que $A$ es abierto.
+Podemos notas la suma de los conjuntos como:
+\begin{equation*}
+    A + B = \{a+b; a \in A, b \in B\} = \bigcup_{b \in B} \{a+b; a \in A\}
+\end{equation*}
+
+Sabemos que la unión de abiertos es abierta, luego solo nos falta ver que $\{a+b; a \in A\}$ es abierto.
+
+En efecto, tenemos que el conjunto $\{a+b; a \in A\}$ es una traslación del conjunto $A$, que es un movimiento rígido y por tanto conserva las propiedades del conjunto $A$. Concluimos que $A+B$ es un abierto.
+
+Análogo para $B$ abierto.
+\end{proof}
+
+
+\begin{lemma}
+Sea $A,B \subseteq \mathbb{R}^n$. Si ambos conjuntos están acotados, entonces la suma está acotada.
+\end{lemma}
+\begin{proof}
+La demostración de esta propiedad es consecuencia directa de la desigualdad triangular.
+
+Sea $L,K > 0$ las cotas de $A$ y $B$ respectivamente. Luego,
+\begin{equation*}
+    |a+b| \leq |a|+|b| \leq L + K \qquad \forall a \in A, b\in B
+\end{equation*}
+
+Luego $A+B$ está acotado.
+\end{proof}
+
+
+\begin{lemma}
+Sea $A,B \subset \mathbb{R}^3$. Si ambos conjuntos son arco-conexos, entonces la suma es arco-conexo.
+\end{lemma}
+\begin{proof}
+Veamos que $\forall c,d \in A+B$, $\exists \sigma: [0,1] \longrightarrow A+B$ arco, tal que $\sigma(0)=c$ y $\sigma(1)=d$.
+
+Sea $c=a_1 + b_1$, $d=a_2+b_2$ cualesquiera pertenecientes a $A+B$. Por ser $A$ y $B$ arco-conexos, tenemos que existen $\sigma_1: [0,1] \longrightarrow A$ con $\sigma_1(0)=a_1$ y $\sigma_1(1)=a_2$ y $\sigma_2: [0,1] \longrightarrow B$ con $\sigma_2(0)=b_1$ y $\sigma_2(1)=b_2$. Luego podemos construir, $\sigma: [0,1] \longrightarrow A+B$ tal que $\sigma(0)=\sigma_1(0) + \sigma_2(0) = a_1+b_1 = c$ y $\sigma(1)=\sigma_1(1) + \sigma_2(1) = a_2+b_2 = d$ arco.
+\end{proof}
+
+\begin{theorem}[Desigualdad de Brunn-Minkowski]
+Sean $A, B$ dos abiertos acotados del espacio euclídeo $\rtres$. Se cumple:
+
+\begin{equation*}
+    (vol A)^{\frac{1}{3}} + (vol B)^{\frac{1}{3}} \leq (vol (A+B))^{\frac{1}{3}}
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[Desigualdad Isoperimétrica]
+Sea $S$ una superficie conexa y compacta con dominio interior $\Omega$. Se cumple:
+
+\begin{equation*}
+    A(S)^3 \geq 36A(vol\Omega)^2
+\end{equation*}
+\end{theorem}
+
+\begin{proposition}
+Las esferas son superficies isoperimétricas que minimizan el área entre todas las superficies compactas y conexas con su mismo volumen.
+\end{proposition}
+
+\begin{corolario}
+Sea $S \subset \rtres$ una superficie compacta y conexa y $\Omega$ su dominio interior. Entonces $S$ es isoperimétrica si y solo si $A(S)^3 = 36\pi (vol \Omega)^2$.
+\end{corolario}
