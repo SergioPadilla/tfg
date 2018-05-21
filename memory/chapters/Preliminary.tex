@@ -1,4 +1,4 @@
-En este capítulo haremos un repaso de los conceptos más importantes que nos serán de utilidad a lo largo del trabajo.
+En este capítulo haremos un repaso de los conceptos más importantes que nos serán de utilidad a lo largo del trabajo. Recordaremos definiciones y resultados de superficies regular, enunciaremos y demostraremos el teorema de Brower-Samelson e introduciremos los entornos tubulares y superficies paralelas.
 
 \section{Superficie regular}
 
@@ -18,14 +18,14 @@ Sea $S \subseteq \rtres$ una superficie. Un \textit{campo de vectores} (diferenc
 
 Sea $S \subseteq \rtres$ una superficie orientable, y $p \in S$. Se definen:
 
-Se dice que $S$ es una \textbf{superficie orientable} si admite un campo normal unitario global $\nmath: S \longrightarrow \unitsphere$. A este campo $\nmath$ se le llama \texbf{aplicación de Gauss}.
+Se dice que $S$ es una \textbf{superficie orientable} si admite un campo normal unitario global $\nmath: S \longrightarrow \unitsphere$. A este campo $\nmath$ se le llama \textbf{aplicación de Gauss}.
 
 Se llama \textbf{endomorfismo de Weingarten} de $S$ en $p$ al endomorfismo: $A_p = -(dN)_p$
 
 \begin{definition}[Formas fundamentales]
-La \texbf{primera forma fundamental} de $S$ en $p$ es: $I_p: T_pS \times T_pS \longrightarrow \rmath$ donde $I_p(u,v) = <u,v>$, $\forall u,v \in T_pS$.
+La \textbf{primera forma fundamental} de $S$ en $p$ es: $I_p: T_pS \times T_pS \longrightarrow \rmath$ donde $I_p(u,v) = <u,v>$, $\forall u,v \in T_pS$.
 
-La \texbf{segunda forma fundamental} de $S$ en $p$ es la forma bilineal: $II_p = \sigma_p: T_pS \times T_pS \longrightarrow \rmath$ donde $\sigma_p(u,v) = <A_pu,v> = I_p(Ap_u,v) = -<(dN)_p(u), v>$, $\forall u,v \in T_pS$.
+La \textbf{segunda forma fundamental} de $S$ en $p$ es la forma bilineal: $II_p = \sigma_p: T_pS \times T_pS \longrightarrow \rmath$ donde $\sigma_p(u,v) = <A_pu,v> = I_p(Ap_u,v) = -<(dN)_p(u), v>$, $\forall u,v \in T_pS$.
 \end{definition}
 
 Notemos que $\sigma_p$ es simétrica y por tanto el endomorfismo de Weingarten ($A_p$) es autoadjunto.
@@ -112,13 +112,13 @@ Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\parallel
 Toda superficie compacta en un espacio euclideo es orientable.
 \end{theorem}
 \begin{proof}
-La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\prep}$ con $\parallel v \parallel=1$ tenemos que $v$ es interior o bien $-v$ es interior.
+La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\bot}$ con $\parallel v \parallel=1$ tenemos que $v$ es interior o bien $-v$ es interior.
 
 Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos. 
 
 Supongamos que $v$ y $-v$ son interiores. Esto implicaría que $\alpha(0,\epsilon) \subset \Omega$ y $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$, y por definición, $\alpha(-\epsilon, \epsilon) \cap S \neq \emptyset$.
 
-Tomemos ahora $v \in (T_pS)^{\prep}$ con $\parallel v \parallel=1$ interior (si no fuese interior, tomamos -v). Vamos a buscar un entorno abierto de $p \in S$ para construir la orientación $N: V \longrightarrow \rtres$. Donde $N$ es un campo unitario normal diferenciable con $N(q)$ interior $\forall q \in V.$
+Tomemos ahora $v \in (T_pS)^{\bot}$ con $\parallel v \parallel=1$ interior (si no fuese interior, tomamos -v). Vamos a buscar un entorno abierto de $p \in S$ para construir la orientación $N: V \longrightarrow \rtres$. Donde $N$ es un campo unitario normal diferenciable con $N(q)$ interior $\forall q \in V.$
 
 Por el lema previo, tenemos que $\exists W$ entorno de abierto y conexo de $p$. Definimos el entorno $V=W\cap S$ entorno de $p$, homeomorfo a $B\cap P$, luego conexo. Como toda superficie es localmente orientable, podemos suponer que $V$ es orientable.
 
