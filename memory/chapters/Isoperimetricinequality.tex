@@ -61,6 +61,23 @@ Veamos que $\forall c,d \in A+B$, $\exists \sigma: [0,1] \longrightarrow A+B$ ar
 Sea $c=a_1 + b_1$, $d=a_2+b_2$ cualesquiera pertenecientes a $A+B$. Por ser $A$ y $B$ arco-conexos, tenemos que existen $\sigma_1: [0,1] \longrightarrow A$ con $\sigma_1(0)=a_1$ y $\sigma_1(1)=a_2$ y $\sigma_2: [0,1] \longrightarrow B$ con $\sigma_2(0)=b_1$ y $\sigma_2(1)=b_2$. Luego podemos construir, $\sigma: [0,1] \longrightarrow A+B$ tal que $\sigma(0)=\sigma_1(0) + \sigma_2(0) = a_1+b_1 = c$ y $\sigma(1)=\sigma_1(1) + \sigma_2(1) = a_2+b_2 = d$ arco.
 \end{proof}
 
+\begin{lemma}\label{paralelepipedoslemma}
+Sean $I_1, I_2, I_3$ y $J_1, J_2, J_3$ intervalos abierto de $\rmath$. Los subconjuntos de $\rtres$ dados por:
+
+\begin{equation*}
+    A = I_1 \times I_2 \times I_3, \qquad B = J_1 \times J_2 \times J_3
+\end{equation*}
+
+son llamados \textbf{paralelepípedos con los ejes paralelos a los ejes coordenados}. Entonces tenemos:
+
+\begin{equation*}
+    A + B = (I_1 + J_1) \times (I_2 + J_2) \times (I_3 + J_3)
+\end{equation*}
+
+Además, si A y B son disjuntos, tenemos que existe un plano paralelos a uno de los ejes coordenado que separando $A$ y $B$.
+\end{lemma}
+
+Con estos preliminares, vamos a demostrar la desigualdad de Brunn-Minkowski basada en la del libro \cite{montielrosbook}, que a su vez será pieza fundamente de la demostración del resultado más importarte de este capítulo, la desigualdad isoperimétrica.
 \begin{theorem}[Desigualdad de Brunn-Minkowski]
 Sean $A, B$ dos abiertos acotados del espacio euclídeo $\rtres$. Se cumple:
 
@@ -68,6 +85,92 @@ Sean $A, B$ dos abiertos acotados del espacio euclídeo $\rtres$. Se cumple:
     (vol A)^{\frac{1}{3}} + (vol B)^{\frac{1}{3}} \leq (vol (A+B))^{\frac{1}{3}}
 \end{equation*}
 \end{theorem}
+\begin{proof}
+Esta demostración la vamos a hacer en tres pasos. Vamos a probar la desigualdad cuando $A,B$ son paralelepípedos en primer lugar, cuando son unión finita de paralelepípedos abiertos disjuntos acotados cuyos lados son paralelos a los ejes coordenados y por último el caso de dos abiertos acotados cualesquiera.
+
+Supongamos entonces el caso de paralelepípedos, sea $A = I_1 \times I_2 \times I_3$ y $B = J_1 \times J_2 \times J_3$ donde $I_i,J_i \quad \forall i=1,2,3$ son intervalos abiertos y acotados de $\rmath$. Luego:
+
+\begin{equation*}
+    \frac{ \left(vol A \right)^{1/3} + \left(vol B \right)^{1/3}}{\left(vol (A+B) \right)^{1/3}} = \frac{\left(\displaystyle\prod_{i=1}^3 a_i \right)^{1/3} + \left(\displaystyle\prod_{i=1}^3 b_i \right)^{1/3}}{\left(\displaystyle\prod_{i=1}^3 a_i+b_i \right)^{1/3}}
+\end{equation*}
+
+y por tanto:
+
+\begin{equation*}
+    \frac{ \left(vol A \right)^{1/3} + \left(vol B \right)^{1/3}}{\left(vol (A+B) \right)^{1/3}} = \left(\displaystyle\prod_{i=1}^3 \frac{a_i}{a_i+b_i} \right)^{1/3} + \left(\displaystyle\prod_{i=1}^3 \frac{b_i}{a_i+b_i} \right)^{1/3}
+\end{equation*}
+
+Además, por la desigualdad de las medias, sabemos que:
+
+\begin{equation*}
+    \frac{ \left(vol A \right)^{1/3} + \left(vol B \right)^{1/3}}{\left(vol (A+B) \right)^{1/3}} \leq
+    \frac{1}{3} \displaystyle\sum_{i=1}^3 \frac{a_i}{a_i+b_i} + \frac{1}{3} \displaystyle\sum_{i=1}^3 \frac{b_i}{a_i+b_i} = 1
+\end{equation*}
+
+Para este caso, la desigualdad queda probada.
+
+Supongamos ahora el segundo caso, sean $A = \displaystyle\bigcup_{i=1}^n A_i$ y $B = \displaystyle\bigcup_{j=1}^n B_j$, donde $A_i$, $B_j$ son paralelepípedos iguales a los del primer caso.
+
+Vamos a probar la desigualdad por inducción sobre el número total de paralelepípedos, $t = n + m$.
+El caso $t=2$ es claro, pues es el caso previamente demostrado.
+Supongamos cierta la desigualdad cuando $t < n + m$ y veamos que es cierta para $t \geq n + m$. Como ya hemos visto que $t=2$ es cierto, podemos suponer que $n + m \geq 3$ luego es claro que $n > 1$ or $m > 1$.
+
+Supongamos el primero de ellos, por el lema \autoref{paralelepipedoslemma} tenemos que existe un plano, $P$, que separando $A_1$ y $A_2$. Sea $P^+$ y $P^-$ los dos espacios en los que $P$ divide a $\rtres$ y sean $A^+ = A \cap P^+$ y $A^- = A \cap P^-$, además podemos notar a estos como:
+
+\begin{equation}\label{equationuniones}
+    A^+ = \displaystyle\bigcup_{i=1}^{n^+} A_i^+ \qquad A^- = \displaystyle\bigcup_{i=1}^{n^-} A_i^-
+\end{equation}
+
+una unión finita de de paralelepípedos cuyos ejes son paralelos a los ejes coordenados, donde $n^+ < n$ y $n^- < n$ ya que $P$ divide a $A_1$ y $A_2$.
+
+Cogemos ahora un plano $Q$ que cumpla:
+
+\begin{equation}\label{equationvolumen}
+    \frac{vol A^+}{vol A} = \frac{vol B^+}{vol B}
+\end{equation}
+
+esto es posible ya que $\frac{vol A^+}{vol A} = c$ con $0 < c < 1$. Luego podemos tomar $Q$ a la izquierda de todos los paralelepípedos $B$ y desplazarlo a la derecha hasta encontrar la igualdad, gracias a que $\frac{vol B^+}{vol B}$ es una función continua.
+Dado que $vol A = vol A^+ + vol A^-$ tenemos la misma \autoref{equationvolumen} para $A^-$ y $B^-$.
+
+Además, $B = B^+ + B^-$ cumplen también la \autoref{equationuniones} para $B^+$ y $B^-$ con $m^+ \leq m$ y $m^- \leq m$, en este caso, no podemos suponer que son estrictos debido a que no tenemos garantizado el hecho de que $Q$ separe a dos paralelepípedos de $B$.
+
+Estamos en condiciones de aplicar la hipótesis de inducción a los subconjuntos $A^+$, $A^-$ y $B^+$, $B^-$ ya que el total de paralelepípedos cumple la condición $n^+ + m^+ < n + m$ y $n^- + m^- < n + m$. Por tanto tenemos:
+
+\begin{equation*}
+    vol (A^+ + B^+) \geq \left[ (vol A^+)^{1/3} + (vol B^+)^{1/3} \right]^3
+\end{equation*}
+\begin{equation*}
+    vol (A^- + B^-) \geq \left[ (vol A^-)^{1/3} + (vol B^-)^{1/3} \right]^3
+\end{equation*}
+
+Seguimos la deducción sabiendo que $A^+ \subset P^+$ y $B^+ \subset Q^+$, luego $A^+ + B^+ \subset P^+ + Q^+ = (P+Q)^+$ y análogamente $A^- + B^- \subset (P+Q)^-$. Teniendo en cuenta que $P+Q$ es otro plano de $\rtres$ tenemos que $A^+ + B^+$ y $A^- + B^-$ son disjuntos. En consecuencia:
+
+\begin{equation*}
+    vol (A+B) \geq vol(A^+ + B^+) + vol(A^- + B^-) \geq \left[ (vol A^+)^{1/3} + (vol B^+)^{1/3} \right]^3 + \left[ (vol A^-)^{1/3} + (vol B^-)^{1/3} \right]^3
+\end{equation*}
+
+Y teniendo en cuenta la \autoref{equationvolumen}:
+
+\begin{equation*}
+    vol (A+B) \geq vol A^+ \left[ 1 + \left( \frac{vol B}{vol A} \right)^{1/3}  \right]^3 + vol A^- \left[ 1 + \left( \frac{vol B}{vol A} \right)^{1/3}  \right]^3 \geq vol A \left[ 1 + \left( \frac{vol B}{vol A} \right)^{1/3}  \right]^3 = \left[ (vol A)^{1/3} + (vol B)^{1/3} \right]^3
+\end{equation*}
+
+Luego la desigualdad se cumple para este segundo caso.
+
+Consideremos finalmente el tercer caso, con $A$ y $B$ dos abiertos acotados cualesquiera de $\rtres$. Usando la teoría de integración de Lebesgue, existen dos sucesiones de conjuntos abiertos de $\rtres$ como los del caso anterior, notémoslas como $A_n$ y $B_n$, con $n \in \mathbb{N}$, $A_n \subset A$, $B_n \subset B$ y:
+
+\begin{equation*}
+    \lim_{x \to \infty} vol A_n = vol A \qquad \lim_{x \to \infty} vol B_n = vol B
+\end{equation*}
+
+Luego tenemos que $A_n + B_N \subset A + B$ y para cada $n \in \mathbb{N}$:
+
+\begin{equation*}
+    vol (A+B)^{1/3} \geq vol (A_n+B_n)^{1/3} \geq vol (A_n) ^{1/3} + vol(B_n)^{1/3}
+\end{equation*}
+
+Basta con tomar límite con $n$ tendiendo a infinito y tenemos probada la desigualdad para todos los casos.
+\end{proof}
 
 \begin{theorem}[Desigualdad Isoperimétrica]
 Sea $S$ una superficie conexa y compacta con dominio interior $\Omega$. Se cumple:
