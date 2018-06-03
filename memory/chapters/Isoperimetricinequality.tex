@@ -5,8 +5,8 @@ Vamos a ver las fórmulas de Minkowski que nos serán de utilidad en lo sucesivo
 Sea $S$ una superficie compacta, $N$ el dominio interior dado por su aplicación de Gauss y sean $H$ y $K$ las curvaturas media y de Gauss de la superficie. Tenemos:
 
 \begin{enumerate}
-    \item $\int_S (1+<p, N(p)>H(p))dp = 0$
-    \item $\int_S (H(p)+<p, N(p)>K(p))dp = 0$
+    \item $\int_S (1 + \langle p, N(p) \rangle H(p))dp = 0$
+    \item $\int_S (H(p)+ \langle p, N(p) \rangle K(p))dp = 0$
 \end{enumerate}
 \end{theorem}
 
@@ -154,12 +154,12 @@ Partiendo como en el cálculo del área de la esfera, consideramos la traslació
 Utilizando el teorema de la divergencia con $S=\mathbb{S}^2(0,r)$ y $\Omega=B(0,r)$, tomando $X(p)=p$ tenemos que $(div X)(p)=3$, con $t\in \rtres$ y nos queda:
 
 \begin{align*}
-    vol B(0,r) &= \frac{-1}{3} \int_{\mathbb{S}^2(0,r)} <p, \frac{-p}{r}>da \\
-    vol B(0,r) &= \frac{-1}{3r} \int_{\mathbb{S}^2(0,r)} <p, -p>da \\
+    vol B(0,r) &= \frac{-1}{3} \int_{\mathbb{S}^2(0,r)}  \langle p, \frac{-p}{r} \rangle da \\
+    vol B(0,r) &= \frac{-1}{3r} \int_{\mathbb{S}^2(0,r)}  \langle p, -p \rangle da \\
     vol B(0,r) &= \frac{r}{3} \int_{\mathbb{S}^2(0,r)} 1da
 \end{align*}
 
-ya que $<p,p> = |p|^2 = r^2$ con $p \in \mathbb{S}^2(0,r)$.
+ya que $ \langle p,p \rangle  = |p|^2 = r^2$ con $p \in \mathbb{S}^2(0,r)$.
 
 Por tanto tenemos que el $vol B(0,r) = \frac{r}{3}A(\mathbb{S}^2(0,r))$ que hemos calculado previamente:
 
@@ -169,7 +169,7 @@ Por tanto tenemos que el $vol B(0,r) = \frac{r}{3}A(\mathbb{S}^2(0,r))$ que hemo
 \end{remark}
 
 \begin{remark}[Volumen encerrado por una superficie paralela]
-Sea $S$ una superficie compacta y $\epsilon > 0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$. Vamos a calcular el volumen comprendido entre $S$ y $S_t$ con $t\in (0, \epsilon)$. Sea $F: S \times (0, \epsilon) \longrightarrow V_t(S)$ definida como $F(p, t) = p + tN(p)$, donde $V_t(S)$ es el volumen que buscamos. Sean $\Omega$ y $\Omega_t$ los dominios interiores determinados por $S$ y $S_t$, respectivamente. Teniendo en cuenta que $F$ es un difeomorfismo, tenemos:
+Sea $S$ una superficie compacta y $\epsilon  \rangle  0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$. Vamos a calcular el volumen comprendido entre $S$ y $S_t$ con $t\in (0, \epsilon)$. Sea $F: S \times (0, \epsilon) \longrightarrow V_t(S)$ definida como $F(p, t) = p + tN(p)$, donde $V_t(S)$ es el volumen que buscamos. Sean $\Omega$ y $\Omega_t$ los dominios interiores determinados por $S$ y $S_t$, respectivamente. Teniendo en cuenta que $F$ es un difeomorfismo, tenemos:
 
 \begin{equation*}
     vol \Omega - vol \Omega_t = vol (V_t(S)) = \int_{V_t(S)} 1dx = \int_{S \times (0,t)} |JacF|(p,t)dSdt

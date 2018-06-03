@@ -23,9 +23,9 @@ Se dice que $S$ es una \textbf{superficie orientable} si admite un campo normal 
 Se llama \textbf{endomorfismo de Weingarten} de $S$ en $p$ al endomorfismo: $A_p = -(dN)_p$
 
 \begin{definition}[Formas fundamentales]
-La \textbf{primera forma fundamental} de $S$ en $p$ es: $I_p: T_pS \times T_pS \longrightarrow \rmath$ donde $I_p(u,v) = <u,v>$, $\forall u,v \in T_pS$.
+La \textbf{primera forma fundamental} de $S$ en $p$ es: $I_p: T_pS \times T_pS \longrightarrow \rmath$ donde $I_p(u,v) =  \langle u,v \rangle $, $\forall u,v \in T_pS$.
 
-La \textbf{segunda forma fundamental} de $S$ en $p$ es la forma bilineal: $II_p = \sigma_p: T_pS \times T_pS \longrightarrow \rmath$ donde $\sigma_p(u,v) = <A_pu,v> = I_p(Ap_u,v) = -<(dN)_p(u), v>$, $\forall u,v \in T_pS$.
+La \textbf{segunda forma fundamental} de $S$ en $p$ es la forma bilineal: $II_p = \sigma_p: T_pS \times T_pS \longrightarrow \rmath$ donde $\sigma_p(u,v) =  \langle A_pu,v \rangle  = I_p(Ap_u,v) = - \langle (dN)_p(u), v \rangle $, $\forall u,v \in T_pS$.
 \end{definition}
 
 Notemos que $\sigma_p$ es simétrica y por tanto el endomorfismo de Weingarten ($A_p$) es autoadjunto.
@@ -105,7 +105,7 @@ Sea S una superficie y $p \in S$. $\exists W \subset \rtres$ entorno abierto y c
 \end{lemma}
 
 \begin{definition}
-Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\parallel v \parallel=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha es regular$ y $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon > 0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}. 
+Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\parallel v \parallel=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha es regular$ y $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon > 0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}.
 \end{definition}
 
 \begin{theorem}[Teorema de Brower-Samelson]
@@ -114,7 +114,7 @@ Toda superficie compacta en un espacio euclideo es orientable.
 \begin{proof}
 La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\bot}$ con $\parallel v \parallel=1$ tenemos que $v$ es interior o bien $-v$ es interior.
 
-Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos. 
+Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos.
 
 Supongamos que $v$ y $-v$ son interiores. Esto implicaría que $\alpha(0,\epsilon) \subset \Omega$ y $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$, y por definición, $\alpha(-\epsilon, \epsilon) \cap S \neq \emptyset$.
 
@@ -124,7 +124,7 @@ Por el lema previo, tenemos que $\exists W$ entorno de abierto y conexo de $p$. 
 
 Sea $N: V \longrightarrow \rtres$ la orientación de $V$ tal que $N(p)$ es interior.
 
-
+%%%% TODO: Tomando un entorno coordenado en p e intersecando con V
 \end{proof}
 
 \section{Entornos tubulares}
@@ -147,7 +147,7 @@ Veámoslo por doble inclusión:
 
 Sea $p \in S$, y sea $q \in N_\delta(p)$ para el $p$ dado y $\delta > 0$. Es directo que, $dist(q,S) \leq |q-p| < \delta$, luego $q \in B_\delta(S)$.
 
-Supongamos ahora $q \in B_\delta(S)$. Tomamos la función distancia del punto $q$ a $S$. Como $S$ es cerrado, sabemos que existe un mínimo en un punto $p \in S$, además por la caracterización de los punto críticos de la función distancia al cuadrado, sabemso que el punto $q$ está en la normal a $S$ en $p$. Así, $|p-q| = dist(q,S) < \delta$, luego $q \in N_\delta(p)$.
+Supongamos ahora $q \in B_\delta(S)$. Tomamos la función distancia del punto $q$ a $S$. Como $S$ es cerrado, sabemos que existe un mínimo en un punto $p \in S$, además por la caracterización de los punto críticos de la función distancia al cuadrado, sabemos que el punto $q$ está en la normal a $S$ en $p$. Así, $|p-q| = dist(q,S) < \delta$, luego $q \in N_\delta(p)$.
 \end{proof}
 
 Sea $S$ una superficie orientable con la aplicación de Gauss $N: S \longrightarrow \mathbb{S}^2 \subset \rtres$, definimos:

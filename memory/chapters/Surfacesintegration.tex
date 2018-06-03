@@ -13,7 +13,7 @@ donde $M_p=M((d\Phi)_p, (B_1)_p, (B_2)_{\Phi(p)})$, siendo $(B_1)_p$ base ortono
 \end{definition}
 
 \begin{definition}[Integral en $S \times \mathbb{R}$]
-Sea $O$ un subconjunto abierto de $\rtres$, y sea el difeomorfismo $\phi: S \longrightarrow R \times (a,b)$ con $a < b$. Podemos decir que la función $h: R \times (a,b) \longrightarrow \mathbb{R}$ es integrable en su dominio cuando $(h \circ \phi)|Jac \phi|$ sea integrable en $O$ en el sentido de Lebesgue.
+Sea $O$ un subconjunto abierto de $\rtres$, y sea el difeomorfismo $\phi: S \longrightarrow R \times (a,b)$ con $a  \langle  b$. Podemos decir que la función $h: R \times (a,b) \longrightarrow \mathbb{R}$ es integrable en su dominio cuando $(h \circ \phi)|Jac \phi|$ sea integrable en $O$ en el sentido de Lebesgue.
 
 En ese caso, llamaremos \textit{integral de h en Rx(a,b)} al número real dado por:
 
@@ -39,7 +39,7 @@ Sea $\phi:R_1 \longrightarrow R_2$ un difeomorfismo entre dos regiones de dos su
 \end{theorem}
 
 \begin{theorem}[Teorema de Fubini]
-Sea $R$ una región de una superficie orientable, $a,b \in \mathbb{r}, a < b$ y $h:R \times (a,b) \longrightarrow \mathbb{R}$ una función integrable en $R \times (a,b)$. Entonces, para casi todo $t \in (a,b)$, la función $p \in R \mapsto h(p,t)$ es integrable en $R$ y para casi todo $p \in R$ la función $t \in (a,b) \mapsto h(p,t)$ es integrable en $(a,b)$. Además, las funciones 
+Sea $R$ una región de una superficie orientable, $a,b \in \mathbb{r}, a  \langle  b$ y $h:R \times (a,b) \longrightarrow \mathbb{R}$ una función integrable en $R \times (a,b)$. Entonces, para casi todo $t \in (a,b)$, la función $p \in R \mapsto h(p,t)$ es integrable en $R$ y para casi todo $p \in R$ la función $t \in (a,b) \mapsto h(p,t)$ es integrable en $(a,b)$. Además, las funciones 
 
 \begin{equation*}
     p \in R \mapsto \int_a^b h(p,t), \quad  t \in (a,b) \mapsto \int_S h(p,t) dp
@@ -57,7 +57,9 @@ Finalmente, tenemos que:
 
 \section{Teorema de Divergencia}
 En esta sección vamos a demostrar el Teorema de divergencia, para ello, vamos a utilizar la generalización del teorema del cambio de variable para las integrales de Lebesgue en el caso de que sea una función diferenciable cualquiera en lugar de un difeomorfismo. Esta generalización es la llamada fórmula del área.
-
+ % TODO Explicar que la de productos sale de la primera, un resultado de analisis generico:
+ 
+ % NOTE: lema 15 y 16 se pueden ahorrar.
 \begin{theorem}[Fórmula del área]
 Sea $O$ un abierto de $\rtres$ relativamente compacto, $\phi: O \longrightarrow \rtres$ una función diferenciable y $f: O \longrightarrow \mathbb{R}$ una función cualquiera. Supongamos que el producto $f|Jac(\Phi)|$ es integrable en $O$. Entonces tenemos que la función $n(\phi, f)$ definida como:
 
@@ -74,7 +76,7 @@ donde $N \subset O$ es el subconjunto de punto críticos de $\phi$ en $O$ (esto 
 \end{theorem}
 
 \begin{theorem}[Fórmula del área en productos]
-Sea $\phi: S \times (a,b) \longrightarrow \rtres$ una apliación diferenciable, con $S$ una superficie compacta y $a,b \in \mathbb{R}$, $a < b$. Sea $f$ una función integrable en $S \times (a,b)$. Entonces, la función $n(\phi, f)$ dada por:
+Sea $\phi: S \times (a,b) \longrightarrow \rtres$ una apliación diferenciable, con $S$ una superficie compacta y $a,b \in \mathbb{R}$, $a  \langle  b$. Sea $f$ una función integrable en $S \times (a,b)$. Entonces, la función $n(\phi, f)$ dada por:
 
 \begin{equation*}
     n(\phi, f) = \sum_{(p,t) \in \phi^{-1}(x)} f(p,t)
@@ -99,16 +101,16 @@ Se define la divergencia de X como la función $div X: A \longrightarrow \mathbb
 Sea $S$ una superficie conexa y compacta y $\Omega$ el dominio interior determinado por $S$. Si $X: \bar{\Omega} \longrightarrow \rtres$ es un campo vectorial diferenciable, entonces:
 
 \begin{equation*}
-    \int_\Omega div X = -\int_S <X,N>
+    \int_\Omega div X = -\int_S  \langle X,N \rangle 
 \end{equation*}
 
 donde $N: S \longrightarrow \mathbb{S}^2$ es el campo normal interior a lo largo de $S$.
 \end{theorem}
 
-\begin{definition}[Volumen encerrado por una superficie compacta]
+\begin{definition}[Volumen encerrado por una superficie compacta]\label{volumensuperficiecompacta}
 Si $S$ es una superficie compacta y $\Omega$ su dominio interior. Sea campo vectorial diferenciable identidad $X: \bar{\Omega} \longrightarrow \rtres$ definido por $X(x) = x \quad \forall p \in \bar{\Omega}$. Su divergencia es la función constante. Entonces por el teorema de divergencia:
 \begin{equation*}
-    vol \Omega = - \frac{1}{3} \int_S <p, N(p)> dp
+    vol \Omega = - \frac{1}{3} \int_S  \langle p, N(p) \rangle  dp
 \end{equation*}
 
 donde $N$ es el interior normal unitario de $S$.
@@ -118,9 +120,33 @@ donde $N$ es el interior normal unitario de $S$.
 Sea $S$ una superficie compacta y $V: S \longrightarrow \rtres$ un campo vectorial diferenciable en $S$. Entonces, tenemos:
 
 \begin{enumerate}
-    \item $\int_S div V = -2 \int_S<V,N>H$
-    \item $\int_S [k_2(p)<(dV)_p(e_1),e_1> + k_1(p)<(dV)_p(e_2),e_2>]dp = -2 \int_S<V,N>K$ donde ${e_1,e_2}$ es una base ortonormal de direcciones principales en $p \in S$.
+    \item $\int_S div V = -2 \int_S \langle V,N \rangle H$
+    \item $\int_S [k_2(p) \langle (dV)_p(e_1),e_1 \rangle  + k_1(p) \langle (dV)_p(e_2),e_2 \rangle ]dp = -2 \int_S \langle V,N \rangle K$ donde ${e_1,e_2}$ es una base ortonormal de direcciones principales en $p \in S$.
 \end{enumerate}
 
 donde $H, k_1 y k_2$ son las curvaturas media y principales de la superficie.
 \end{theorem}
+
+\begin{definition}[Gradiente]
+Sea f una función diferenciable sobre una superficie $S$ y $p \in S$. Consideremos las diferencial $(df)_p: T_pS \longrightarrow \rmath$. Entonces por teoría de espacios vectoriales euclídeos, existe un único $x \in T_pS$ tal que $(df)_p(v)=  \langle x,v \rangle $, $\forall v \in T_pS$.
+
+Denotaremos por $x= \gradientef $ y lo llamaremos \textbf{gradiente de f en p}. Así:
+
+\begin{equation*}
+    \langle \gradientef, v \rangle = (df)_p(v), \qquad \forall v \in T_pS
+\end{equation*}
+
+En particular, si $\{e_1, e_2\}$ es una base ortonormal se tiene:
+
+\begin{equation*}
+     \gradientef = \langle  \gradientef , e_1 \rangle e_1 + \langle \gradientef, e_2 \rangle e_2 = (df)_p(e_1)e_1 + (df)_p(e_2)e_2
+\end{equation*}
+\end{definition}
+
+\begin{corolario}\label{corolariogradiente}
+Si $f: S \longrightarrow \rmath$ es una función diferenciable sobre una superficie compacta, entonces:
+
+\begin{equation*}
+    \int_S \langle \gradientef, p \rangle dS + 2 \int_S f(p)dS = -2 \int_S f(p)H(p) \langle p, N(p) \rangle dS
+\end{equation*}
+\end{corolario}
