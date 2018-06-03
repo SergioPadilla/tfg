@@ -1,0 +1,167 @@
+En el capítulo previo, hemos visto que las esferas son superficies isoperimétricas, superficies que encierran un volumen dado con área mínima. En este capítulo, vamos a ver que son las únicas. Para esto, vamos a comenzar demostrando que todas las superficies isoperimétricas tienen curvatura media constante. Nos ayudaremos de técnicas variacionales que introduciremos a continuación.
+
+\section{Propiedad variacional de las superficies isoperimétricas}
+
+Sea $S$ superficie compacta y conexa de $\rtres$, sea $\epsilon  \rangle  0$ suficientemente pequeño tal que $N_\epsilon$ sea un entorno tubular y sea $f: S \longrightarrow \rmath$ diferenciable. Consideremos la función $\Phi_t(p) = p + tf(p)N(p)$ con $p \in S$ y el conjunto:
+
+\begin{equation*}
+    S_t(f) = \left\{ x \in N_\epsilon(S) \ | \ x = p + tf(p)N(p); \ p \in S, t \in (-\delta, \delta) \right\}
+\end{equation*}
+
+La función $\Phi_t(s) = p + tf(p)N(p) = F(p, tf(p))$, donde $F$ es el difeomorfismo $F: S \times (-\epsilon, \epsilon) \longrightarrow N_\epsilon(S)$ dado por $F(p,t) = p + tN(p)$ con $N$ el normal interior, está bien definido por ser composición de funciones diferenciables.
+
+Tenemos que $\Phi_t$ es inyectiva, por definición de inyectiva, Si $p,q \in S$ con $\Phi_t(p) = \Phi_t(q)$, entonces $F(p, tf(p)) = F(q, tf(q))$ lo que implica que $p=q$ al se $F$ inyectiva.
+
+Veamos ahora, que $(d\Phi_t)_p: T_pS \longrightarrow \rtres$ es inyectiva. Dado $v \in T_pS$, se tiene:
+
+\begin{align*}
+    (d\Phi_t)_p(v) &= v + t((df)_p(v)N(p) + f(p)(dN)_p(v)) \\
+    (d\Phi_t)_p(v) &= (v - tf(p)A_p(v)) + (t(df)_p(v)N(p))
+\end{align*}
+
+Nótese que tenemos la expresión dividida en dos partes, la primera, la parte tangente a $S$ y la segunda la parte normal. Supongamos que $(d\Phi_t)_p(v) = 0$, entonces ambas partes son 0, esto es, $v - tf(p)A_p(v) = 0$.
+
+Recordemos que $F_u: S \longrightarrow \rtres$ dada por $F_u(p) = p + uN(p)$ tiene diferencial inyectiva si $|u|  \langle  \epsilon$. Tomando $u=tf(p)$ tenemos que, $v - tf(p)A_p(v) = (dF_u)_p(v)$, luego $v=0$. Con esto tenemos que $ker((d\Phi_t)_p) = \{0\}$ y por tanto la diferencial de $\Phi_t$ es inyectiva y podemos concluir que $\Phi_t: S \longrightarrow S_t(f)$ es un difeomorfismo y $S_t(f)$ es una superficie compacta por ser difeomorfa a $S$.
+
+Se llama \textbf{variación de $S$ correspondiente a la función f} a la familia de superficies $S_t(f)$ con $t  \langle  \delta$.
+
+\begin{remark}[Primera variación del área]
+Sea $S_t(f)$, con $t \in (-\delta, \delta)$, la variación de la superficie $S$ para la función $f: S \longrightarrow \rmath$. Entonces, la función dada por:
+
+\begin{equation*}
+    t \longrightarrow A(t) = A(S_t(f))
+\end{equation*}
+
+es diferenciable y
+
+\begin{equation}\label{variacionarea}
+    \diff{}{t}{t=0} A(S_t(f)) = -2 \int_S f(p)H(p) dp
+\end{equation}
+\end{remark}
+\begin{proof}
+Sean $\{e_1, e_2\}$ una base ortonormal de curvaturas principales de $S$ en el punto $p \in S$, tenemos:
+
+\begin{equation*}
+    (d\Phi_t)_p(e_i) = (1 - tf(p)k_i(p))e_i + t(df)_p(e_i)N(p) \qquad i=1,2
+\end{equation*}
+
+y
+
+\begin{equation}\label{productoescalar}
+    (d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2) = (1 - 2tf(p)H(p))N(p) - t(\triangledown f)_p + t^2G(p,t)
+\end{equation}
+
+donde $\triangledown f$ es el gradiente de la función $f$ y $G$ es una función diferenciable definida en $S \times (-\delta, \delta)$ tomando valores en $\rtres$. Aplicando el teorema del cambio de variable, tenemos:
+
+\begin{equation*}
+    A(t) = A(S_t(f)) = \int_{S_t(f)} 1 = \int_S |Jac \Phi_t|
+\end{equation*}
+
+Calculamos la diferencial en $t=0$:
+
+\begin{equation*}
+    A'(0) = \int_S \diff{}{t}{t=0} |(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)|dp 
+\end{equation*}
+
+usando \autoref{productoescalar}:
+
+\begin{equation*}
+    \diff{}{t}{t=0} |(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)|dp = -2f(p)H(p)
+\end{equation*}
+\end{proof}
+
+
+\begin{remark}[Primera variación del volumen]
+Sea $S_t(f)$, con $t \in (-\delta, \delta)$, la variación de la superficie $S$ para la función $f: S \longrightarrow \rmath$. Entonces, la función dada por:
+
+\begin{equation*}
+    t \longrightarrow V(t) = vol \Omega_t (f)
+\end{equation*}
+
+es diferenciable y
+
+\begin{equation}\label{variacionvolumen}
+    \diff{}{t}{t=0} vol \Omega_t (f) = - \int_S f(p) dp
+\end{equation}
+\begin{proof}
+Sabemos por \autoref{volumensuperficiecompacta} que:
+
+\begin{equation*}
+    V(t) = - \frac{1}{3} \int_{S_t}  \langle p, N_t(p) \rangle  dp
+\end{equation*}
+
+donde $N_t$ es el normal interior de $S_t(f)$. Usando de nuevo el teorema del cambio de variable, tenemos:
+
+\begin{equation*}
+    V(t) = - \frac{1}{3} \int_{S}  \langle N_t \circ \Phi_t, \Phi_t \rangle |Jac \Phi_t|
+\end{equation*}
+
+Como el difeomorfismo $\Phi_t$ es la función identidad cuando $t=0$, teniendo en cuenta que:
+
+\begin{equation*}
+    (N_t \circ \Phi_t)(p) = \frac{(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)}{|(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)|} = \frac{(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)}{|Jac \Phi_t|(p)}
+\end{equation*}
+
+y utilizando \autoref{productoescalar} tenemos:
+
+\begin{align*}
+    V(t) = - \frac{1}{3} \int_S (1-2tf(p)H(p)) \langle N(p), p \rangle  \\ - \frac{1}{3} \int_S tf(p) - t \langle (\triangledown f)_p, p \rangle  + t^2D(p,t) dS
+\end{align*}
+
+siendo $D$ una función diferenciable definida en $S \times (-\delta, \delta)$. Derivando cuando $t=0$, tenemos:
+
+\begin{align*}
+    V'(0) = \frac{1}{3} \int_S [-f(p) + 2f(p)H(p) \langle N(p),p \rangle  +  \langle (\triangledown f)_p, p \rangle ] dp
+\end{align*}
+
+Utilizando el corolario \autoref{corolariogradiente}:
+
+\begin{align*}
+    V'(0) &= \frac{1}{3} \int_S -f(p) dp + \frac{1}{3} \int_S [2f(p)H(p) \langle N(p),p \rangle  +  \langle (\triangledown f)_p, p \rangle ] dp \\
+    V'(0) &= \frac{1}{3} \int_S -f(p) - 2 f(p)dp \\
+    V'(0) &= - \int_S f(p) dp
+\end{align*}
+\end{proof}
+\end{remark}
+
+Veamos ahora el resultado que íbamos buscando con ayuda de las propiedades variacionales calculadas.
+
+\begin{theorem}[Las superficies isoperimétricas tienen curvatura media constante]
+Sea $S$ una superficie compacta y conexa. Si $S$ es isoperimétrica, entonces, $S$ tiene curvatura media constante.
+\end{theorem}
+\begin{proof}
+Si $S$ es una superficie isoperimétrica, consideramos la función $f: S \longrightarrow \rmath$ diferenciable y la variación $S_t(f)$ de $S$ con respecto a $f$, con $t \in (-\delta, \delta)$. Entonces la función $h: (-\delta, \delta) \longrightarrow \rmath$ dada por $h(t) = A(S_t(f))^3 - 36\pi(vol \Omega_t(f))^2$ es diferenciable y alcanza su mínimo en $t=0$ ya que se $S_0=S$ y partimos de la suposición de que $S$ es isoperimétrica. Luego $h'(0)=0$ y por tanto, tenemos:
+
+\begin{equation*}
+    h'(0) = 3A(S_0(f))^2 \diff{}{t}{t=0} A(S_t(f)) - 72\pi vol \Omega_0(f) \diff{}{t}{t=0} vol \Omega_t(f)
+\end{equation*}
+
+Utilizando \autoref{variacionarea} y \autoref{variacionvolumen}:
+
+\begin{equation*}
+    0 = h'(0) = 3A(S)^2 \left( -2 \int_S f(p)H(p)dp \right) - 72\pi vol \Omega \left( - \int_S f(p) dp \right)
+\end{equation*}
+
+Sacando factor común obtenemos:
+
+\begin{equation*}
+    0 = 6 \int_S f(p)(-A(S)H(p) + 12 \pi vol \Omega)
+\end{equation*}
+
+Al estar igualado a 0, podemos omitir el producto por un número positivo. Además, esta igualdad de tiene que cumplir para toda función $f$ diferenciable en $S$, luego tomemos $f = 12 \pi vol \Omega - A(S)H(p)$ diferenciable:
+
+\begin{equation*}
+    0 = \int_S (12 \pi vol \Omega - A(S)H(p))^2
+\end{equation*}
+
+Luego $12 \pi vol \Omega(f) - A(S)H(p) = 0$ y despejando $H$:
+
+\begin{equation*}
+    H(p) = \frac{12 \pi vol \Omega}{A(S)^2}, \qquad p \in S
+\end{equation*}
+
+
+Luego $H$ es constante.
+\end{proof}
+
+\section{Unicidad de las esferas como superficies isoperimétricas}
