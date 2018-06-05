@@ -99,6 +99,94 @@ function fgt(field_name, value, threshold) {
     }
 }
 
+function fgte(field_name, value, threshold) {
+    let field_3 = field_name + '.3';
+    let one_thold = 1 - threshold;
+    let L_CT = threshold*value[1] + one_thold*value[0];
+
+    return {
+        [field_3]: {$gte: L_CT},
+        $expr: {
+            $gte: [
+                {$add: [
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
+                ]},
+                L_CT
+            ]
+        }
+    }
+}
+
+function flt(field_name, value, threshold) {
+    let field_0 = field_name + '.0';
+    let one_thold = 1 - threshold;
+    let U_CT = threshold*value[0] + one_thold*value[1];
+
+    return {
+        [field_0]: {$lte: U_CT},
+        $expr: {
+            $gte: [
+                {$add: [
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
+                ]},
+                U_CT
+            ]
+        }
+    }
+}
+
+function flte(field_name, value, threshold) {
+    let field_0 = field_name + '.0';
+    let one_thold = 1 - threshold;
+    let U_CT = threshold*value[2] + one_thold*value[3];
+
+    return {
+        [field_0]: {$lte: U_CT},
+        $expr: {
+            $gte: [
+                {$add: [
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
+                ]},
+                U_CT
+            ]
+        }
+    }
+}
+
+function need_feq(field_name, value, threshold) {
+    let field_1 = field_name + '.1';
+    let field_2 = field_name + '.2';
+    let one_thold = 1 - threshold;
+    let L_CT = threshold*value[1] + one_thold*value[0];
+    let U_CT = threshold*value[2] + one_thold*value[3];
+
+    return {
+        [field_1]: {$lt: L_CT, $gt: U_CT},
+        [field_2]: {$lte: U_CT},
+        $expr: {
+            $and: [
+                {$lte: [
+                    {$add: [
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 4]}, one_thold]}
+                    ]},
+                    U_CT
+                ]},
+                {$gte: [
+                    {$add: [
+                            {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
+                            {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
+                        ]},
+                    L_CT
+                ]}
+            ]
+        }
+    };
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  end MATCHES functions
@@ -662,6 +750,11 @@ function fuzzy_find(collection, filter, projection, count_name=null) {
 db.system.js.save({_id: 'feq', value: feq});
 db.system.js.save({_id: 'nfeq', value: nfeq});
 db.system.js.save({_id: 'fgt', value: fgt});
+db.system.js.save({_id: 'fgte', value: fgte});
+db.system.js.save({_id: 'flt', value: flt});
+db.system.js.save({_id: 'flte', value: flte});
+
+db.system.js.save({_id: 'need_feq', value: need_feq});
 
 // projection functions
 db.system.js.save({_id: 'feq_cdeg', value: feq_cdeg});
