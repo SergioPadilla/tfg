@@ -140,7 +140,7 @@ function fgte(field_name, value, threshold) {
 function nfgte(field_name, value, threshold) {
     let field_1 = field_name + '.1';
     let one_thold = 1 - threshold;
-    let L_CT = threshold*value[3] + one_thold*value[2];
+    let L_CT = threshold*value[1] + one_thold*value[0];
 
     return {
         [field_1]: {$gte: L_CT},
