@@ -175,6 +175,25 @@ function flt(field_name, value, threshold) {
     }
 }
 
+function nflt(field_name, value, threshold) {
+    let field_0 = field_name + '.0';
+    let one_thold = 1 - threshold;
+    let U_CT = threshold*value[0] + one_thold*value[1];
+
+    return {
+        [field_0]: {$lte: U_CT},
+        $expr: {
+            $gte: [
+                {$add: [
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
+                    ]},
+                U_CT
+            ]
+        }
+    }
+}
+
 function flte(field_name, value, threshold) {
     let field_0 = field_name + '.0';
     let one_thold = 1 - threshold;
