@@ -192,9 +192,9 @@ function nflte(field_name, value, threshold) {
         $expr: {
             $lte: [
                 {$add: [
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
-                    ]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
+                ]},
                 U_CT
             ]
         }
@@ -799,6 +799,10 @@ db.system.js.save({_id: 'flt', value: flt});
 db.system.js.save({_id: 'flte', value: flte});
 
 db.system.js.save({_id: 'nfeq', value: nfeq});
+db.system.js.save({_id: 'nfgt', value: nfgt});
+db.system.js.save({_id: 'nfgte', value: nfgte});
+db.system.js.save({_id: 'nflt', value: nflt});
+db.system.js.save({_id: 'nflte', value: nflte});
 
 // projection functions
 db.system.js.save({_id: 'feq_cdeg', value: feq_cdeg});
