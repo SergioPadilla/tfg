@@ -171,7 +171,7 @@ function nfeq(field_name, value, threshold) {
                 {$lte: [
                     {$add: [
                         {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 4]}, one_thold]}
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
                     ]},
                     U_CT
                 ]},
