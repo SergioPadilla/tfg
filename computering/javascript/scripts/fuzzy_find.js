@@ -100,18 +100,18 @@ function fgt(field_name, value, threshold) {
 }
 
 function nfgt(field_name, value, threshold) {
-    let field_3 = field_name + '.3';
+    let field_1 = field_name + '.1';
     let one_thold = 1 - threshold;
     let L_CT = threshold*value[3] + one_thold*value[2];
 
     return {
-        [field_3]: {$gte: L_CT},
+        [field_1]: {$gte: L_CT},
         $expr: {
             $gte: [
                 {$add: [
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
-                    ]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
+                ]},
                 L_CT
             ]
         }
