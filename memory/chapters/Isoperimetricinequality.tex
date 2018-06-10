@@ -1,11 +1,11 @@
 En esta sección vamos a definir el resultado que íbamos buscando y  más importante, la desigualdad isoperimétrica en $\rtres$. Para su demostración, necesitamos de algunos elementos que aún no hemos definido. Vamos a verlos como preliminares a la desigualdad.
 
 Vamos a ver las fórmulas de Minkowski que nos serán de utilidad en lo sucesivo.
-\begin{theorem}[Fórmulas de Minkowski]
+\begin{theorem}[Fórmulas de Minkowski]\label{formulaminkowski}
 Sea $S$ una superficie compacta, $N$ el dominio interior dado por su aplicación de Gauss y sean $H$ y $K$ las curvaturas media y de Gauss de la superficie. Tenemos:
 
 \begin{enumerate}
-    \item $\int_S (1 + \langle p, N(p) \rangle H(p))dp = 0$
+    \item $\int_S (1+ \langle p, N(p) \rangle H(p))dp = 0$
     \item $\int_S (H(p)+ \langle p, N(p) \rangle K(p))dp = 0$
 \end{enumerate}
 \end{theorem}
@@ -42,7 +42,7 @@ Sea $A,B \subseteq \mathbb{R}^n$. Si ambos conjuntos están acotados, entonces l
 \begin{proof}
 La demostración de esta propiedad es consecuencia directa de la desigualdad triangular.
 
-Sea $L,K > 0$ las cotas de $A$ y $B$ respectivamente. Luego,
+Sea $L,K  \rangle  0$ las cotas de $A$ y $B$ respectivamente. Luego,
 \begin{equation*}
     |a+b| \leq |a|+|b| \leq L + K \qquad \forall a \in A, b\in B
 \end{equation*}
@@ -87,7 +87,7 @@ Veamos cuál es el área de una esfera, $\mathbb{S}^2(p_0, r)$. Sabemos que:
 Consideremos la siguiente traslación: $T: \mathbb{S}^2(0, r) \longrightarrow \mathbb{S}^2(p_0, r)$ tal que $T(p) = p + p_0$, usando las fórmulas del cambio de variable vista en el capítulo anterior, tenemos que:
 
 \begin{equation*}
-    \int_{\mathbb{S}^2(p_0, r)} 1dx = \int_{\mathbb{S}^2(0, r)} |Jac T|dx
+    \int_{\mathbb{S}^2(p_0, r)} 1dx = \int_{\mathbb{S}^2(0, r)} |Jac T|dx 
 \end{equation*}
 
 Además, $|JacT|=1$, luego:
@@ -96,7 +96,7 @@ Además, $|JacT|=1$, luego:
     \int_{\mathbb{S}^2(0, r)} |Jac T|dx = \int_{\mathbb{S}^2(0, r)} 1dx = A(\mathbb{S}^2(0, r))
 \end{equation*}
 
-Para calcular esta integral, consideramos la parametrización de la esfera centrada en 0 como una superficie de revolución:
+Para calcular esta integral, consideramos la parametrización de la esfera centrada en 0 como una superficie de revolución: 
 
 \begin{align*}
     X: (\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi) &\longrightarrow \mathbb{S}^2(0, r) - C \\
@@ -135,12 +135,12 @@ Luego $\{ \frac{X_t}{r}, \frac{X_\theta}{r\cos t} \}$. Por definición:
 y por tanto:
 
 \begin{equation*}
-    A(\mathbb{S}^2(0,r)) = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} r^2\cos t da = 4\pi r^2
+    A(\mathbb{S}^2(0,r)) = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} r^2\cos t da = 4\pi r^2 
 \end{equation*}
 
 Finalmente:
 \begin{equation*}
-    A(\mathbb{S}^2(p_0,r)) = 4\pi r^2
+    A(\mathbb{S}^2(p_0,r)) = 4\pi r^2 
 \end{equation*}
 \end{remark}
 
@@ -175,7 +175,7 @@ Sea $S$ una superficie compacta y $\epsilon  \rangle  0$ tal que $N_\epsilon(S)$
     vol \Omega - vol \Omega_t = vol (V_t(S)) = \int_{V_t(S)} 1dx = \int_{S \times (0,t)} |JacF|(p,t)dSdt
 \end{equation*}
 
-Calculemos $|Jac F|$. Sean ${e_1, e_2}$ una base ortonormal de direcciones principales en $p \in S$, sabemos que:
+Calculemos $|Jac F|$. Sean $\{e_1, e_2\}$ una base ortonormal de direcciones principales en $p \in S$, sabemos que:
 
 \begin{align*}
     (dF)_{(p,t)}(e_i,0) &= (1-tk_i(p))e_i, \qquad i = 1,2 \\
@@ -196,14 +196,19 @@ Tomamos ahora $\{(e_1,0), (e_2,0), (0,1)\}$ base ortonormal de $T_pS \times \rma
 
 Y por último, utilizando el teorema de Fubini:
 
-\begin{align*}
-    vol \Omega - vol \Omega_t &= \int_0^t \left( \int_{S} 1-2tH(p)+t^2K(p) dp \right) dt \\
-    vol \Omega - vol \Omega_t &= tA(S) - t^2\int_S HdS + \frac{t^3}{3}\int_S KdS
-\end{align*}
+\begin{equation*}
+    vol \Omega - vol \Omega_t = \int_0^t \left( \int_{S} 1-2tH(p)+t^2K(p) dp \right) dt
+\end{equation*}
+
+obtenemos:
+
+\begin{equation}\label{volumeparallelsurface}
+    vol \Omega - vol \Omega_t = tA(S) - t^2\int_S HdS + \frac{t^3}{3}\int_S KdS
+\end{equation}
 \end{remark}
 
 \begin{remark}[Área de una superficie paralela]
-Sea $S$ una superficie compacta y $\epsilon > 0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Recordamos que hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$.
+Sea $S$ una superficie compacta y $\epsilon  \rangle  0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Recordamos que hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$.
 
 Sabemos que la función $F_t: S \longrightarrow S_t$ es un difeomorfismo, definido como $F_t(p, t) = p + tN(p)$, luego utilizando el cambio de variable, tenemos:
 
@@ -224,7 +229,7 @@ Hemos visto previamente:
 
 Por tanto, tenemos que:
 
-\begin{equation*}
+\begin{equation*}\label{areaparallelsurface}
     A(S_t) = A(S) -2t\int_{S} H(p)dS + t^2\int_{S} K(p)dS
 \end{equation*}
 \end{remark}
@@ -265,7 +270,7 @@ Supongamos ahora el segundo caso, sean $A = \displaystyle\bigcup_{i=1}^n A_i$ y 
 
 Vamos a probar la desigualdad por inducción sobre el número total de paralelepípedos, $t = n + m$.
 El caso $t=2$ es claro, pues es el caso previamente demostrado.
-Supongamos cierta la desigualdad cuando $t < n + m$ y veamos que es cierta para $t \geq n + m$. Como ya hemos visto que $t=2$ es cierto, podemos suponer que $n + m \geq 3$ luego es claro que $n > 1$ or $m > 1$.
+Supongamos cierta la desigualdad cuando $t  \langle  n + m$ y veamos que es cierta para $t \geq n + m$. Como ya hemos visto que $t=2$ es cierto, podemos suponer que $n + m \geq 3$ luego es claro que $n  \rangle  1$ or $m  \rangle  1$.
 
 Supongamos el primero de ellos, por el lema \autoref{paralelepipedoslemma} tenemos que existe un plano, $P$, que separando $A_1$ y $A_2$. Sea $P^+$ y $P^-$ los dos espacios en los que $P$ divide a $\rtres$ y sean $A^+ = A \cap P^+$ y $A^- = A \cap P^-$, además podemos notar a estos como:
 
@@ -273,7 +278,7 @@ Supongamos el primero de ellos, por el lema \autoref{paralelepipedoslemma} tenem
     A^+ = \displaystyle\bigcup_{i=1}^{n^+} A_i^+ \qquad A^- = \displaystyle\bigcup_{i=1}^{n^-} A_i^-
 \end{equation}
 
-una unión finita de de paralelepípedos cuyos ejes son paralelos a los ejes coordenados, donde $n^+ < n$ y $n^- < n$ ya que $P$ divide a $A_1$ y $A_2$.
+una unión finita de de paralelepípedos cuyos ejes son paralelos a los ejes coordenados, donde $n^+  \langle  n$ y $n^-  \langle  n$ ya que $P$ divide a $A_1$ y $A_2$.
 
 Cogemos ahora un plano $Q$ que cumpla:
 
@@ -281,12 +286,12 @@ Cogemos ahora un plano $Q$ que cumpla:
     \frac{vol A^+}{vol A} = \frac{vol B^+}{vol B}
 \end{equation}
 
-esto es posible ya que $\frac{vol A^+}{vol A} = c$ con $0 < c < 1$. Luego podemos tomar $Q$ a la izquierda de todos los paralelepípedos $B$ y desplazarlo a la derecha hasta encontrar la igualdad, gracias a que $\frac{vol B^+}{vol B}$ es una función continua.
+esto es posible ya que $\frac{vol A^+}{vol A} = c$ con $0  \langle  c  \langle  1$. Luego podemos tomar $Q$ a la izquierda de todos los paralelepípedos $B$ y desplazarlo a la derecha hasta encontrar la igualdad, gracias a que $\frac{vol B^+}{vol B}$ es una función continua.
 Dado que $vol A = vol A^+ + vol A^-$ tenemos la misma \autoref{equationvolumen} para $A^-$ y $B^-$.
 
 Además, $B = B^+ + B^-$ cumplen también la \autoref{equationuniones} para $B^+$ y $B^-$ con $m^+ \leq m$ y $m^- \leq m$, en este caso, no podemos suponer que son estrictos debido a que no tenemos garantizado el hecho de que $Q$ separe a dos paralelepípedos de $B$.
 
-Estamos en condiciones de aplicar la hipótesis de inducción a los subconjuntos $A^+$, $A^-$ y $B^+$, $B^-$ ya que el total de paralelepípedos cumple la condición $n^+ + m^+ < n + m$ y $n^- + m^- < n + m$. Por tanto tenemos:
+Estamos en condiciones de aplicar la hipótesis de inducción a los subconjuntos $A^+$, $A^-$ y $B^+$, $B^-$ ya que el total de paralelepípedos cumple la condición $n^+ + m^+  \langle  n + m$ y $n^- + m^-  \langle  n + m$. Por tanto tenemos:
 
 \begin{equation*}
     vol (A^+ + B^+) \geq \left[ (vol A^+)^{1/3} + (vol B^+)^{1/3} \right]^3
@@ -298,7 +303,7 @@ Estamos en condiciones de aplicar la hipótesis de inducción a los subconjuntos
 Seguimos la deducción sabiendo que $A^+ \subset P^+$ y $B^+ \subset Q^+$, luego $A^+ + B^+ \subset P^+ + Q^+ = (P+Q)^+$ y análogamente $A^- + B^- \subset (P+Q)^-$. Teniendo en cuenta que $P+Q$ es otro plano de $\rtres$ tenemos que $A^+ + B^+$ y $A^- + B^-$ son disjuntos. En consecuencia:
 
 \begin{align*}
-    vol (A+B) &\geq vol(A^+ + B^+) + vol(A^- + B^-) \\
+    vol (A+B) &\geq vol(A^+ + B^+) + vol(A^- + B^-) \\ 
     vol (A+B) &\geq \left[ (vol A^+)^{1/3} + (vol B^+)^{1/3} \right]^3 + \left[ (vol A^-)^{1/3} + (vol B^-)^{1/3} \right]^3
 \end{align*}
 
@@ -337,9 +342,9 @@ Sea $S$ una superficie conexa y compacta con dominio interior $\Omega$. Se cumpl
 \begin{proof}
 Para demostrarlo, tenemos que buscar primero cierta situación donde podemos aplicar la desigualdad de Brunn-Minkowski y demostrar la desigualdad isoperimétrica.
 
-Tomamos $\epsilon > 0$, tal que $N_\epsilon(S)$ es un entorno tubular. Para cada $t \in (0, \epsilon)$, tenemos que $S_t$ es una superficie paralela incluida en $\Omega$ y $\Omega_t$ es el dominio interior determinado por $S_t$, y además, vamos a tomar $B_t$ como la bola abierta centrada en el origen de $\rtres$ y radio $t$.
+Tomamos $\epsilon  \rangle  0$, tal que $N_\epsilon(S)$ es un entorno tubular. Para cada $t \in (0, \epsilon)$, tenemos que $S_t$ es una superficie paralela incluida en $\Omega$ y $\Omega_t$ es el dominio interior determinado por $S_t$, y además, vamos a tomar $B_t$ como la bola abierta centrada en el origen de $\rtres$ y radio $t$.
 
-Consideremos el conjunto $S_t + B_t$, $\forall t \in (0, \epsilon)$. Veamos primero que los puntos de este conjunto no están en la superficie. Sea $p \in (S_t + B_t) \cap S$. Por definición, $p = q + v$ con $q \in S_t$ y $v \in B_t$, luego se cumple que $|p - q| = |v| < t$, luego $dist(q, S) < t$ lo que es una contradicción ya que el mínimo de la distancia de $q$ a $S$ se alcanza en un punto $p_0$ tal que $q$ está en la recta normal de $p_0$ y $S$, y teniendo en cuenta que $q \in S_t$, tenemos que $|p_0 - q| \geq t$.
+Consideremos el conjunto $S_t + B_t$, $\forall t \in (0, \epsilon)$. Veamos primero que los puntos de este conjunto no están en la superficie. Sea $p \in (S_t + B_t) \cap S$. Por definición, $p = q + v$ con $q \in S_t$ y $v \in B_t$, luego se cumple que $|p - q| = |v|  \langle  t$, luego $dist(q, S)  \langle  t$ lo que es una contradicción ya que el mínimo de la distancia de $q$ a $S$ se alcanza en un punto $p_0$ tal que $q$ está en la recta normal de $p_0$ y $S$, y teniendo en cuenta que $q \in S_t$, tenemos que $|p_0 - q| \geq t$.
 
 Por tanto, concluimos que $\nexists p \in (S_t + B_t) \cap S$. Por otro lado, sabemos que $S_t$ y $B_t$ son arco-conexos, y hemos probado que la suma de arco-conexos es arco-conexa, por lo que $(S_t + B_t)$ es arco-conexo y por tanto tiene que estar incluido en una de las componentes arco-conexas de $\rmath - S$. Teniendo en cuenta que $\Omega_t \subset \Omega$, tenemos que $\Omega_t + B_t \subset \Omega$, $\forall t \in (0, \epsilon)$. Y tenemos la situación que buscábamos.
 
@@ -412,7 +417,7 @@ Sea $S=\mathbb{S}^2$ superficie compacta y conexa y $\Omega = B$, bola abierta, 
 Veamos ahora que es la única. Supongamos que existe otra $S'$ tal que $vol \Omega' = vol \Omega$, donde $\Omega'$ es el dominio interior determinado por la superficie $S'$, aplicando la desigualdad isoperimétrica:
 
 \begin{equation*}
-    A(S')^3 \geq 36\pi (vol \Omega')^2 = 36\pi (vol \Omega)^2 = A(S)^3
+    A(S')^3 \geq 36\pi (vol \Omega')^2 = 36\pi (vol \Omega)^2 = A(S)^3 
 \end{equation*}
 
 Luego las esferas son las superficies isoperimétricas que minimizan el área.

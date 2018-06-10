@@ -48,7 +48,7 @@ Un punto es \textit{umbilical} si $k_1(p)=k_2(p)$.
 Sea $S \subseteq \rtres$, se dice que $S$ es \textit{totalmente umbilical} si todos son puntos son umbilicales.
 \end{definition}
 
-\begin{theorem}[Clasificación de las superficies totalmente umbilicales]
+\begin{theorem}[Clasificación de las superficies totalmente umbilicales]\label{umbilicaltheorem}
 Sea $S \subseteq \rtres$ superficie conexa, cerrada y totalmente umbilical. Entonces es un plano o una esfera.
 \end{theorem}
 
@@ -65,7 +65,7 @@ Sea $S \subseteq \rtres$ una superficie compacta y conexa con curvatura media $H
 
 Generalización del teorema de Hilbert-Liebmann a superficies cerradas.
 \begin{theorem}[Teorema de Bonnet]
-Sea $S \subseteq \rtres$ una superficie cerrada y conexa con curvatura de Gauss $K=c>0$, constante positiva, entonces S es una esfera.
+Sea $S \subseteq \rtres$ una superficie cerrada y conexa con curvatura de Gauss $K=c \rangle 0$, constante positiva, entonces S es una esfera.
 \end{theorem}
 
 
@@ -105,7 +105,7 @@ Sea S una superficie y $p \in S$. $\exists W \subset \rtres$ entorno abierto y c
 \end{lemma}
 
 \begin{definition}
-Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\parallel v \parallel=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha es regular$ y $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon > 0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}.
+Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\parallel v \parallel=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha es regular$ y $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon  \rangle  0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}. 
 \end{definition}
 
 \begin{theorem}[Teorema de Brower-Samelson]
@@ -114,7 +114,7 @@ Toda superficie compacta en un espacio euclideo es orientable.
 \begin{proof}
 La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\bot}$ con $\parallel v \parallel=1$ tenemos que $v$ es interior o bien $-v$ es interior.
 
-Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos.
+Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos. 
 
 Supongamos que $v$ y $-v$ son interiores. Esto implicaría que $\alpha(0,\epsilon) \subset \Omega$ y $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$, y por definición, $\alpha(-\epsilon, \epsilon) \cap S \neq \emptyset$.
 
@@ -124,7 +124,7 @@ Por el lema previo, tenemos que $\exists W$ entorno de abierto y conexo de $p$. 
 
 Sea $N: V \longrightarrow \rtres$ la orientación de $V$ tal que $N(p)$ es interior.
 
-%%%% TODO: Tomando un entorno coordenado en p e intersecando con V
+%%%% Tomando un entorno coordenado en p e intersecando con V
 \end{proof}
 
 \section{Entornos tubulares}
@@ -134,7 +134,7 @@ En este sección, vamos a definir los entornos tubulares. Veremos que dada una s
 Sea $S$ una superficie de $\rtres$, como $\rtres$ es un espacio métrico, los entornos más sencillos de definir son los conocidos como \textbf{entornos métricos}. Definidos como los puntos cuya distancia a la superficie es menor que un delta dado, notamos:
 
 \begin{equation*}
-    B_\delta(S)=\{p\in \rtres | dist(p,S) < \delta\}
+    B_\delta(S)=\{p\in \rtres | dist(p,S)  \langle  \delta\}
 \end{equation*}
 
 donde, $dist(p,S) = inf_{q\in S}|p-q|$.
@@ -145,9 +145,9 @@ Sea $S$ una superficie cerrada de $\rtres$, el conjunto $B_\delta(S)$ definido a
 \begin{proof}
 Veámoslo por doble inclusión:
 
-Sea $p \in S$, y sea $q \in N_\delta(p)$ para el $p$ dado y $\delta > 0$. Es directo que, $dist(q,S) \leq |q-p| < \delta$, luego $q \in B_\delta(S)$.
+Sea $p \in S$, y sea $q \in N_\delta(p)$ para el $p$ dado y $\delta  \rangle  0$. Es directo que, $dist(q,S) \leq |q-p|  \langle  \delta$, luego $q \in B_\delta(S)$.
 
-Supongamos ahora $q \in B_\delta(S)$. Tomamos la función distancia del punto $q$ a $S$. Como $S$ es cerrado, sabemos que existe un mínimo en un punto $p \in S$, además por la caracterización de los punto críticos de la función distancia al cuadrado, sabemos que el punto $q$ está en la normal a $S$ en $p$. Así, $|p-q| = dist(q,S) < \delta$, luego $q \in N_\delta(p)$.
+Supongamos ahora $q \in B_\delta(S)$. Tomamos la función distancia del punto $q$ a $S$. Como $S$ es cerrado, sabemos que existe un mínimo en un punto $p \in S$, además por la caracterización de los punto críticos de la función distancia al cuadrado, sabemso que el punto $q$ está en la normal a $S$ en $p$. Así, $|p-q| = dist(q,S)  \langle  \delta$, luego $q \in N_\delta(p)$.
 \end{proof}
 
 Sea $S$ una superficie orientable con la aplicación de Gauss $N: S \longrightarrow \mathbb{S}^2 \subset \rtres$, definimos:
@@ -160,21 +160,21 @@ Sea $S$ una superficie orientable con la aplicación de Gauss $N: S \longrightar
 Esta aplicación,claramente diferenciable, envía cada punto $p$ de la superficie a la distancia $t$ en dirección de la recta normal a la superficie en el punto $p$. Luego tenemos:
 
 \begin{equation*}
-    F(S \times (-\delta, \delta)) = N_\delta(S)=\bigcup_{p\in S} N_\delta(p), \qquad \forall \delta > 0
+    F(S \times (-\delta, \delta)) = N_\delta(S)=\bigcup_{p\in S} N_\delta(p), \qquad \forall \delta  \rangle  0
 \end{equation*}
 
 \begin{definition}[Entornos tubulares]
-La unión $N_\delta(S)$ de todos los segmentos normales de radio $\delta > 0$ centrados en los puntos de una superficie $S$ orientable es llamada \textit{entorno tubular} de radio $\delta$ si es un abierto como subconjunto de $\rtres$ y la función $F: S x (-\delta, \delta) \longrightarrow N(p)$ definida previamente es un difeomorfismo.
+La unión $N_\delta(S)$ de todos los segmentos normales de radio $\delta  \rangle  0$ centrados en los puntos de una superficie $S$ orientable es llamada \textit{entorno tubular} de radio $\delta$ si es un abierto como subconjunto de $\rtres$ y la función $F: S x (-\delta, \delta) \longrightarrow N(p)$ definida previamente es un difeomorfismo.
 \end{definition}
 
 % TODO: Demostrar
 \begin{lemma}
-Sea $S$ una superficie, $\forall p \in S$, $\exists V_p$, entorno abierto y orientable y $\delta > 0$ de forma que el conjunto $N_\delta(V_p)$ es un entorno tubular de $V$.
+Sea $S$ una superficie, $\forall p \in S$, $\exists V_p$, entorno abierto y orientable y $\delta  \rangle  0$ de forma que el conjunto $N_\delta(V_p)$ es un entorno tubular de $V$.
 \end{lemma}
 
 Veamos ahora la existencia de entornos tubulares para superficies compactas.
 \begin{theorem}[Existencia de entornos tubulares]
-Sea $S$ una superficie orientable y $R \subset S$ un subconjunto abierto relativamente compacto. Entonces $\exists \epsilon > 0$ tal que, el conjunto $N_\epsilon(R)$ es un entorno tubular de la superficie $R$, esto es, es un abierto de $\rtres$ y la función:
+Sea $S$ una superficie orientable y $R \subset S$ un subconjunto abierto relativamente compacto. Entonces $\exists \epsilon  \rangle  0$ tal que, el conjunto $N_\epsilon(R)$ es un entorno tubular de la superficie $R$, esto es, es un abierto de $\rtres$ y la función:
 
 \begin{align*}
     F: S \times (-\epsilon, \epsilon) &\longrightarrow N_\epsilon(R) \\
@@ -183,11 +183,11 @@ Sea $S$ una superficie orientable y $R \subset S$ un subconjunto abierto relativ
 
 es un difeomorfismo.
 
-En particular, cuando la superficie $S$ es compacta, $\exists \epsilon > 0$ tal que
+En particular, cuando la superficie $S$ es compacta, $\exists \epsilon  \rangle  0$ tal que
 $B_\epsilon(S)=N_\epsilon(S)$ es un entorno tubular de $S$.
 \end{theorem}
 \begin{proof}
-Como tenemos que $R$ es relativamente compacto, esto es, $\bar{R}$ es compacto, existe un recubrimiento finito por abierto de $\bar{R}$ cada uno con un entorno tubular, por el lema previo. Sea $\delta > 0$ el menor radio de todos ellos. Si tomamos la función $F$ definida previamente, restringida al intervalo de definición $Rx(-\delta, \delta)$ es un difeomorfismo local. Vamos a buscar un $\epsilon \in (0,\delta)$ tal que la función $F$ restringida al intervalo $Rx(-\epsilon, \epsilon)$ es inyectiva. Veámoslo por reducción al absurdo.
+Como tenemos que $R$ es relativamente compacto, esto es, $\bar{R}$ es compacto, existe un recubrimiento finito por abierto de $\bar{R}$ cada uno con un entorno tubular, por el lema previo. Sea $\delta  \rangle  0$ el menor radio de todos ellos. Si tomamos la función $F$ definida previamente, restringida al intervalo de definición $Rx(-\delta, \delta)$ es un difeomorfismo local. Vamos a buscar un $\epsilon \in (0,\delta)$ tal que la función $F$ restringida al intervalo $Rx(-\epsilon, \epsilon)$ es inyectiva. Veámoslo por reducción al absurdo.
 
 Supongamos que $\exists \epsilon \in (0,\delta)$ tal que $F$ restringida al intervado de definición $Rx(-\epsilon, \epsilon)$ no es inyectiva, o lo que es lo mismo, los segmentos $N_\epsilon(p)$ de normales con $p \in R$ intersecan entre ellos. Tomamos $\epsilon=\frac{1}{n}$ y $\forall p \in \mathbb{N}$, $\exists p_n,q_n \in S$ con $p_n \neq q_n$ tal que $N_{\frac{1}{n}}(p_n) \bigcap N_{\frac{1}{n}}(q_n) \neq \emptyset$.
 Como $R$ es relativamente compacto, podemos tomar sucesiones parciales que convergen en $\bar{R}$. Sean $\{p_n\}_{n \in \mathbb{N}}, \{q_n\}_{n \in \mathbb{N}}$ estas sucesiones y sean $p,q \in \bar{R}$ los puntos donde convergen, esto es:
@@ -199,12 +199,12 @@ Como $R$ es relativamente compacto, podemos tomar sucesiones parciales que conve
 Sea $r_n \in N_{\frac{1}{n}}(p_n) \bigcap N_{\frac{1}{n}}(q_n)$, entonces:
 
 \begin{equation*}
-    |p_n - q_n| = |p_n - q_n + r_n - r_n| \leq |p_n-r_n| + |r_n-q_n| < \frac{1}{n}+\frac{1}{n} = \frac{2}{n}
+    |p_n - q_n| = |p_n - q_n + r_n - r_n| \leq |p_n-r_n| + |r_n-q_n|  \langle  \frac{1}{n}+\frac{1}{n} = \frac{2}{n}
 \end{equation*}
 
 Por tanto los límites coinciden.
 
-Aplicando el lema previo al punto $p = q \in S$, tenemos $V$ y $\rho > 0$ tal que $N_\rho(V)$ es un entorno tubular. Además, $\exists N_0 \in \mathbb{N}$ tal que, $\forall n > N_0$, $p_n,q_n \in V$ y $1/n < \rho$. Por tanto llegamos a una contradicción:
+Aplicando el lema previo al punto $p = q \in S$, tenemos $V$ y $\rho  \rangle  0$ tal que $N_\rho(V)$ es un entorno tubular. Además, $\exists N_0 \in \mathbb{N}$ tal que, $\forall n  \rangle  N_0$, $p_n,q_n \in V$ y $1/n  \langle  \rho$. Por tanto llegamos a una contradicción:
 
 \begin{equation*}
     N_{\frac{1}{n}}(p_n) \bigcap N_{\frac{1}{n}}(q_n) \subset N_\rho(p_n)\bigcap N_\rho(q_n) = \emptyset
@@ -217,6 +217,6 @@ ya que $N_\rho(V)$ es un entorno tubular. Por tanto, $F$ restringida al interval
 A partir de los entornos tubulares, introduciremos el concepto de superficie paralela.
 
 \begin{definition}[Superficie paralela]
-Sea $\rho > 0$ y sea $N_\rho(S)$ un entorno tubular de la superficie $S$ compacta con $N$ su aplicación de Gauss. $\forall t \in (-\rho, \rho)$ se define $S_t={p + tN(p); p \in S}$ superficie compacta y la apliación $F_t: S \longrightarrow S_t$ dada por $F_t(p)=p+tN(p)$ es un difeomorfismo.
+Sea $\rho  \rangle  0$ y sea $N_\rho(S)$ un entorno tubular de la superficie $S$ compacta con $N$ su aplicación de Gauss. $\forall t \in (-\rho, \rho)$ se define $S_t={p + tN(p); p \in S}$ superficie compacta y la apliación $F_t: S \longrightarrow S_t$ dada por $F_t(p)=p+tN(p)$ es un difeomorfismo.
 Llamamos a $S_t$ \textit{superficie paralela} a S a una distancia $t$.
 \end{definition}

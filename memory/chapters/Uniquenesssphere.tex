@@ -126,7 +126,7 @@ Utilizando el corolario \autoref{corolariogradiente}:
 
 Veamos ahora el resultado que íbamos buscando con ayuda de las propiedades variacionales calculadas.
 
-\begin{theorem}[Las superficies isoperimétricas tienen curvatura media constante]
+\begin{theorem}[Las superficies isoperimétricas tienen curvatura media constante]\label{meancurvaturecte}
 Sea $S$ una superficie compacta y conexa. Si $S$ es isoperimétrica, entonces, $S$ tiene curvatura media constante.
 \end{theorem}
 \begin{proof}
@@ -165,3 +165,211 @@ Luego $H$ es constante.
 \end{proof}
 
 \section{Unicidad de las esferas como superficies isoperimétricas}
+
+En la sección anterior hemos probado, que todas las superficies isoperimétricas tienen curvatura media constante. A partir de esto, estamos en condiciones de probar que las esferas son las únicas superficies isoperimétricas, es decir, dado un volumen fijo, la esfera es la superficie que encierra dicho volumen y además con área mínima entre todas las superficies.
+
+Demostrar la unicidad de las esferas como superficies isoperimétricas una vez tenemos que las superficies isoperimétricas tienen curvatura media constante es directo mediante el \textbf{Teorema de Alexandrov} que nos asegura que si una superficie compacta y conexa tiene curvatura media constante, entonces es una esfera. Sin embargo, para concluir este trabajo, se decide ilustrar una demostración alternativa al Teorema de Alexandrov, más novedosa, basada en la \textbf{prueba de Wente} \cite{wenteproof} publicada en 1991.
+
+Para llevar la prueba a cabo, son necesarios algunos preliminares, parte de la prueba, implicar trabajar con homotecias, así que comencemos viendo como se comportan la formula del volumen y del área vista en capítulos previos, con estas.
+
+\begin{lemma}
+Sea $S$ una superficie compacta y conexa y $\Omega$ su dominio interior. Sea $\lambda \in \rmath$ positivo, sea $h_\lambda: \rtres \longrightarrow \rtres$ definida como $h_\lambda(p)=\lambda p$, $\forall p \in \rtres$, la homotecia de centro 0 y razón $\lambda$, tenemos que:
+
+\begin{align*}
+    A(h_\lambda(S)) &= \lambda^2A(S) \\
+    vol h_\lambda(S) &= \lambda^3 vol \Omega
+\end{align*}
+\end{lemma}
+\begin{proof}
+Consideramos la aplicación $h_\lambda: S \longrightarrow h\lambda(S)$. $h_\lambda(S)$ es una superficie compacta y conexa con $T_{h_\lambda (p)} h_\lambda (S) = T_pS$, $\forall p \in S$, por ser $h_\lambda$ una homotecia.
+
+Veamos primero el área.
+
+\begin{equation*}
+    A(h_\lambda(S)) = \int_{h_\lambda(S)} 1dp
+\end{equation*}
+
+utilizando el cambio de variable:
+
+\begin{equation*}
+    A(h_\lambda(S)) = \int_{S} |Jac h_\lambda| dS
+\end{equation*}
+
+Calculemos el Jacobiano. Tenemos que $(dh_\lambda)_p: T_pS \longrightarrow T_pS$ es el endomorfismo dado por $(dh_\lambda)_p(v) = \lambda v$, $\forall v \in T_pS$. Por definición de Jacobiano, tomando $\{e_1, e_2\}$ base ortonormal de $T_pS$, tenemos:
+
+\begin{align*}
+    (dh_\lambda)_p(e_1) &= \lambda e_1 \\
+    (dh_\lambda)_p(e_2) &= \lambda e_2
+\end{align*}
+
+luego, $|Jac h_\lambda|(p) = \begin{vmatrix}
+\lambda & 0 \\ 
+0 & \lambda
+\end{vmatrix} = \lambda^2$.
+
+Volviendo a la ecuación del área tenemos:
+
+\begin{equation*}
+    A(h_\lambda(S)) = \int_{h_\lambda(S)} 1dp = \int_{S} |Jac h_\lambda| dS = \int_{S} \lambda^2dS = \lambda^2A(S)
+\end{equation*}
+
+Veamos ahora el volumen, análogo al área, consideremos la aplicación $h_\lambda: \Omega \longrightarrow h\lambda(S)$. $h_\lambda(\Omega)$ y utilicemos el cambio de variable:
+
+\begin{equation*}
+    vol h_\lambda(\Omega) = \int_{h_\lambda(\Omega)} 1dv = \int_{\Omega} |Jac h_\lambda| d\Omega
+\end{equation*}
+
+Calculemos el jacobiano. En este caso, $h_\lambda$ está definida en abiertos de $\rtres$, luego $(dh_\lambda)_p: \rtres \longrightarrow \rtres$ dada por $(dh_\lambda)_p(v) = \lambda v$, y tomamos en este caso la base usual de $\rtres$ y por tanto:
+
+\begin{equation*}
+  |Jac h_\lambda|(p) = \begin{vmatrix}
+                        \lambda & 0 & 0 \\ 
+                        0 & \lambda & 0 \\
+                        0 & 0 & \lambda \\
+                        \end{vmatrix} = \lambda^3
+\end{equation*}
+
+y podemos concluir:
+
+\begin{equation*}
+    vol h_\lambda(\Omega) = \int_{h_\lambda(\Omega)} 1dv = \int_{\Omega} |Jac h_\lambda| d\Omega = \int_{\Omega} \lambda^3 d\Omega = \lambda^3 vol \Omega
+\end{equation*}
+
+\end{proof}
+
+
+\begin{theorem}[Unicidad de las superficies isoperimétricas]
+Si $S \subset \rtres$ es una superficie isoperimétrica, entonces $S$ es una esfera.
+\end{theorem}
+\begin{proof}
+Vamos a construir deformaciones de $S$ que preserven su volumen mediante homotecias de la variación por paralelas, esto es, sea $\lambda(t) > 0$ con $t \in (-\epsilon, \epsilon)$ tal que $vol h_{\lambda(t)}(\Omega_t) = vol \Omega$. Además, acabamos de probar que $vol h_{\lambda(t)}(\Omega_t) = \lambda(t)^3 vol \Omega_t$, luego igualando ambas expresiones nos queda:
+
+\begin{equation*}\label{lambdafunction}
+    \lambda(t) = \left( \frac{vol \Omega}{vol \Omega_t} \right) ^{1/3}, \qquad \forall t \in (-\epsilon, \epsilon)
+\end{equation*}
+
+Luego tenemos la aplicación $\lambda: (-\epsilon, \epsilon) \longrightarrow \rmath$ definida previamente, $C^\infty(-\epsilon, \epsilon)$ y claramente $\lambda(0) = 1$ ya que $\Omega_0 = \Omega$. 
+
+Consideremos ahora la aplicación $A: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por:
+
+\begin{equation}\label{funcA}
+    A(t) = A(h_{\lambda(t)} (S_t)) = \lambda(t)^2 A(S_t)
+\end{equation}
+
+Utilizando la hipótesis de que $S$ es una superficie isoperimétrica, sabemos que $A'(0) = 0$ y $A''(0) \geq 0$ ya que $A$ alcanza el mínimo global en $t=0$.
+
+Vamos a calcular las derivadas. Comenzamos recordando que como probamos en \autoref{areaparallelsurface} tenemos:
+
+\begin{equation*}
+    A(S_t) = A(S) -2t\int_{S} HdS + t^2\int_{S} KdS
+\end{equation*}
+
+consideremos la función $a: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por $a(t) = A(S) -2t\int_{S} HdS + t^2\int_{S} KdS$ luego \autoref{funcA} nos queda como $A(t) = \lambda(t)^2 a(t)$. Calculemos las derivadas de $a$:
+
+\begin{align*}
+    a'(t) &= -2\int_{S} HdS + 2t\int_{S} KdS \\
+    a''(t) &= 2\int_{S} KdS
+\end{align*}
+
+evaluando en 0 y teniendo en cuenta que hemos probado en \autoref{meancurvaturecte} que las superficies isoperimétricas tienen curvatura constante:
+
+\begin{align*}
+    a'(0) &= -2\int_{S} HdS = -2HA(S) \\
+    a''(0) &= 2\int_{S} KdS
+\end{align*}
+
+Veamos ahora la derivada de $\lambda(t) = \left( \frac{vol \Omega}{vol \Omega_t} \right) ^{1/3}$. Hemos visto en \autoref{volumeparallelsurface}:
+
+\begin{equation*}
+    vol \Omega_t = vol \Omega - tA(S) + t^2\int_S HdS - \frac{t^3}{3}\int_S KdS
+\end{equation*}
+
+consideremos la función $v: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por $v(t) = vol \Omega - tA(S) + t^2\int_S HdS - \frac{t^3}{3}\int_S KdS$. Calculemos las derivadas de $v$:
+
+\begin{align*}
+    v'(t) &= - A(S) + 2t\int_S HdS - t^2\int_S KdS \\
+    v''(t) &= 2\int_{S} HdS - 2t\int_S KdS
+\end{align*}
+
+de nuevo, evaluando en 0 y sabiendo que $H$ es constante:
+
+\begin{align*}
+    v'(0) &= -A(S) \\
+    v''(0) &= 2HA(S)
+\end{align*}
+
+Ahora podemos notar \autoref{lambdafunction} como:
+
+\begin{equation*}
+    \lambda(t) = (vol \Omega)^{1/3} v(t)^{-1/3}
+\end{equation*}
+
+y calculamos sus derivadas, que necesitamos para calcular las de $A$:
+
+\begin{align*}
+    \lambda'(t) &= \frac{-1}{3} (vol\Omega)^{1/3} v(t)^{-4/3} v'(t) \\
+    \lambda''(t) &= \frac{-1}{3} (vol\Omega)^{1/3} \left[ \frac{-4}{3}v(t)^{-7/3} v'(t)^2 + v(t)^{-4/3}v''(t) \right]
+\end{align*}
+
+sustituyendo las derivadas de $v$ calculadas previamente y evaluando en 0:
+
+\begin{align*}
+    \lambda'(0) &= \frac{A(S)}{3 vol \Omega} \\
+    \lambda''(0) &= \frac{4 A(S)^2}{9 (vol\Omega)^{2}} - \frac{2HA(S)}{3 vol\Omega} 
+\end{align*}
+
+Vamos a simplificar ahora las expresiones conseguidas, para ello, utilizando el \autoref{formulaminkowski}, la \textbf{fórmula de Minkowski}, y teniendo en cuenta de nuevo que $H$ es constante, nos queda:
+
+\begin{equation}\label{minkowskiauxfunc}
+    A(S) + H\int_S \langle p, N(p) \rangle dp = 0
+\end{equation}
+
+Aplicando el \textbf{teorema de divergencia clásico} a $S$, su dominio interior $\Omega$ y al campo identidad $X: \bar{\Omega} \longrightarrow \rtres$ dado por $X(t) = t$, para cada $t \in \bar{\Omega}$. Su divergencia es la función constante 3. Luego:
+
+\begin{equation*}
+    vol \Omega = \frac{-1}{3}\int_S \langle p, N(p) \rangle dp
+\end{equation*}
+
+sustituyendo en \autoref{minkowskiauxfunc}:
+
+\begin{equation*}
+    A(S) - 3Hvol \Omega = 0
+\end{equation*}
+
+despejamos el volumen:
+
+\begin{equation*}
+    vol \Omega = \frac{A(S)}{3H}
+\end{equation*}
+
+Ahora, sustituyendo en las derivadas de $\lambda$, simplificamos:
+
+\begin{align*}
+    \lambda'(0) &= H \\
+    \lambda''(0) &= 2H^2
+\end{align*}
+
+Por tanto, calculamos las derivadas de \autoref{funcA} que buscábamos:
+
+\begin{align*}
+    A'(t) &= 2\lambda(t)a(t)\lambda'(t) + a'(t)\lambda(t)^2 \\
+    A''(t) &= 2\left [ \lambda'(t)^2a(t) + 2\lambda(t)\lambda'(t)a'(t) + a(t)\lambda(t)\lambda''(t) \right] + a''(t)\lambda(t)^2
+\end{align*}
+
+sustituyendo las ecuaciones calculadas previamente y evaluando en 0, nos queda:
+
+\begin{align*}
+    A''(0) &= 2\left[ H^2A(S) -4H^2A(S) + 2H^2A(S) \right] + 2\int_S KdS \\
+    &= -2H^2A(S) + 2\int_S KdS \\
+    &= -2\int_S (H^2-K) dS
+\end{align*}
+
+Sabemos que $A''(t) \geq 0$, luego $\int_S (H^2-K) dS \leq 0$, también sabemos que toda superficie cumple $H^2-K \geq 0$ por tanto:
+
+\begin{equation*}
+    0 \leq -2\int_S (H^2-K) dS \leq 0
+\end{equation*}
+
+luego implica que $H^2-K = 0$ en S. Por tanto, tenemos que $S$ es una superficie compacta, conexa y totalmente umbilical, y por el \autoref{umbilicaltheorem}, \textbf{teorema de clasificación de superficies totalmente umbilicales}, podemos concluir que $S$ es una esfera.
+
+\end{proof}
