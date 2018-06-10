@@ -14,9 +14,7 @@ $\forall p \in S$ $\exists V$ entorno abierto de $p$ en $S$ (con la topología i
 \end{enumerate}
 \end{definition}
 
-Sea $S \subseteq \rtres$ una superficie. Un \textit{campo de vectores} (diferenciable) en $S$ es una aplicación diferenciable $\vmath: S \longrightarrow \rtres$. Si $\vmath_p := \vmath(p) \in \tmath_p S$ para todo $p \in S$, diremos que $\vmath$ es un \textit{campo tangente} a $S$. Si $\vmath_p \bot \tmath_p S$ para todo $p \in S$, diremos que $\vmath$ es un \textit{campo normal} a $S$. Un campo unitario es aquel que cumple $\parallel \vmath_p \parallel = 1$ para todo $p \in S$.
-
-Sea $S \subseteq \rtres$ una superficie orientable, y $p \in S$. Se definen:
+Sea $S \subseteq \rtres$ una superficie. Un \textbf{campo de vectores} (diferenciable) en $S$ es una aplicación diferenciable $\vmath: S \longrightarrow \rtres$. Si $\vmath_p := \vmath(p) \in \tmath_p S$ para todo $p \in S$, diremos que $\vmath$ es un \textbf{campo tangente} a $S$. Si $\vmath_p \bot \tmath_p S$ para todo $p \in S$, diremos que $\vmath$ es un \textbf{campo normal} a $S$. Un campo unitario es aquel que cumple $\parallel \vmath_p \parallel = 1$ para todo $p \in S$.
 
 Se dice que $S$ es una \textbf{superficie orientable} si admite un campo normal unitario global $\nmath: S \longrightarrow \unitsphere$. A este campo $\nmath$ se le llama \textbf{aplicación de Gauss}.
 
@@ -32,20 +30,18 @@ Notemos que $\sigma_p$ es simétrica y por tanto el endomorfismo de Weingarten (
 
 Cómo $A_p$ es autoadjunto, entonces es diagonalizable mediante una base ortonormal y por tanto tiene valores propios reales, es decir, $\exists k_1(p), k_2(p) \in \rmath, k_1(p) \leq k_2(p)$, $\exists {e_1,e_2}$ base ortonormal en $(T_pS, I_p)$ de forma que $A_p(e_i) = k_i(p)e_i$, $\forall i = 1,2$
 
-\begin{definition}[Curvaturas principales]
-Los números $k_i(p)$ se llaman \textit{curvaturas principales} de $S$ en $p$.
-\end{definition}
+Los números $k_i(p)$ se llaman \textbf{curvaturas principales} de $S$ en $p$.
 Los vectores propios, no nulos, de $A_p$ se llaman \textbf{direcciones principales} de $S$ en $p$.
 Se define la \textbf{curvatura de Gauss} de $S$ en $p$ como el número real $K(p)=det A_p=k_1(p)k_2(p)$
 Se define la \textbf{curvatura media} de $S$ en $p$ como el número real $H(p)=\frac{1}{2}tr A_p=\frac{k_1(p)+k_2(p)}{2}$
 Se dice que $S$ es \textbf{una superficie llana} si $K(p)=0$, $\forall p \in S$
 
 \begin{definition}[Superficie minimal y totalmente umbilical]
-Se dice que $S$ es \textit{minimal} si $H(p)=0$, $\forall p \in S$
+Se dice que $S$ es \textbf{minimal} si $H(p)=0$, $\forall p \in S$
 
-Un punto es \textit{umbilical} si $k_1(p)=k_2(p)$.
+Un punto es \textbf{umbilical} si $k_1(p)=k_2(p)$.
 
-Sea $S \subseteq \rtres$, se dice que $S$ es \textit{totalmente umbilical} si todos son puntos son umbilicales.
+Sea $S \subseteq \rtres$, se dice que $S$ es \textbf{totalmente umbilical} si todos son puntos son umbilicales.
 \end{definition}
 
 \begin{theorem}[Clasificación de las superficies totalmente umbilicales]\label{umbilicaltheorem}
@@ -58,46 +54,26 @@ La demostración de este teorema se basa en la que la conexión nos impide que s
 Sea $S \subseteq \rtres$ una superficie compacta y conexa con curvatura de Gauss $K$ constante, entonces S es una esfera.
 \end{theorem}
 
-
-\begin{theorem}[Teorema de Alexandrov]
-Sea $S \subseteq \rtres$ una superficie compacta y conexa con curvatura media $H$ constante, entonces S es una esfera.
-\end{theorem}
-
-Generalización del teorema de Hilbert-Liebmann a superficies cerradas.
+Veamos ahora una generalización del teorema de Hilbert-Liebmann para superficies cerradas.
 \begin{theorem}[Teorema de Bonnet]
-Sea $S \subseteq \rtres$ una superficie cerrada y conexa con curvatura de Gauss $K=c \rangle 0$, constante positiva, entonces S es una esfera.
+Sea $S \subseteq \rtres$ una superficie cerrada y conexa con curvatura de Gauss $K=c > 0$, entonces S es una esfera.
 \end{theorem}
 
 
 \section{Teorema de Brower-Samelson}
 
-En esta sección vamos a dar los preliminares necesarios para la demostración del Teorema de Brower-Samelson. Comenzaremos con el teore de Jordan-Brower, que nos permitirá hablar del volumen encerrado por una superficie compacta. Finalmente, entraremos en la definición y propiedades de los entornos tubulares.
+En esta sección vamos a dar los preliminares necesarios para la demostración del Teorema de Brower-Samelson. Comenzaremos con el teore de Jordan-Brower, que nos permitirá hablar del volumen encerrado por una superficie compacta y terminaremos el capítulo con la definición y propiedades de los entornos tubulares.
 
-Cómo ya sabemos por el Teorema de Jordan clásico en el caso de $\rdos$, una curva cerrada y simple, delimita el plano en dos superficies conexas, una de ellas acotada. Este teorema, nos va a permitir tener tener una extensión de este resultado para el caso de $\rtres$. De hecho, esta generalización, aunque no vamos a entrar a verla, es válida para todo $\rmath^n$ con un hiperplano suyo, puede verse en \cite{paperchicago}. Para este caso, veámoslo en n=3.
+Cómo ya sabemos por el Teorema de Jordan clásico en el caso de $\rdos$, una curva cerrada y simple, delimita el plano en dos superficies conexas, una de ellas acotada. Este teorema, nos va a permitir tener tener una extensión de este resultado para el caso de $\rtres$. De hecho, esta generalización, que no veremos porque se escapa del objetivo de este trabajo, es válida para todo $\rmath^n$ con un hiperplano suyo, puede verse en \cite{paperchicago}. En este trabajo, demostraremos que es cierto para n=3.
 
 \begin{theorem}[Teorema de separación de Jordan-Brower]
 Sea $S \subseteq \rtres$ superficie compacta y conexa. Entonces $\rtres - S$ tiene exactamente dos componentes conexas cuya frontera común es $S$.
 \end{theorem}
-\begin{proof}
-Veamos, que si $S$ es compacta, luego cerrada, y conexa, entonces $\rtres - S$ tiene exactamente dos componentes conexas cuya frontera es común.
 
-Sea $C$ una componente conexa de $\rtres - S$. Partiendo de la suposición que $S$ es cerrada, entonces $\rtres - S$ es localmente conexo, luego cada componente conexa $C$ es abierta. Además, la frontera de $C$ es distinta del vacío ($Fr(C) \neq \emptyset$). Veámoslo.
-
-Supongamos $Fr(C) = \emptyset$, entonces $\bar{C} = int(C)\bigcup Fr(C)=int(C)=C$ luego, $C$ sería abierto y cerrado en $\rtres$, por tanto, $C=\rtres$. Lo que es una contradicción ya que definimos $C$ como una componente conexa de $\rtres - S$.
-
-Notemos, $\rtres - S = C \bigcup C'$, donde $C'$ es la unión de todas las componentes conexas distintas de $C$. Entonces, $C'$ es un conjunto abierto de $\rtres$, $\rtres - C' = C \bigcup S$ es cerrado y por tanto $\bar{C} \subset C\bigcup S$. Entonces, $Fr(C)=\bar{C}-C \subseteq S$.
-
-
-Veamos ahora que $Fr(C) = S$. Para ello, sabemos que $Fr(C)$ es un subconjunto cerrado no vacio de $S$, veamos que también es abierto en S.
-
-Sea $p \in Fr(C) \subseteq S$, sea $W$ un entorno abierto de $p$ en $\rtres$, de forma que $W-S$ tiene exactamente dos componentes conexas, $C_1, C_2$ cuya frontera común es $S \bigcap W$. Sabemos que $W-S \subseteq \rtres - S$ luego, $C_1, C_2$ están contenidas en componentes conexas distintas de $\rtres - S$. Esto es, o $C_1, C_2$ están contenidas en $C$, o no lo cortan. Si ninguna componente conexa corta a $C$, tenemos que $W\bigcap C = \emptyset$ y por tanto, $p \notin \bar{C}$, luego $p \notin Fr(C)$ y contradice nuestra suposición. Así, tenemos que al menos una de las componentes $C_1, C_2$ están contenidas en $C$. Supongamos que $C_1 \subseteq C$, análogo para $C_2$. Tenemos: $W \bigcap S = Fr(C_1) \bigcap W \subseteq \bar{C_1} \subseteq \bar{C}$, luego $W \bigcap S= Fr(C)$. Con esto tenemos que $p$ es un punto interior de la frontera de $C$ y por tanto, la frontera de $C$ es un abierto en $S$, como queríamos probar.
-
-Además hemos probado, que $C$ contiene una de las dos componentes conexas de $W-S$, y como estas componentes son disjuntas, no pueden existir más de dos, por tanto, queda probado que $C'$ es la otra componente conexa de $\rtres - S$.
-
-\end{proof}
+Aprovechamos este teorema para definir los dominios interior y exterior delimitados por una superficie.
 
 \begin{definition}[Dominios interior y exterior]
-Llamamos \textit{dominio interior} y notamos como $\Omega$ a la componente conexa acotada limitada por la superficie $S$. Llamamos \textit{dominio exterior} a la componente no acotada $\rtres - \Omega=\Omega_{*}$.
+Llamamos \textbf{dominio interior} y notamos como $\Omega$ a la componente conexa acotada limitada por la superficie $S$. Llamamos \textbf{dominio exterior} a la componente no acotada $\rtres - \Omega=\Omega_{*}$.
 \end{definition}
 
 \begin{lemma}
@@ -105,36 +81,61 @@ Sea S una superficie y $p \in S$. $\exists W \subset \rtres$ entorno abierto y c
 \end{lemma}
 
 \begin{definition}
-Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\parallel v \parallel=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha es regular$ y $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon  \rangle  0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}. 
+Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\lVert v\rVert=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha$ es regular con $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon  >  0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}.
 \end{definition}
 
-\begin{theorem}[Teorema de Brower-Samelson]
+Con estos preliminares, estamos en condiciones de demostrar el teorema de Brower-Samelson.
+
+\begin{theorem}[Teorema de Brower-Samelson]\label{browersamelson}
 Toda superficie compacta en un espacio euclideo es orientable.
 \end{theorem}
 \begin{proof}
-La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\bot}$ con $\parallel v \parallel=1$ tenemos que $v$ es interior o bien $-v$ es interior.
+La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\bot}$ con $\lVert v \rVert=1$ tenemos que $v$ es interior o bien $-v$ es interior.
 
-Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos. 
+Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos.
 
-Supongamos que $v$ y $-v$ son interiores. Esto implicaría que $\alpha(0,\epsilon) \subset \Omega$ y $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$, y por definición, $\alpha(-\epsilon, \epsilon) \cap S \neq \emptyset$.
+Supongamos que $v$ y $-v$ son interiores. Esto implicaría que $\alpha(0,\epsilon) \subset \Omega$ y $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$, y por definición, $\alpha(-\epsilon, \epsilon) \cap S \neq \emptyset$, luego llegamos a contradicción y no pueden ser ambos interiores.
 
-Tomemos ahora $v \in (T_pS)^{\bot}$ con $\parallel v \parallel=1$ interior (si no fuese interior, tomamos -v). Vamos a buscar un entorno abierto de $p \in S$ para construir la orientación $N: V \longrightarrow \rtres$. Donde $N$ es un campo unitario normal diferenciable con $N(q)$ interior $\forall q \in V.$
+Tomemos ahora $v \in (T_pS)^{\bot}$ con $\lVert v \rVert=1$ interior (si no fuese interior, tomamos $-v$). Vamos a buscar un entorno abierto de $p \in S$ para construir la orientación $N: V \longrightarrow \rtres$. Donde $N$ es un campo unitario normal diferenciable con $N(q)$ interior $\forall q \in V.$
 
-Por el lema previo, tenemos que $\exists W$ entorno de abierto y conexo de $p$. Definimos el entorno $V=W\cap S$ entorno de $p$, homeomorfo a $B\cap P$, luego conexo. Como toda superficie es localmente orientable, podemos suponer que $V$ es orientable.
+Por el lema previo, tenemos que $\exists W$ entorno de abierto y conexo de $p$ y $G: W \longrightarrow B$ difeomorfismo. Definimos el entorno $V_1=W\cap S$ entorno de $p$, homeomorfo a $B\cap P$, luego conexo. Además, podemos tomar un entorno coordenado, por ser superficie localmente orientable, $V_2$ de $p$ de forma que $V=V_1 \cap V_2$ es orientable.
 
-Sea $N: V \longrightarrow \rtres$ la orientación de $V$ tal que $N(p)$ es interior.
+Sea $N: V \longrightarrow \rtres$ la orientación de $V$ tal que $N(p)$ es interior. Vamos a denotar como $\tilde{\Omega}$ a la componente conexa de $B-P$ tal que $G(W\cap P) = \tilde{\Omega}$ y sea $n \in \rtres$ al normal unitario que apunta hacia $\tilde{\Omega}$.
 
-%%%% Tomando un entorno coordenado en p e intersecando con V
+Definimos la función $f: V \longrightarrow \rmath$ como $f(q) = \langle (dG)_q(N(q)), n \rangle = \langle \beta'_q(0), n \rangle$, donde $\beta_q(t) = G(q + tN(q))$.
+
+Como $N(q) \not\in T_qS$ y los difeomorfismos conservan la transversalidad se tiene que $\beta'_q(0) \not\in T_{G(p)}P = n^\perp$. En particular, $f(q)$ nunca se anula en $V$. Por continuidad y conexión tenemos tenemos que se conserva el signo:
+
+\begin{equation*}
+    signo(f(q)) = signo(f(p)) = signo(\langle (dG)_q(N(q)), n \rangle) = signo(\langle \beta'_q(0), n \rangle)
+\end{equation*}
+
+Veamos que este signo es positivo. Tenemos que $\alpha_p(0, \epsilon_p) \subset \Omega$ donde $\alpha_q(t) = q + tN(q)$, luego $\beta_p(0, \epsilon_p) \subset \tilde{\Omega}$ y por tanto, $\langle \beta_p(t), n \rangle > 0$, para todo $t \in (0, \epsilon_p)$ y $\langle \beta_p(0), n \rangle = 0$. Derivando:
+
+\begin{equation*}
+    \diff{}{t}{t=0} \langle \beta_p(t), n \rangle \geq 0 \Rightarrow \langle \beta'_p(t), n \rangle \geq 0
+\end{equation*}
+
+como $f$ nunca se anula:
+
+\begin{equation*}
+    \langle \beta'_p(t), n \rangle > 0
+\end{equation*}
+
+Ya hemos probado que el signo es positivo. Veamos que $f(q) > 0$, $\forall q \in V$ implica que $N(q)$, $\forall q \in V$. Hagámoslo por reducción al absurdo.
+
+Supongamos que no ocurre, entonces $\exists q \in V$ tal que $N(q)$ no es interior. Entonces se tiene que $\alpha_q(0, \epsilon_q) \subset \Omega_*$ y, por tanto, $\beta_q(0, \epsilon_q) \subset \tilde{\Omega}_*$ y tendríamos que $\langle \beta_q(t), n \rangle < 0$, para todo $t \in (0, \epsilon_q)$ y $\langle \beta_q(0), n \rangle = 0$. Por tanto, análogo al razonamiento anterior, podríamos obtener que $f(q) = \langle \beta'_q(0), n \rangle < 0$ y esto es una contradicción.
+
 \end{proof}
 
 \section{Entornos tubulares}
 
 En este sección, vamos a definir los entornos tubulares. Veremos que dada una superficie, bajo determinadas hipótesis, existe un entorno que envuelve la superficie.
 
-Sea $S$ una superficie de $\rtres$, como $\rtres$ es un espacio métrico, los entornos más sencillos de definir son los conocidos como \textbf{entornos métricos}. Definidos como los puntos cuya distancia a la superficie es menor que un delta dado, notamos:
+Sea $S$ una superficie de $\rtres$, como $\rtres$ es un espacio métrico, los entornos más sencillos de definir son los conocidos como \textbf{entornos métricos}, definidos como los puntos cuya distancia a la superficie es menor que un delta dado, notamos:
 
 \begin{equation*}
-    B_\delta(S)=\{p\in \rtres | dist(p,S)  \langle  \delta\}
+    B_\delta(S)=\{p\in \rtres | dist(p,S) < \delta\}
 \end{equation*}
 
 donde, $dist(p,S) = inf_{q\in S}|p-q|$.
@@ -145,36 +146,66 @@ Sea $S$ una superficie cerrada de $\rtres$, el conjunto $B_\delta(S)$ definido a
 \begin{proof}
 Veámoslo por doble inclusión:
 
-Sea $p \in S$, y sea $q \in N_\delta(p)$ para el $p$ dado y $\delta  \rangle  0$. Es directo que, $dist(q,S) \leq |q-p|  \langle  \delta$, luego $q \in B_\delta(S)$.
+Sea $p \in S$, y sea $q \in N_\delta(p)$ para el $p$ dado y $\delta > 0$. Es directo que, $dist(q,S) \leq |q-p| < \delta$, luego $q \in B_\delta(S)$.
 
-Supongamos ahora $q \in B_\delta(S)$. Tomamos la función distancia del punto $q$ a $S$. Como $S$ es cerrado, sabemos que existe un mínimo en un punto $p \in S$, además por la caracterización de los punto críticos de la función distancia al cuadrado, sabemso que el punto $q$ está en la normal a $S$ en $p$. Así, $|p-q| = dist(q,S)  \langle  \delta$, luego $q \in N_\delta(p)$.
+Supongamos ahora $q \in B_\delta(S)$. Tomamos la función distancia del punto $q$ a $S$. Como $S$ es cerrado, sabemos que existe un mínimo en un punto $p \in S$, además por la caracterización de los punto críticos de la función distancia al cuadrado, sabemos que el punto $q$ está en la recta normal a $S$ en el punto $p$. Así, $|p-q| = dist(q,S) < \delta$, luego $q \in N_\delta(p)$.
 \end{proof}
 
 Sea $S$ una superficie orientable con la aplicación de Gauss $N: S \longrightarrow \mathbb{S}^2 \subset \rtres$, definimos:
 
 \begin{align*}
-    F: S x \mathbb{R} &\longrightarrow \rtres \\
+    F: S \times \mathbb{R} &\longrightarrow \rtres \\
     (p,t) &\longrightarrow p + tN(p)
 \end{align*}
 
-Esta aplicación,claramente diferenciable, envía cada punto $p$ de la superficie a la distancia $t$ en dirección de la recta normal a la superficie en el punto $p$. Luego tenemos:
+Esta aplicación, claramente diferenciable, envía cada punto $p$ de la superficie a la distancia $t$ en dirección de la recta normal a la superficie en el punto $p$. Luego tenemos:
 
 \begin{equation*}
-    F(S \times (-\delta, \delta)) = N_\delta(S)=\bigcup_{p\in S} N_\delta(p), \qquad \forall \delta  \rangle  0
+    F(S \times (-\delta, \delta)) = N_\delta(S)=\bigcup_{p\in S} N_\delta(p), \qquad \forall \delta > 0
 \end{equation*}
 
 \begin{definition}[Entornos tubulares]
-La unión $N_\delta(S)$ de todos los segmentos normales de radio $\delta  \rangle  0$ centrados en los puntos de una superficie $S$ orientable es llamada \textit{entorno tubular} de radio $\delta$ si es un abierto como subconjunto de $\rtres$ y la función $F: S x (-\delta, \delta) \longrightarrow N(p)$ definida previamente es un difeomorfismo.
+La unión $N_\delta(S)$ de todos los segmentos normales de radio $\delta > 0$ centrados en los puntos de una superficie $S$ orientable es llamada \textbf{entorno tubular} de radio $\delta$ si es un abierto como subconjunto de $\rtres$ y la función $F: S \times (-\delta, \delta) \longrightarrow N(p)$ definida previamente es un difeomorfismo.
 \end{definition}
 
-% TODO: Demostrar
 \begin{lemma}
-Sea $S$ una superficie, $\forall p \in S$, $\exists V_p$, entorno abierto y orientable y $\delta  \rangle  0$ de forma que el conjunto $N_\delta(V_p)$ es un entorno tubular de $V$.
+Sea $S$ una superficie, $\forall p \in S$, $\exists V_p$, entorno abierto y orientable y $\delta > 0$ de forma que el conjunto $N_\delta(V_p)$ es un entorno tubular de $V$.
 \end{lemma}
+\begin{proof}
+Vamso a empezar la demostración calculando la apliación diferencial de $F$ en un punto $(p,t) \in S \times \rmath$:
 
-Veamos ahora la existencia de entornos tubulares para superficies compactas.
+\begin{align*}
+    (dF)_{(p,t)}(v,0) &= \diff{}{s}{s=0} F(\alpha(s), t) \\
+    &= \diff{}{s}{s=0} (\alpha(s) + tN(\alpha(s)) \\
+    &= \alpha'(0) + t(dN)_{\alpha(0)}(\alpha'(0)) \\
+    &= v + t(dN)_p(v)
+\end{align*}
+
+donde $\alpha: (-\epsilon, \epsilon) \longrightarrow S$ es una curva con $\alpha(0) = p$ y $\alpha'(0) = v$.
+
+Por otro lado, tenemos:
+
+\begin{align*}
+    (dF)_{(p,t)}(0,1) &= \diff{}{s}{s=0} F(p, t+s) \\
+    &= \diff{}{s}{s=0} (p + (t+s)N(p)) \\ &= N(p)
+\end{align*}
+
+En particular, para $t=0$, tenemos:
+
+\begin{align*}
+    (dF)_{(p,0)}(v,0) &= v \\
+    (dF)_{(p,0)}(0,1) &= N(p)
+\end{align*}
+
+Por tanto, $(dF)_{(p,0)}$ es un isomorfismo. Si tomamos una base $\{v_1,v_2\}$ de $T_pS$, $(dF)_{(p,0)}$ transforma la base $\{(v_1,0),(v_2,0),(0,1)\}$ de $T_pS \times \rmath$ en una base de $\rtres$, $\{v_1,v_2,N(p)\}$.
+
+Concluimos utilizando el teorema de la función inversa, que nos asegura que existe $V_p$ entorno abierto de $p$ en $S$ y $\delta_p > 0$, tal que, $F: V_p \times (-\delta_p, \delta_p) \longrightarrow F(V_p \times (-\delta_p, \delta_p))$ es un difeomorfismo.
+\end{proof}
+
+Veamos ahora la existencia de entornos tubulares para superficies compactas, utilizando el lema previo para demostrarlo.
+
 \begin{theorem}[Existencia de entornos tubulares]
-Sea $S$ una superficie orientable y $R \subset S$ un subconjunto abierto relativamente compacto. Entonces $\exists \epsilon  \rangle  0$ tal que, el conjunto $N_\epsilon(R)$ es un entorno tubular de la superficie $R$, esto es, es un abierto de $\rtres$ y la función:
+Sea $S$ una superficie orientable y $R \subset S$ un subconjunto abierto relativamente compacto. Entonces $\exists \epsilon > 0$ tal que, el conjunto $N_\epsilon(R)$ es un entorno tubular de la superficie $R$, esto es, es un abierto de $\rtres$ y la función:
 
 \begin{align*}
     F: S \times (-\epsilon, \epsilon) &\longrightarrow N_\epsilon(R) \\
@@ -187,10 +218,10 @@ En particular, cuando la superficie $S$ es compacta, $\exists \epsilon  \rangle 
 $B_\epsilon(S)=N_\epsilon(S)$ es un entorno tubular de $S$.
 \end{theorem}
 \begin{proof}
-Como tenemos que $R$ es relativamente compacto, esto es, $\bar{R}$ es compacto, existe un recubrimiento finito por abierto de $\bar{R}$ cada uno con un entorno tubular, por el lema previo. Sea $\delta  \rangle  0$ el menor radio de todos ellos. Si tomamos la función $F$ definida previamente, restringida al intervalo de definición $Rx(-\delta, \delta)$ es un difeomorfismo local. Vamos a buscar un $\epsilon \in (0,\delta)$ tal que la función $F$ restringida al intervalo $Rx(-\epsilon, \epsilon)$ es inyectiva. Veámoslo por reducción al absurdo.
+Como tenemos que $R$ es relativamente compacto, esto es, $\overline{R}$ es compacto, existe un recubrimiento finito por abierto de $\overline{R}$ cada uno con un entorno tubular, por el lema previo. Sea $\delta > 0$ el menor radio de todos ellos. Si tomamos la función $F$ definida previamente, restringida al intervalo de definición $R \times (-\delta, \delta)$ es un difeomorfismo local. Vamos a buscar un $\epsilon \in (0,\delta)$ tal que la función $F$ restringida al intervalo $R \times (-\epsilon, \epsilon)$ es inyectiva. Veámoslo por reducción al absurdo.
 
 Supongamos que $\exists \epsilon \in (0,\delta)$ tal que $F$ restringida al intervado de definición $Rx(-\epsilon, \epsilon)$ no es inyectiva, o lo que es lo mismo, los segmentos $N_\epsilon(p)$ de normales con $p \in R$ intersecan entre ellos. Tomamos $\epsilon=\frac{1}{n}$ y $\forall p \in \mathbb{N}$, $\exists p_n,q_n \in S$ con $p_n \neq q_n$ tal que $N_{\frac{1}{n}}(p_n) \bigcap N_{\frac{1}{n}}(q_n) \neq \emptyset$.
-Como $R$ es relativamente compacto, podemos tomar sucesiones parciales que convergen en $\bar{R}$. Sean $\{p_n\}_{n \in \mathbb{N}}, \{q_n\}_{n \in \mathbb{N}}$ estas sucesiones y sean $p,q \in \bar{R}$ los puntos donde convergen, esto es:
+Como $R$ es relativamente compacto, podemos tomar sucesiones parciales que convergen en $\overline{R}$. Sean $\{p_n\}_{n \in \mathbb{N}}, \{q_n\}_{n \in \mathbb{N}}$ estas sucesiones y sean $p,q \in \overline{R}$ los puntos donde convergen, esto es:
 
 \begin{equation*}
     \lim_{n\to\infty} p_n = p \qquad \lim_{n\to\infty} q_n = q
@@ -199,12 +230,12 @@ Como $R$ es relativamente compacto, podemos tomar sucesiones parciales que conve
 Sea $r_n \in N_{\frac{1}{n}}(p_n) \bigcap N_{\frac{1}{n}}(q_n)$, entonces:
 
 \begin{equation*}
-    |p_n - q_n| = |p_n - q_n + r_n - r_n| \leq |p_n-r_n| + |r_n-q_n|  \langle  \frac{1}{n}+\frac{1}{n} = \frac{2}{n}
+    |p_n - q_n| = |p_n - q_n + r_n - r_n| \leq |p_n-r_n| + |r_n-q_n| < \frac{1}{n}+\frac{1}{n} = \frac{2}{n}
 \end{equation*}
 
 Por tanto los límites coinciden.
 
-Aplicando el lema previo al punto $p = q \in S$, tenemos $V$ y $\rho  \rangle  0$ tal que $N_\rho(V)$ es un entorno tubular. Además, $\exists N_0 \in \mathbb{N}$ tal que, $\forall n  \rangle  N_0$, $p_n,q_n \in V$ y $1/n  \langle  \rho$. Por tanto llegamos a una contradicción:
+Aplicando el lema previo al punto $p = q \in S$, tenemos $V$ y $\rho > 0$ tal que $N_\rho(V)$ es un entorno tubular. Además, $\exists N_0 \in \mathbb{N}$ tal que, $\forall n > N_0$, $p_n,q_n \in V$ y $1/n < \rho$. Por tanto llegamos a una contradicción:
 
 \begin{equation*}
     N_{\frac{1}{n}}(p_n) \bigcap N_{\frac{1}{n}}(q_n) \subset N_\rho(p_n)\bigcap N_\rho(q_n) = \emptyset
@@ -214,9 +245,9 @@ ya que $N_\rho(V)$ es un entorno tubular. Por tanto, $F$ restringida al interval
 
 \end{proof}
 
-A partir de los entornos tubulares, introduciremos el concepto de superficie paralela.
+A partir de los entornos tubulares, introduciremos el concepto de superficie paralela para concluir el capítulo.
 
 \begin{definition}[Superficie paralela]
-Sea $\rho  \rangle  0$ y sea $N_\rho(S)$ un entorno tubular de la superficie $S$ compacta con $N$ su aplicación de Gauss. $\forall t \in (-\rho, \rho)$ se define $S_t={p + tN(p); p \in S}$ superficie compacta y la apliación $F_t: S \longrightarrow S_t$ dada por $F_t(p)=p+tN(p)$ es un difeomorfismo.
-Llamamos a $S_t$ \textit{superficie paralela} a S a una distancia $t$.
+Sea $\rho > 0$ y sea $N_\rho(S)$ un entorno tubular de la superficie $S$ compacta con $N$ su aplicación de Gauss. Para todo $t \in (-\rho, \rho)$ se define el conjunto $S_t=\{p + tN(p); p \in S\}$ superficie compacta y la aplicación $F_t: S \longrightarrow S_t$ dada por $F_t(p)=p+tN(p)$ es un difeomorfismo.
+Llamamos a $S_t$ \textbf{superficie paralela} a $S$ a una distancia $t$.
 \end{definition}
