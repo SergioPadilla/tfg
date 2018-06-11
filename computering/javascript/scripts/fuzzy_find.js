@@ -634,7 +634,7 @@ function nflte_cdeg(field_name, value) {
 
 function split_queries(query) {
     // remove all fuzzy properties
-    let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
+    let fuzzy_operators = ['$feq', '$fgt', '$fgte', '$flt', '$flte','$nfeq', '$nfgt', '$nfgte', '$nflt', '$nflte'];
     let fquery = {};
     for (let property in query) {
         let prop_query = query[property];
@@ -688,7 +688,7 @@ function trapezoid(x) {
 }
 
 function parse_fuzzy(fquery) {
-    let fuzzy_operators = ['$feq', '$fgt', '$fgte', '$flt', '$flte', '$nfeq', '$nfgt', '$nfgte', '$nflt', '$nflte'];
+    let fuzzy_operators = ['$feq', '$fgt', '$fgte', '$flt', '$flte','$nfeq', '$nfgt', '$nfgte', '$nflt', '$nflte'];
     let query = {};
     let foperators = {};
 
