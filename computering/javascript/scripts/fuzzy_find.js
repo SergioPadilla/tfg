@@ -114,11 +114,11 @@ function flte(field_name, value, threshold) {
     return {
         [field_0]: {$lte: U_CT},
         $expr: {
-            $gte: [
+            $lte: [
                 {$add: [
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
-                    ]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
+                ]},
                 U_CT
             ]
         }
@@ -204,9 +204,9 @@ function nflt(field_name, value, threshold) {
         $expr: {
             $lte: [
                 {$add: [
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
-                    ]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
+                ]},
                 U_CT
             ]
         }
@@ -223,9 +223,9 @@ function nflte(field_name, value, threshold) {
         $expr: {
             $lte: [
                 {$add: [
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
-                        {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
-                    ]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
+                ]},
                 U_CT
             ]
         }
