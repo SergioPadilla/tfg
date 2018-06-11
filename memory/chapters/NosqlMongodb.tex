@@ -3,7 +3,7 @@ En este capítulo vamos a dar una introducción a las bases de datos tipo NoSQL,
 Terminaremos este capítulo viendo las características más relevantes de la base de datos Mongo DB, la que utilizaremos en nuestro trabajo para dar una propuesta de un motor difuso para consultas sobre esta plataforma.
 
 \section{Introducción}
-NoSQL - \texttt{Not only SQL} - la primera ocurrencia del término  según \cite{chalmerthesis} data de 1998 cuando Carlo Strozzi lo utiliza para denominar a la base de datos que había creado, una base de datos "open-source" \ relacional, \cite{strozzidb}, pero que no proveía de una interfaz SQL. En ese mismo artículo, datan de 2009 cuando Eric Evan retoma el término en unas conferencia sobre bases de datos "open-source".
+NoSQL - \texttt{Not only SQL} - la primera ocurrencia del término  según \cite{chalmerthesis} data de 1998 cuando Carlo Strozzi lo utiliza para denominar a la base de datos que había creado, una base de datos \textit{open-source} relacional, \cite{strozzidb}, pero que no proveía de una interfaz SQL. En ese mismo artículo, datan de 2009 cuando Eric Evan retoma el término en unas conferencia sobre bases de datos "open-source".
 
 A pesar de estas fechas y momentos puntuales, lo cierto es que las bases de datos clave-valor, por ejemplo, ahora consideradas NoSQL, existen desde mucho antes, por lo que es difícil encontrar referencias 
 
@@ -126,15 +126,15 @@ MongoDB tiene distintos métodos para la consulta y explotación de los datos al
 
 \subsection{Indexación}
 
-Según se define en la propia documentación de MongoDB \cite{mongodb}, "\textit{la indexación es un mecanismo crucial para la optimización del rendimiento y escalabilidad del sistema mientras provee un acceso flexible a tus datos}". Mongo permite la indexación en cualquier campo del documento, incluso en los campos de un array.
+Según se define en la propia documentación de MongoDB \cite{mongodb}, <<\textit{la indexación es un mecanismo crucial para la optimización del rendimiento y escalabilidad del sistema mientras provee un acceso flexible a tus datos}>>. Mongo permite la indexación en cualquier campo del documento, incluso en los campos de un array.
 
-Mongo provee la facilidad para crear índices compuestos, unicos, array, índices geoespaciales, hash y texto.
+Mongo provee la facilidad para crear índices compuestos, únicos, array, índices geoespaciales, hash y texto.
 
 Además, la intersección de índices permite a MongoDB usar más de un índice para la optimización de las consultas.
 
 \subsection{Agregación}
 
-Una de las características más importante de MongoDB a la hora de explotar y transformar datos son las agregaciones. Esta base de datos nos provee dos formas de realizarla, mediante "pipeline"\    y mediante "map-reduce".
+Una de las características más importante de MongoDB a la hora de explotar y transformar datos son las agregaciones. Esta base de datos nos provee dos formas de realizarla, mediante \textit{pipeline}    y mediante \textit{map-reduce}.
 
 \subsubsection{Map-Reduce}
 
@@ -144,7 +144,7 @@ El modelo map-reduce, consiste en generar un subconjunto de documentos útiles p
 
 \subsubsection{Pipeline}
 
-La segunda forma para realizar el operador de agregación es mediante el framework "pipeline". Con este comando los documentos son procesados mediante una secuencia ordenada de etapas para producir un subconjunto de documentos. Con esta opción, una consulta normal sobre una colección se haría sobre una etapa "match" de la tubería de agregación.
+La segunda forma para realizar el operador de agregación es mediante el framework \textit{pipeline}. Con este comando los documentos son procesados mediante una secuencia ordenada de etapas para producir un subconjunto de documentos. Con esta opción, una consulta normal sobre una colección se haría sobre una etapa \textit{match} de la tubería de agregación.
 
 Las etapas permitidas para este operador se pueden encontrar en \cite{aggregationstages}.
 
