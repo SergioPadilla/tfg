@@ -67,7 +67,6 @@
 %\include{FrontBackmatter/DirtyTitlepage}
 \include{FrontBackMatter/Titlepage}
 \include{FrontBackMatter/Titleback}
-\cleardoublepage\include{FrontBackMatter/Abstract}
 \cleardoublepage\include{FrontBackMatter/Libraryconsent}
 \cleardoublepage\include{FrontBackMatter/TutorsConsent}
 %\cleardoublepage\include{FrontBackmatter/Foreword}
@@ -83,12 +82,12 @@
 % use \cleardoublepage here to avoid problems with pdfbookmark
 \cleardoublepage
 
-\part{Introducción}
+\part{Matemáticas}
 
 \chapter{Descripción}
-\input{chapters/Intro.tex}
-
-\part{Matemáticas}
+\input{chapters/Summarymathematic.tex}
+\input{chapters/Intromathematic.tex}
+\input{chapters/Abstractmathematic.tex}
 
 \chapter{Preliminares}
 \input{chapters/Preliminary.tex}
@@ -99,10 +98,15 @@
 \chapter{Desigualdad isoperimétrica}
 \input{chapters/Isoperimetricinequality.tex}
 
-\chapter{Unicidad de las esferas como superficies isoperimétricas}
+\chapter{Unicidad de las superficies isoperimétricas}
 \input{chapters/Uniquenesssphere.tex}
 
 \part{Informática}
+
+\chapter{Descripción}
+\input{chapters/Summarycomputering.tex}
+\input{chapters/Introcomputering.tex}
+\input{chapters/Abstractcomputering.tex}
 
 \chapter{NoSQL. MongoDB}
 \input{chapters/NosqlMongodb.tex}

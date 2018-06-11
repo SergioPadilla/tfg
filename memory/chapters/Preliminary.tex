@@ -81,7 +81,7 @@ Sea S una superficie y $p \in S$. $\exists W \subset \rtres$ entorno abierto y c
 \end{lemma}
 
 \begin{definition}
-Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\lVert v\rVert=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha$ es regular con $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon  >  0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}.
+Sea $S$ superficie conexa y compacta y sea $v \in (T_pS)^{\perp}$ con $\lVert v\rVert=1$. Consideremos la recta afín $\alpha: \mathbb{R} \longrightarrow \rtres$ definida como $\alpha(t) = p + tv$ con $p \in S$. Entonces, $\alpha$ es regular con $\alpha(0)=p$ y $\alpha'(0) = v$. Existe entonces un $\epsilon  >  0$ tal que $\alpha(-\epsilon, \epsilon) \cap S = {p}$. Así, los conexos $\alpha(-\epsilon, 0)$ y $\alpha(0, \epsilon)$ están contenidos en $\rtres - S$. Diremos que $v$ es \textbf{interior} si $\alpha(0, \epsilon) \subset \Omega$, en caso contrario diremos que es \textbf{exterior}. 
 \end{definition}
 
 Con estos preliminares, estamos en condiciones de demostrar el teorema de Brower-Samelson.
@@ -92,7 +92,7 @@ Toda superficie compacta en un espacio euclideo es orientable.
 \begin{proof}
 La idea de esta demostración es encontrar la orientación de esta superficie $S$ compacta. Para ello comencemos viendo que para $v \in (T_pS)^{\bot}$ con $\lVert v \rVert=1$ tenemos que $v$ es interior o bien $-v$ es interior.
 
-Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos.
+Supongamos que $v$ no es interior, luego por definición, $\alpha(\epsilon, 0) \subset \Omega^{*}$ con $\alpha$ la recta afín considerada en la definición previa. Consideremos ahora la recta afín $\beta: \mathbb{R} \longrightarrow \rtres$ dada por $\beta(t)=p + t(-v)$ con $p \in S$. Luego $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$ y por tanto $-v$ es interior. Ya hemos probado que si $v$ no es interior, lo es $-v$, veamos ahora que no pueden serlo ambos. 
 
 Supongamos que $v$ y $-v$ son interiores. Esto implicaría que $\alpha(0,\epsilon) \subset \Omega$ y $\beta(0, \epsilon) = \alpha(-\epsilon, 0) \subset \Omega$, y por definición, $\alpha(-\epsilon, \epsilon) \cap S \neq \emptyset$, luego llegamos a contradicción y no pueden ser ambos interiores.
 
@@ -122,7 +122,7 @@ como $f$ nunca se anula:
     \langle \beta'_p(t), n \rangle > 0
 \end{equation*}
 
-Ya hemos probado que el signo es positivo. Veamos que $f(q) > 0$, $\forall q \in V$ implica que $N(q)$, $\forall q \in V$. Hagámoslo por reducción al absurdo.
+Ya hemos probado que el signo es positivo. Veamos que $f(q) > 0$, $\forall q \in V$ implica que $N(q)$, $\forall q \in V$. Hagámoslo por reducción al absurdo. 
 
 Supongamos que no ocurre, entonces $\exists q \in V$ tal que $N(q)$ no es interior. Entonces se tiene que $\alpha_q(0, \epsilon_q) \subset \Omega_*$ y, por tanto, $\beta_q(0, \epsilon_q) \subset \tilde{\Omega}_*$ y tendríamos que $\langle \beta_q(t), n \rangle < 0$, para todo $t \in (0, \epsilon_q)$ y $\langle \beta_q(0), n \rangle = 0$. Por tanto, análogo al razonamiento anterior, podríamos obtener que $f(q) = \langle \beta'_q(0), n \rangle < 0$ y esto es una contradicción.
 
@@ -176,17 +176,17 @@ Vamso a empezar la demostración calculando la apliación diferencial de $F$ en 
 
 \begin{align*}
     (dF)_{(p,t)}(v,0) &= \diff{}{s}{s=0} F(\alpha(s), t) \\
-    &= \diff{}{s}{s=0} (\alpha(s) + tN(\alpha(s)) \\
-    &= \alpha'(0) + t(dN)_{\alpha(0)}(\alpha'(0)) \\
+    &= \diff{}{s}{s=0} (\alpha(s) + tN(\alpha(s)) \\ 
+    &= \alpha'(0) + t(dN)_{\alpha(0)}(\alpha'(0)) \\ 
     &= v + t(dN)_p(v)
 \end{align*}
 
-donde $\alpha: (-\epsilon, \epsilon) \longrightarrow S$ es una curva con $\alpha(0) = p$ y $\alpha'(0) = v$.
+donde $\alpha: (-\epsilon, \epsilon) \longrightarrow S$ es una curva con $\alpha(0) = p$ y $\alpha'(0) = v$. 
 
 Por otro lado, tenemos:
 
 \begin{align*}
-    (dF)_{(p,t)}(0,1) &= \diff{}{s}{s=0} F(p, t+s) \\
+    (dF)_{(p,t)}(0,1) &= \diff{}{s}{s=0} F(p, t+s) \\ 
     &= \diff{}{s}{s=0} (p + (t+s)N(p)) \\ &= N(p)
 \end{align*}
 

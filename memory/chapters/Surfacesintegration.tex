@@ -132,7 +132,7 @@ Aplicando el \textbf{teorema de divergencia para superficies} [\ref{divergesurfa
 calculando el producto escalar de $p$ con el gradiente de $f$ en $p$:
 
 \begin{equation*}
-    \langle p, \gradientef \rangle = \langle p, (df)_p(e_1)e_1 + (df)_p(e_2)e_2 \rangle = \sum_{i=1}^2 (df)_p(e_i) \langle p, e_i \rangle
+    \langle p, \gradientef \rangle = \langle p, (df)_p(e_1)e_1 + (df)_p(e_2)e_2 \rangle = \sum_{i=1}^2 (df)_p(e_i) \langle p, e_i \rangle 
 \end{equation*}
 
 y por tanto:
@@ -141,3 +141,162 @@ y por tanto:
     (div_S V)(p) = \langle \gradientef, p \rangle + 2f(p)
 \end{equation*}
 \end{proof}
+
+Vamos calcular a partir de lo obtenido previamente el área de una esfera, el volumen de una bola y el área y volumen encerrado por una superficie paralela.
+
+\begin{remark}[Área de la esfera]
+Veamos cuál es el área de una esfera, $\mathbb{S}^2(p_0, r)$. Sabemos que:
+
+\begin{equation*}
+    A(\mathbb{S}^2(p_0, r)) = \int_{\mathbb{S}^2(p_0, r)} 1dx
+\end{equation*}
+
+Consideremos la siguiente traslación: $T: \mathbb{S}^2(0, r) \longrightarrow \mathbb{S}^2(p_0, r)$ tal que $T(p) = p + p_0$, usando las fórmulas del cambio de variable vista en el capítulo anterior, tenemos que:
+
+\begin{equation*}
+    \int_{\mathbb{S}^2(p_0, r)} 1dx = \int_{\mathbb{S}^2(0, r)} |Jac T|dx 
+\end{equation*}
+
+Además, $|JacT|=1$, luego:
+
+\begin{equation*}
+    \int_{\mathbb{S}^2(0, r)} |Jac T|dx = \int_{\mathbb{S}^2(0, r)} 1dx = A(\mathbb{S}^2(0, r))
+\end{equation*}
+
+Para calcular esta integral, consideramos la parametrización de la esfera centrada en 0 como una superficie de revolución: 
+
+\begin{align*}
+    X: (\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi) &\longrightarrow \mathbb{S}^2(0, r) - C \\
+    (t, \theta) &\longrightarrow (r\cos t\cos\theta, r\cos t\sen\theta, r\sen t)
+\end{align*}
+
+con $C = \{X(t,\pi): t\in [-\pi/2, \pi/2]\}$. Por tanto, $\mathbb{S}^2(0, r) - C = X((-\pi/2, \pi/2) \times (-\pi, \pi))$, como $C$ es un conjunto de medida nula, tenemos que:
+
+\begin{equation*}
+    \int_{\mathbb{S}^2(0, r)} 1da = \int_{\mathbb{S}^2(0, r) - C} 1da
+\end{equation*}
+
+Utilizando de nuevo el cambio de variable:
+
+\begin{equation*}
+    \int_{\mathbb{S}^2(0, r) - C} 1da = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} |JacX| dtd\theta
+\end{equation*}
+
+Calculemos el jacobiano de X, sea $(dX)_{(t, \theta)}: \rdos \longrightarrow T_{X(t,\theta)} \mathbb{S}^2$, con:
+
+\begin{align*}
+    (dX)_{(t, \theta)}(1,0) &= X_t(t, \theta) \\
+    (dX)_{(t, \theta)}(0,1) &= X_\theta(t, \theta) \\
+    X_t(t, \theta) &= (r\sen t\cos\theta, -r\sen t\sen\theta, r\cos t) \\
+    X_\theta(t, \theta) &= (-r\cos t\sen\theta, r\cos t\cos\theta, 0) \\
+    |X_t|^2 &= r^2 \\
+    |X_\theta|^2 &= r^2\cos^2t
+\end{align*}
+
+Luego $\{ \frac{X_t}{r}, \frac{X_\theta}{r\cos t} \}$. Por definición:
+
+\begin{equation*}
+    |Jac X|(t,\theta) = r^2\cos t
+\end{equation*}
+
+y por tanto:
+
+\begin{equation*}
+    A(\mathbb{S}^2(0,r)) = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} r^2\cos t da = 4\pi r^2 
+\end{equation*}
+
+Finalmente:
+\begin{equation*}
+    A(\mathbb{S}^2(p_0,r)) = 4\pi r^2 
+\end{equation*}
+\end{remark}
+
+\begin{remark}[Volumen de una bola]
+Partiendo como en el cálculo del área de la esfera, consideramos la traslación, $T: B(0, r) \longrightarrow B(p_0, r)$ tal que $T(p) = p + p_0$, aplicando la fórmula del cambio de variable y sabiendo que $|JacT|=1$, tenemos:
+
+\begin{equation*}
+    vol B(p_0,r) = \int_{B(p_0,r)} 1 dx = \int_{B(0,r)} |JacT|dx = \int_{B(0,r)} 1dx = vol B(0,r)
+\end{equation*}
+
+Utilizando el teorema de la divergencia con $S=\mathbb{S}^2(0,r)$ y $\Omega=B(0,r)$, tomando $X(p)=p$ tenemos que $(div X)(p)=3$, con $t\in \rtres$ y nos queda:
+
+\begin{align*}
+    vol B(0,r) &= \frac{-1}{3} \int_{\mathbb{S}^2(0,r)}  \langle p, \frac{-p}{r} \rangle da \\
+    vol B(0,r) &= \frac{-1}{3r} \int_{\mathbb{S}^2(0,r)}  \langle p, -p \rangle da \\
+    vol B(0,r) &= \frac{r}{3} \int_{\mathbb{S}^2(0,r)} 1da
+\end{align*}
+
+ya que $ \langle p,p \rangle  = |p|^2 = r^2$ con $p \in \mathbb{S}^2(0,r)$.
+
+Por tanto tenemos que el $vol B(0,r) = \frac{r}{3}A(\mathbb{S}^2(0,r))$ que hemos calculado previamente:
+
+\begin{equation*}
+    vol B(p,r) = \frac{4}{3}\pi r^3
+\end{equation*}
+\end{remark}
+
+\begin{remark}[Volumen encerrado por una superficie paralela]
+Sea $S$ una superficie compacta y $\epsilon  \rangle  0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$. Vamos a calcular el volumen comprendido entre $S$ y $S_t$ con $t\in (0, \epsilon)$. Sea $F: S \times (0, \epsilon) \longrightarrow V_t(S)$ definida como $F(p, t) = p + tN(p)$, donde $V_t(S)$ es el volumen que buscamos. Sean $\Omega$ y $\Omega_t$ los dominios interiores determinados por $S$ y $S_t$, respectivamente. Teniendo en cuenta que $F$ es un difeomorfismo, tenemos:
+
+\begin{equation*}
+    vol \Omega - vol \Omega_t = vol (V_t(S)) = \int_{V_t(S)} 1dx = \int_{S \times (0,t)} |JacF|(p,t)dSdt
+\end{equation*}
+
+Calculemos $|Jac F|$. Sean $\{e_1, e_2\}$ una base ortonormal de direcciones principales en $p \in S$, sabemos que:
+
+\begin{align*}
+    (dF)_{(p,t)}(e_i,0) &= (1-tk_i(p))e_i, \qquad i = 1,2 \\
+    (dF)_{(p,t)}(0,1) &= N(p)
+\end{align*}
+
+Tomamos ahora $\{(e_1,0), (e_2,0), (0,1)\}$ base ortonormal de $T_pS \times \rmath$ y $\{e_1, e_2, N(p)\}$ como base ortonormal de $\rtres$, y obtenemos:
+
+\begin{align*}
+    |Jac F|(p,t) &= \left|
+  det \left( {\begin{array}{ccc}
+   1 - tk_1(p) & 0 & 0 \\
+   0 & 1-tk_2(p) & 0 \\
+   0 & 0 & 1 \\
+  \end{array} } \right) \right| \\
+  |Jac F|(p,t) &= 1 - 2tH(p) + t^2K(p)
+\end{align*}
+
+Y por último, utilizando el teorema de Fubini:
+
+\begin{equation*}
+    vol \Omega - vol \Omega_t = \int_0^t \left( \int_{S} 1-2tH(p)+t^2K(p) dp \right) dt
+\end{equation*}
+
+obtenemos:
+
+\begin{equation}\label{volumeparallelsurface}
+    vol \Omega - vol \Omega_t = tA(S) - t^2\int_S HdS + \frac{t^3}{3}\int_S KdS
+\end{equation}
+\end{remark}
+
+\begin{remark}[Área de una superficie paralela]
+Sea $S$ una superficie compacta y $\epsilon  \rangle  0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Recordamos que hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$.
+
+Sabemos que la función $F_t: S \longrightarrow S_t$ es un difeomorfismo, definido como $F_t(p, t) = p + tN(p)$, luego utilizando el cambio de variable, tenemos:
+
+\begin{equation*}
+    A(S_t) = \int_{S_t} 1dS_t = \int_S |Jac F_t|(p,t)dS
+\end{equation*}
+
+Hemos visto previamente:
+
+\begin{align*}
+    |Jac F_t|(p,t) &= \left|
+  det \left( {\begin{array}{cc}
+   1 - tk_1(p) & 0 \\
+   0 & 1-tk_2(p) \\
+  \end{array} } \right) \right| \\
+  |Jac F_t|(p,t) &= 1-2tH(p) + t^2K(p)
+\end{align*}
+
+Por tanto, tenemos que:
+
+\begin{equation*}\label{areaparallelsurface}
+    A(S_t) = A(S) -2t\int_{S} H(p)dS + t^2\int_{S} K(p)dS
+\end{equation*}
+\end{remark}
