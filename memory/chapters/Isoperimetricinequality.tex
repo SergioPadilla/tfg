@@ -142,7 +142,7 @@ Estamos en condiciones de aplicar la hipótesis de inducción a los subconjuntos
     vol (A^- + B^-) \geq \left[ (vol A^-)^{1/3} + (vol B^-)^{1/3} \right]^3
 \end{equation*}
 
-Seguimos la deducción sabiendo que $A^+ \subset P^+$ y $B^+ \subset Q^+$, luego $A^+ + B^+ \subset P^+ + Q^+ = (P+Q)^+$ y análogamente $A^- + B^- \subset (P+Q)^-$. Teniendo en cuenta que $P+Q$ es otro plano de $\rtres$ tenemos que $A^+ + B^+$ y $A^- + B^-$ son disjuntos. En consecuencia:
+Seguimos la deducción sabiendo que $A^+ \subset P^+$ y $B^+ \subset Q^+$, luego $A^+ + B^+ \subset P^+ + Q^+$ y análogamente $A^- + B^- \subset (P+Q)^-$. Teniendo en cuenta que $P+Q$ es otro plano de $\rtres$ tenemos que $A^+ + B^+$ y $A^- + B^-$ son disjuntos. En consecuencia:
 
 \begin{align*}
     vol (A+B) &\geq vol(A^+ + B^+) + vol(A^- + B^-) \\ 
@@ -170,7 +170,7 @@ Luego tenemos que $A_n + B_N \subset A + B$ y para cada $n \in \mathbb{N}$:
     vol (A+B)^{1/3} \geq vol (A_n+B_n)^{1/3} \geq vol (A_n) ^{1/3} + vol(B_n)^{1/3}
 \end{equation*}
 
-Basta con tomar límite con $n$ tendiendo a infinito y tenemos probada la desigualdad para todos los casos.
+Basta con tomar límites con $n$ tendiendo a infinito y tenemos probada la desigualdad para todos los casos.
 \end{proof}
 
 Con la desigualdad de Brunn-Minkowski demostrada, vamos a probar el resultado más importante de este capítulo y sobre el que trabajaremos en el capítulo siguiente.
@@ -190,7 +190,6 @@ Consideremos el conjunto $S_t + B_t$, $\forall t \in (0, \epsilon)$. Veamos prim
 
 Por tanto, concluimos que $\nexists p \in (S_t + B_t) \cap S$. Por otro lado, sabemos que $S_t$ y $B_t$ son arco-conexos, y hemos probado que la suma de arco-conexos es arco-conexa, por lo que $(S_t + B_t)$ es arco-conexo y por tanto tiene que estar incluido en una de las componentes arco-conexas de $\rmath - S$. Teniendo en cuenta que $\Omega_t \subset \Omega$, tenemos que $\Omega_t + B_t \subset \Omega$, $\forall t \in (0, \epsilon)$. Y tenemos la situación que buscábamos.
 
-%NOTE: (?) con la inclusión suficiente para afirmar
 Aplicando ahora la ya conocida, desigualdad de Brunn-Minkowski, tenemos que:
 
 \begin{equation*}
