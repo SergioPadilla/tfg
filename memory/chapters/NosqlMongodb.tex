@@ -1,42 +1,49 @@
 En este capítulo vamos a dar una introducción a las bases de datos tipo NoSQL, veremos los principales usos de estas así como comparativas con bases de datos de tipo SQL.
 
-Terminaremos este capítulo viendo las características más relevantes de la base de datos Mongo DB, la que utilizaremos en nuestro trabajo para dar una propuesta de un motor difuso para consultas sobre esta plataforma.
+Terminaremos este capítulo viendo las características más relevantes de la base de datos MongoDB, la que utilizaremos en nuestro trabajo para dar una propuesta de un motor difuso para consultas sobre esta plataforma.
 
 \section{Introducción}
-NoSQL - \texttt{Not only SQL} - la primera ocurrencia del término  según \cite{chalmerthesis} data de 1998 cuando Carlo Strozzi lo utiliza para denominar a la base de datos que había creado, una base de datos "open-source" \ relacional, \cite{strozzidb}, pero que no proveía de una interfaz SQL. En ese mismo artículo, datan de 2009 cuando Eric Evan retoma el término en unas conferencia sobre bases de datos "open-source".
 
-A pesar de estas fechas y momentos puntuales, lo cierto es que las bases de datos clave-valor, por ejemplo, ahora consideradas NoSQL, existen desde mucho antes, por lo que es difícil encontrar referencias 
+NoSQL - \texttt{Not only SQL} - la primera ocurrencia del término  según \cite{chalmerthesis} data de 1998 cuando Carlo Strozzi lo utiliza para denominar a la base de datos que había creado, una base de datos \textit{open-source} relacional, \cite{strozzidb}, pero que no proveía de una interfaz SQL. 
+En 2009 Eric Evan retoma el término en unas conferencia sobre bases de datos \textit{open-source}.
 
-Hay muchas diferencias entre las base de datos NoSQL y los SGBDR (Sistema de Gestión de Bases de Datos Relacionales), veremos más adelante algunas de ellas, pero podemos destacar 2: no usan el lenguaje SQL como lenguaje principal de consulta y no garantizan completamente ACID (atomicidad, consistencia, aislamiento y durabilidad). 
+A pesar de estas fechas y momentos puntuales, lo cierto es que las bases de datos clave-valor, por ejemplo, ahora consideradas NoSQL, existen desde mucho antes, por lo que es difícil establecer el momento preciso en que surge el concepto de NoSQL. 
 
-La utilidad de este tipo de bases de datos se ha incrementado recientemente por la necesidad de incrementar el almacenamiento de datos. Son las principales bases de datos para las técnicas de Big Data y el manejo de grandes cantidades de datos. Suelen escalar bien horizontalmente y permiten el almacenamientos de distintas formas. Veremos los tipos de bases de datos y algunos ejemplos en la siguiente sección.
+Hay muchas diferencias entre las base de datos NoSQL y los SGBDRs (Sistemas de Gestión de Bases de Datos Relacionales), veremos más adelante algunas de ellas, pero podemos destacar dos: no usan el lenguaje SQL como lenguaje principal de consulta y no garantizan completamente ACID (atomicidad, consistencia, aislamiento y durabilidad). Veamos que significan estos términos:
+
+\begin{itemize}
+    \item Atomicidad: Las transacciones son completas, esto es, si uan operación comprende más de un paso, o se realizan todos o no se realiza ninguno.
+    \item Consistencia: Este término se refiere a la integridad de los datos, las operaciones llevan la base de datos desde un estado válido a otro estado válido
+    \item Aislamiento: Este término hace referencia a la independencia de operaciones. Una operación no puede afectar a otra.
+    \item Durabilidad: Esta propiedad asegura que una vez realizada una operación, perdurará en el tiempo aún si el sistema se falla.
+\end{itemize}
+
+La utilidad de este tipo de bases de datos se ha incrementado recientemente por la necesidad de incrementar el almacenamiento de datos. Son las principales bases de datos para las técnicas de \textit{Big Data} y el manejo de grandes cantidades de datos. Suelen escalar bien horizontalmente y permiten el almacenamientos de distintas formas. Veremos los tipos de bases de datos NoSQL y algunos ejemplos en la siguiente sección.
 
 \subsection{Teorema de CAP}
-Vamos a aprovechar el teorema de CAP \cite{captheorem} para hacer una primera clasificación de bases de datos.
-
-El \textbf{teorema de CAP} nos dice que es imposible garantizar a la misma vez, consistencia, disponibilidad y tolerancia a particiones:
+En \cite{captheorem} se introduce el \textbf{teorema de CAP} que establece que es imposible para un sistema computacional distribuido ofrecer simultáneamente las siguientes tres garantías:
 
 \textbf{Consistencia}: La información tiene que ser la misma para una operación independientemente del nodo en el que se haga.
 
 \textbf{Disponibilidad}: La información tiene que estar accesible para todos los clientes independientemente de que algún nodo no esté disponible.
 
-\textbf{Tolerancia a particiones}: El sistema tiene que seguir disponible aunque existan problemas de comunicación entre algunos nodos y provoque una partición del mismo.
+\textbf{Tolerancia a particiones}: El sistema tiene que seguir disponible aunque existan problemas de comunicación entre algunos nodos o alguno de ellos se encuentre caído.
 
-En base a estas definiciones, la siguiente imagen nos proporciona una clasificación de algunas de las bases de datos más utilizadas en función de las 2 características elegidas para su definición.
+En base a éste teorema, en la siguiente figura podemos ver como se clasifican algunas de las bases de datos más utilizadas, atendiendo a las dos características que éstas garantizan:
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.7\textwidth]{gfx/CAPTheorem.png}
+  \includegraphics[width=0.9\textwidth]{gfx/CAPTheorem.png}
   \caption{Clasificación de bases de datos mediante el teorema de CAP.}
 \end{figure}
 
 \section{Tipos de bases de datos NoSQL}
 
-En esta sección vamos a caracterizar las bases de datos NoSQL según la forma en la que almacenen los datos. Podemos clasificar la mayoría de bases de datos NoSQL en alguna de las siguientes 4 categorías, como se describe en la propia documentación de MongoDB \cite{mongoclassification}.
+En esta sección vamos a caracterizar las bases de datos NoSQL según la forma en la que almacenan los datos. Podemos clasificar la mayoría de bases de datos NoSQL en alguna de las siguientes 4 categorías, como se describe en la propia documentación de MongoDB \cite{mongoclassification}.
 
 \begin{itemize}
     \item \texttt{Almacenamiento clave-valor}: Son grandes tablas que almacenan la información en forma de clave-valor. Las bases de datos de este tipo más populares son: RedisDB, Riak y Voldemort.
-    \item \texttt{Almacenamiento basado en documentos}: Es este tipo de bases de datos, los datos se almacenan en forma de documentos. El concepto de documento depende de la definición de la base de datos, normalmente son grandes conjuntos de claves-valor codificados o encapsulados como un tipo de documento. En esta sección, Mongo DB es el más popular y más usado, pero existen otros como Couch DB.
+    \item \texttt{Almacenamiento basado en documentos}: Es este tipo de bases de datos, los datos se almacenan en forma de documentos. El concepto de documento depende de la definición de la base de datos, normalmente son grandes conjuntos de claves-valor codificados o encapsulados como un tipo de documento. En esta categoría, MongoDB es el más popular y más usado, pero existen otros como CouchDB.
     \item \texttt{Almacenamiento basado en grafos}: Estas bases de datos almacenan relaciones en forma de grafos. Algunas de las bases de datos más populares son: Neo4j y FlockDB.
     \item \texttt{Almacenamiento en columnas}: En este tipo de bases de datos, se almacenan columnas en lugar de filas como en el resto de tipos. Está optimizado para grandes volúmenes de datos. Las bases de datos más populares de este tipo son: Cassandra y HBase. 
 \end{itemize}
@@ -87,7 +94,7 @@ Por contra:
     \item Falta de herramientas de gestión. Muchas de ellas solo son accesibles por consola.
 \end{itemize}
 
-\section{Mongo DB}
+\section{MongoDB}
 
 En esta sección vamos a centrarnos en la base de datos NoSQL más popular hasta el momento, MongoDB es una base de datos orientada a documentos muy usada para técnicas de Big Data. Toda esta sección está extraida de la documentación oficial de MongoDB \cite{mongodb}.
 
@@ -100,7 +107,7 @@ Las principales características son:
     \item Garantiza transacciones ACID (atomicidad, consistencia, aislamiento y durabilidad) en multidocumentos. Esta reciente característica ha sido integrada en la versión 4.0 de MongoDB.
 \end{itemize}
 
-\subsection{Modelo de datos}
+\subsection{Modelo de datos}\label{datamodelmongo}
 
 MongoDB nos provee de un modelo de datos flexible, esto nos permite almacenar desde un documento simple de parejas clave-valor, hasta un documento con subdocumentos embebidos y/o arrays complejos a varios niveles de profundidad.
 
@@ -126,26 +133,38 @@ MongoDB tiene distintos métodos para la consulta y explotación de los datos al
 
 \subsection{Indexación}
 
-Según se define en la propia documentación de MongoDB \cite{mongodb}, "\textit{la indexación es un mecanismo crucial para la optimización del rendimiento y escalabilidad del sistema mientras provee un acceso flexible a tus datos}". Mongo permite la indexación en cualquier campo del documento, incluso en los campos de un array.
+Según se define en la propia documentación de MongoDB \cite{mongodb}, <<\textit{la indexación es un mecanismo crucial para la optimización del rendimiento y escalabilidad del sistema mientras provee un acceso flexible a tus datos}>>. Mongo permite la indexación en cualquier campo del documento, incluso en los campos de un array.
 
-Mongo provee la facilidad para crear índices compuestos, unicos, array, índices geoespaciales, hash y texto.
+Mongo provee la facilidad para crear índices compuestos, únicos, array, índices geoespaciales, hash y texto.
 
 Además, la intersección de índices permite a MongoDB usar más de un índice para la optimización de las consultas.
 
 \subsection{Agregación}
 
-Una de las características más importante de MongoDB a la hora de explotar y transformar datos son las agregaciones. Esta base de datos nos provee dos formas de realizarla, mediante "pipeline"\    y mediante "map-reduce".
+Una de las características más importante de MongoDB a la hora de explotar y transformar datos son las agregaciones. Esta base de datos nos provee dos formas de realizarla, mediante \textit{pipeline}    y mediante \textit{map-reduce}.
 
-\subsubsection{Map-Reduce}
+\subsubsection{Map-Reduce}\label{mapreduce}
 
 Map-Reduce es un modelo de programación general muy utilizado para trabajar con grandes volúmenes de datos y poder introducir paralelismo. MongoDB provee un comando para utilizarlo directamente sobre la base de datos de forma nativa.
 
 El modelo map-reduce, consiste en generar un subconjunto de documentos útiles preprocesando un conjunto más amplio previamente y agrupando en una última etapa.
 
-\subsubsection{Pipeline}
+\subsubsection{Pipeline}\label{pipeline}
 
-La segunda forma para realizar el operador de agregación es mediante el framework "pipeline". Con este comando los documentos son procesados mediante una secuencia ordenada de etapas para producir un subconjunto de documentos. Con esta opción, una consulta normal sobre una colección se haría sobre una etapa "match" de la tubería de agregación.
+La segunda forma para realizar el operador de agregación es mediante el framework \textit{pipeline}. Con este comando los documentos son procesados mediante una secuencia ordenada de etapas para producir un subconjunto de documentos. Con esta opción, una consulta normal sobre una colección se haría sobre una etapa \textit{match} de la tubería de agregación.
 
-Las etapas permitidas para este operador se pueden encontrar en \cite{aggregationstages}.
+Las etapas permitidas para este operador se pueden encontrar en la \href{https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/}{documentación del operador}. En este trabajo, se da una ampliación de los operadores que se pueden utilizar en las etapas de \textit{match} y \textit{projection}.
 
-En los próximos capítulos veremos un uso más amplio de este tipo de operador, con ejemplos prácticos, ya que es el que hemos utilizado para implementar la consulta de datos difusos sobre MongoDB.
+La etapa \textbf{match}, como se describe en su propia documentación, sirve para filtrar los documentos que van a pasar a la siguiente etapa. Selecciona aquellos que cumplan ciertas condiciones descritas mediante los operadores permitidos para esta etapa que pueden verse \href{https://docs.mongodb.com/manual/reference/operator/query/}{aquí}. Los operadores que hemos extendido para trabajar con datos difusos son:
+
+\begin{itemize}
+    \item \textbf{\$eq}: selecciona los documentos cuyo valor coincida con el especificado.
+    \item \textbf{\$gt}: selecciona los documentos cuyo valor sea mayor que el especificado.
+    \item \textbf{\$gte}: selecciona los documentos cuyo valor sea mayor o igual que el especificado.
+    \item \textbf{\$lt}: selecciona los documentos cuyo valor sea menor que el especificado.
+    \item \textbf{\$lte}: selecciona los documentos cuyo valor sea menor o igual que el especificado.
+\end{itemize}
+
+La etapa \textbf{projection} sirve para filtrar los campos de los documentos resultantes. Nos permite tanto eliminar campos del propio documento, como proyectar campos nuevos. En esta parte nos hemos centrado en ampliar la posibilidad de proyectar el grado de cumplimiento para los campos difusos.
+
+En el capítulo \ref{propuesta} veremos estos operadores y la propuesta realizada para ampliar estas etapas.

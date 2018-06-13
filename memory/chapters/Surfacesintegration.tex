@@ -151,7 +151,7 @@ Veamos cuál es el área de una esfera, $\mathbb{S}^2(p_0, r)$. Sabemos que:
     A(\mathbb{S}^2(p_0, r)) = \int_{\mathbb{S}^2(p_0, r)} 1dx
 \end{equation*}
 
-Consideremos la siguiente traslación: $T: \mathbb{S}^2(0, r) \longrightarrow \mathbb{S}^2(p_0, r)$ tal que $T(p) = p + p_0$, usando las fórmulas del cambio de variable vista en el capítulo anterior, tenemos que:
+Consideremos la siguiente traslación: $T: \mathbb{S}^2(0, r) \longrightarrow \mathbb{S}^2(p_0, r)$ tal que $T(p) = p + p_0$, usando la fórmula del cambio de variable, tenemos que:
 
 \begin{equation*}
     \int_{\mathbb{S}^2(p_0, r)} 1dx = \int_{\mathbb{S}^2(0, r)} |Jac T|dx 
@@ -182,18 +182,36 @@ Utilizando de nuevo el cambio de variable:
     \int_{\mathbb{S}^2(0, r) - C} 1da = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} |JacX| dtd\theta
 \end{equation*}
 
-Calculemos el jacobiano de X, sea $(dX)_{(t, \theta)}: \rdos \longrightarrow T_{X(t,\theta)} \mathbb{S}^2$, con:
+Calculemos el jacobiano de $X$ a partir de la definición, sea $(dX)_{(t, \theta)}: \rdos \longrightarrow T_{X(t,\theta)} \mathbb{S}^2$, tomamos la base usual en $\rdos$ y tenemos:
+
+\begin{equation*}
+    (dX)_{(t, \theta)}(1,0) = X_t(t, \theta) \qquad (dX)_{(t, \theta)}(0,1) = X_\theta(t, \theta) 
+\end{equation*}
+
+Calculamos las derivadas y obtenemos:
 
 \begin{align*}
-    (dX)_{(t, \theta)}(1,0) &= X_t(t, \theta) \\
-    (dX)_{(t, \theta)}(0,1) &= X_\theta(t, \theta) \\
     X_t(t, \theta) &= (r\sen t\cos\theta, -r\sen t\sen\theta, r\cos t) \\
-    X_\theta(t, \theta) &= (-r\cos t\sen\theta, r\cos t\cos\theta, 0) \\
+    X_\theta(t, \theta) &= (-r\cos t\sen\theta, r\cos t\cos\theta, 0)
+\end{align*}
+
+y por tanto, $\{ X_t(t, \theta), X_\theta(t, \theta) \}$ es base de $T_{X(t,\theta)} \mathbb{S}^2$, además $\langle X_t(t, \theta), X_\theta(t, \theta) \rangle = 0$ luego es una base ortogonal y solo nos falta dividir por su norma para obtener la base ortonormal:
+
+\begin{align*}
     |X_t|^2 &= r^2 \\
     |X_\theta|^2 &= r^2\cos^2t
 \end{align*}
 
-Luego $\{ \frac{X_t}{r}, \frac{X_\theta}{r\cos t} \}$. Por definición:
+por tanto, $|Jac X|(t,\theta) = |det M(t,\theta)|$  donde $M(t,\theta)$ es la matriz de $(dX)_{(t, \theta)}$ en las bases $\{e_1, e_2\}$ y $\{ \frac{X_t}{r}, \frac{X_\theta}{r\cos t} \}$.
+
+\begin{equation*}
+    M(t,\theta) = \left( {\begin{array}{cc}
+        r & 0 \\
+        0 & r\cos t
+    \end{array} } \right)
+\end{equation*}
+
+Luego:
 
 \begin{equation*}
     |Jac X|(t,\theta) = r^2\cos t
