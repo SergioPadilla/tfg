@@ -68,25 +68,6 @@ function fgt(field_name, value, threshold) {
     }
 }
 
-function nfgt(field_name, value, threshold) {
-    let field_1 = field_name + '.1';
-    let one_thold = 1 - threshold;
-    let L_CT = threshold*value[3] + one_thold*value[2];
-
-    return {
-        [field_1]: {$gte: L_CT},
-        $expr: {
-            $gte: [
-                {$add: [
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
-                ]},
-                L_CT
-            ]
-        }
-    }
-}
-
 function fgte(field_name, value, threshold) {
     let field_3 = field_name + '.3';
     let one_thold = 1 - threshold;
@@ -99,25 +80,6 @@ function fgte(field_name, value, threshold) {
                 {$add: [
                     {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, threshold]},
                     {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, one_thold]}
-                ]},
-                L_CT
-            ]
-        }
-    }
-}
-
-function nfgte(field_name, value, threshold) {
-    let field_1 = field_name + '.1';
-    let one_thold = 1 - threshold;
-    let L_CT = threshold*value[1] + one_thold*value[0];
-
-    return {
-        [field_1]: {$gte: L_CT},
-        $expr: {
-            $gte: [
-                {$add: [
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
                 ]},
                 L_CT
             ]
@@ -144,25 +106,6 @@ function flt(field_name, value, threshold) {
     }
 }
 
-function nflt(field_name, value, threshold) {
-    let field_2 = field_name + '.2';
-    let one_thold = 1 - threshold;
-    let U_CT = threshold*value[0] + one_thold*value[1];
-
-    return {
-        [field_2]: {$lte: U_CT},
-        $expr: {
-            $lte: [
-                {$add: [
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
-                ]},
-                U_CT
-            ]
-        }
-    }
-}
-
 function flte(field_name, value, threshold) {
     let field_0 = field_name + '.0';
     let one_thold = 1 - threshold;
@@ -171,29 +114,10 @@ function flte(field_name, value, threshold) {
     return {
         [field_0]: {$lte: U_CT},
         $expr: {
-            $gte: [
+            $lte: [
                 {$add: [
                     {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, threshold]},
                     {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, one_thold]}
-                ]},
-                U_CT
-            ]
-        }
-    }
-}
-
-function nflte(field_name, value, threshold) {
-    let field_2 = field_name + '.2';
-    let one_thold = 1 - threshold;
-    let U_CT = threshold*value[2] + one_thold*value[3];
-
-    return {
-        [field_2]: {$lte: U_CT},
-        $expr: {
-            $lte: [
-                {$add: [
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
-                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
                 ]},
                 U_CT
             ]
@@ -222,14 +146,90 @@ function nfeq(field_name, value, threshold) {
                 ]},
                 {$gte: [
                     {$add: [
-                            {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
-                            {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
-                        ]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
+                        {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
+                    ]},
                     L_CT
                 ]}
             ]
         }
     };
+}
+
+function nfgt(field_name, value, threshold) {
+    let field_1 = field_name + '.1';
+    let one_thold = 1 - threshold;
+    let L_CT = threshold*value[3] + one_thold*value[2];
+
+    return {
+        [field_1]: {$gte: L_CT},
+        $expr: {
+            $gte: [
+                {$add: [
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
+                ]},
+                L_CT
+            ]
+        }
+    }
+}
+
+function nfgte(field_name, value, threshold) {
+    let field_1 = field_name + '.1';
+    let one_thold = 1 - threshold;
+    let L_CT = threshold*value[1] + one_thold*value[0];
+
+    return {
+        [field_1]: {$gte: L_CT},
+        $expr: {
+            $gte: [
+                {$add: [
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 0]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 1]}, one_thold]}
+                ]},
+                L_CT
+            ]
+        }
+    }
+}
+
+function nflt(field_name, value, threshold) {
+    let field_2 = field_name + '.2';
+    let one_thold = 1 - threshold;
+    let U_CT = threshold*value[0] + one_thold*value[1];
+
+    return {
+        [field_2]: {$lte: U_CT},
+        $expr: {
+            $lte: [
+                {$add: [
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
+                ]},
+                U_CT
+            ]
+        }
+    }
+}
+
+function nflte(field_name, value, threshold) {
+    let field_2 = field_name + '.2';
+    let one_thold = 1 - threshold;
+    let U_CT = threshold*value[2] + one_thold*value[3];
+
+    return {
+        [field_2]: {$lte: U_CT},
+        $expr: {
+            $lte: [
+                {$add: [
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 3]}, threshold]},
+                    {$multiply: [{$arrayElemAt: ['$'+field_name, 2]}, one_thold]}
+                ]},
+                U_CT
+            ]
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -301,6 +301,121 @@ function feq_cdeg(field_name, value) {
     };
 }
 
+function fgt_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[3]]},
+            1,
+            {$cond:[
+                {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 3]},
+                        value[2]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[3],
+                            value[2]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 2]},
+                            {$arrayElemAt: ['$'+field_name, 3]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function flt_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[0]]},
+            1,
+            {$cond:[
+                {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[1]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 0]},
+                        value[1]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[0],
+                            value[1]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 1]},
+                            {$arrayElemAt: ['$'+field_name, 0]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function fgte_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]},
+            1,
+            {$cond:[
+                {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        {$arrayElemAt: ['$'+field_name, 3]},
+                        value[0]
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            value[1],
+                            value[0]
+                        ]},
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 2]},
+                            {$arrayElemAt: ['$'+field_name, 3]}
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
+
+function flte_cdeg(field_name, value) {
+    return {
+        $cond: [
+            {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[2]]},
+            1,
+            {$cond:[
+                {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[3]]},
+                0,
+                {$divide: [
+                    {$subtract: [
+                        value[3],
+                        {$arrayElemAt: ['$'+field_name, 0]}
+                    ]},
+                    {$subtract: [
+                        {$subtract: [
+                            {$arrayElemAt: ['$'+field_name, 1]},
+                            {$arrayElemAt: ['$'+field_name, 0]}
+                        ]},
+                        {$subtract: [
+                            value[2],
+                            value[3]
+                        ]}
+                    ]}
+                ]}
+            ]}
+        ]
+    };
+}
 
 function nfeq_cdeg(field_name, value) {
     return {
@@ -374,51 +489,22 @@ function nfeq_cdeg(field_name, value) {
                 {$cond: [
                     {$gt: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]},
                     {$divide: [
-                        {$subtract: [
-                            {$arrayElemAt: ['$'+field_name, 2]},
-                            value[3]
-                        ]},
-                        {$subtract: [
                             {$subtract: [
-                                value[2],
+                                {$arrayElemAt: ['$'+field_name, 2]},
                                 value[3]
                             ]},
                             {$subtract: [
-                                {$arrayElemAt: ['$'+field_name, 3]},
-                                {$arrayElemAt: ['$'+field_name, 2]}
+                                {$subtract: [
+                                    value[2],
+                                    value[3]
+                                ]},
+                                {$subtract: [
+                                    {$arrayElemAt: ['$'+field_name, 3]},
+                                    {$arrayElemAt: ['$'+field_name, 2]}
+                                ]}
                             ]}
-                        ]}
-                    ]},
-                    1
-                ]}
-            ]}
-        ]
-    };
-}
-
-function fgt_cdeg(field_name, value) {
-    return {
-        $cond: [
-            {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[3]]},
-            1,
-            {$cond:[
-                {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[2]]},
-                0,
-                {$divide: [
-                    {$subtract: [
-                        {$arrayElemAt: ['$'+field_name, 3]},
-                        value[2]
-                    ]},
-                    {$subtract: [
-                        {$subtract: [
-                            value[3],
-                            value[2]
                         ]},
-                        {$subtract: [
-                            {$arrayElemAt: ['$'+field_name, 2]},
-                            {$arrayElemAt: ['$'+field_name, 3]}
-                        ]}
-                    ]}
+                    1
                 ]}
             ]}
         ]
@@ -446,93 +532,6 @@ function nfgt_cdeg(field_name, value) {
                         {$subtract: [
                             {$arrayElemAt: ['$'+field_name, 0]},
                             {$arrayElemAt: ['$'+field_name, 1]}
-                        ]}
-                    ]}
-                ]}
-            ]}
-        ]
-    };
-}
-
-function flt_cdeg(field_name, value) {
-    return {
-        $cond: [
-            {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[0]]},
-            1,
-            {$cond:[
-                {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[1]]},
-                0,
-                {$divide: [
-                    {$subtract: [
-                        {$arrayElemAt: ['$'+field_name, 0]},
-                        value[1]
-                    ]},
-                    {$subtract: [
-                        {$subtract: [
-                            value[0],
-                            value[1]
-                        ]},
-                        {$subtract: [
-                            {$arrayElemAt: ['$'+field_name, 1]},
-                            {$arrayElemAt: ['$'+field_name, 0]}
-                        ]}
-                    ]}
-                ]}
-            ]}
-        ]
-    };
-}
-
-function nflt_cdeg(field_name, value) {
-    return {
-        $cond: [
-            {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
-            1,
-            {$cond:[
-                {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]},
-                0,
-                {$divide: [
-                    {$subtract: [
-                        {$arrayElemAt: ['$'+field_name, 2]},
-                        value[1]
-                    ]},
-                    {$subtract: [
-                        {$subtract: [
-                            value[0],
-                            value[1]
-                        ]},
-                        {$subtract: [
-                            {$arrayElemAt: ['$'+field_name, 3]},
-                            {$arrayElemAt: ['$'+field_name, 2]}
-                        ]}
-                    ]}
-                ]}
-            ]}
-        ]
-    };
-}
-
-function fgte_cdeg(field_name, value) {
-    return {
-        $cond: [
-            {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]},
-            1,
-            {$cond:[
-                {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
-                0,
-                {$divide: [
-                    {$subtract: [
-                        {$arrayElemAt: ['$'+field_name, 3]},
-                        value[0]
-                    ]},
-                    {$subtract: [
-                        {$subtract: [
-                            value[1],
-                            value[0]
-                        ]},
-                        {$subtract: [
-                            {$arrayElemAt: ['$'+field_name, 2]},
-                            {$arrayElemAt: ['$'+field_name, 3]}
                         ]}
                     ]}
                 ]}
@@ -570,27 +569,27 @@ function nfgte_cdeg(field_name, value) {
     };
 }
 
-function flte_cdeg(field_name, value) {
+function nflt_cdeg(field_name, value) {
     return {
         $cond: [
-            {$lte: [{$arrayElemAt: ['$'+field_name, 1]}, value[2]]},
+            {$lte: [{$arrayElemAt: ['$'+field_name, 3]}, value[0]]},
             1,
             {$cond:[
-                {$gte: [{$arrayElemAt: ['$'+field_name, 0]}, value[3]]},
+                {$gte: [{$arrayElemAt: ['$'+field_name, 2]}, value[1]]},
                 0,
                 {$divide: [
                     {$subtract: [
-                        value[3],
-                        {$arrayElemAt: ['$'+field_name, 0]}
+                        {$arrayElemAt: ['$'+field_name, 2]},
+                        value[1]
                     ]},
                     {$subtract: [
                         {$subtract: [
-                            {$arrayElemAt: ['$'+field_name, 1]},
-                            {$arrayElemAt: ['$'+field_name, 0]}
+                            value[0],
+                            value[1]
                         ]},
                         {$subtract: [
-                            value[2],
-                            value[3]
+                            {$arrayElemAt: ['$'+field_name, 3]},
+                            {$arrayElemAt: ['$'+field_name, 2]}
                         ]}
                     ]}
                 ]}
@@ -627,6 +626,7 @@ function nflte_cdeg(field_name, value) {
         ]
     };
 }
+
 ////////////////////////////////////////////////////////////////////////////////////
 //
 //  end PROJECTION functions
@@ -635,7 +635,7 @@ function nflte_cdeg(field_name, value) {
 
 function split_queries(query) {
     // remove all fuzzy properties
-    let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
+    let fuzzy_operators = ['$feq', '$fgt', '$fgte', '$flt', '$flte','$nfeq', '$nfgt', '$nfgte', '$nflt', '$nflte'];
     let fquery = {};
     for (let property in query) {
         let prop_query = query[property];
@@ -689,7 +689,7 @@ function trapezoid(x) {
 }
 
 function parse_fuzzy(fquery) {
-    let fuzzy_operators = ['$feq', '$nfeq', '$fgt', '$fgte', '$flt', '$flte'];
+    let fuzzy_operators = ['$feq', '$fgt', '$fgte', '$flt', '$flte','$nfeq', '$nfgt', '$nfgte', '$nflt', '$nflte'];
     let query = {};
     let foperators = {};
 
