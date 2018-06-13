@@ -1,0 +1,125 @@
+En este capítulo, haremos una introducción a la teoría de conjuntos difusos. Veremos qué son y las principales operaciones con estos conjuntos. Esta permite nos permite modelar matemáticamente información imperfecta, que es usada frecuentemente por los humanos en su comunicación y razonamiento.
+
+Vamos a ver que bases de datos difusas existen y sus principales características para adentrarnos en el mundo de la representación difusa en base de datos. El objetivo de esta es dotar a los sistemas automáticos de una poderosa forma de toma de decisiones, similares a las que tomamos las personas, basada en información que no pretende ser del todo exacta.
+
+\section{Teoría de conjuntos difusa}
+
+La principal teoría para habla de datos imprecisos fue introducida por L.A Zadeh \cite{fuzzysetszadeh} en 1965. Vamos a basarnos en ella para explicar los conjuntos difusos.
+
+La teoría de conjuntos difusos (\textit{fuzzy sets}) hace un generalización de la teoría de conjuntos clásicas, en la que se define un conjunto como un grupo de elementos que pertenecen o no a este conjunto. En la teoría de conjuntos difusa, se añade un elemento más a tener en cuenta, el grado de pertenencia al conjunto, esto es, cada elemento pertenece a un conjunto con un grado de pertenencia determinado, este grado de pertenencia suele representarse con un número $x \in [0,1]$. Haciendo una analogía, en la teoría de conjuntos clásica, los elementos pertenecen con solo dos posibles valores $0$ ó $1$, que indicarían si pertenece o no al conjunto.
+
+Basándonos en los descrito anteriormente, vamos a dar una definición de conjunto difuso.
+
+\begin{definition}[Conjunto difuso]
+Sea $\Omega$ un dominio (de objetos), notemos a los elementos de $\Omega$ por $x$. Sea $f: \Omega \longrightarrow [0,1]$ una función. Definimos un \textbf{conjunto difuso}, $F$, como:
+
+\begin{equation*}
+    F = \left\{ f(x)/x \enspace | \enspace x\in\Omega, f(x) \in [0,1] \right\}
+\end{equation*}
+\end{definition}
+
+Es común no dar una lista exhaustiva de elementos del conjunto difuso, basta con dar una definición de la función $f$, que se denomina \textbf{función de pertenencia}.
+
+Estos conceptos suelen ser muy subjetivos y en la práctica, suelen depender del contexto en el que se encuentren, esto es, un mismo valor, depende del contexto, puede pertenecer a un conjunto u otro. Veamos un mismo ejemplo en dos contextos distintos para ilustrarlo, aprovecharemos el ejemplo para afianzar la definición de conjunto difuso.
+
+\begin{example}
+Supongamos que tenemos los datos de la tabla \ref{datatable} con la altura de 5 personas:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nombre} & \textbf{Altura} \\ \hline
+Juan            & 175             \\ \hline
+Pepe            & 195             \\ \hline
+Marco           & 170             \\ \hline
+Felipe          & 180             \\ \hline
+Antonio         & 185             \\ \hline
+\end{tabular}
+\caption{Datos de altura}
+\label{datatable}
+\end{table}
+
+Vamos a definir el conjunto difuso que representa a los jugadores \textit{altos} en dos deportes distintos:
+
+Supongamos como primer deporte el baloncesto, y podríamos tener una estimación del conjunto difuso como sigue:
+%TODO Mira el pdf, algún paquete te transforma los puntos decimales en comillas. Corrígelo!.
+\begin{equation*}
+    altos = \{0.8/195, 0.3/180, 0.35/185\}
+\end{equation*}
+
+sin embargo, para un deporte como el fútbol, podríamos tener el siguiente conjunto:
+
+\begin{equation*}
+    altos = \{0.2/175, 0.1/170, 1/195, 0.7/180, 0.82/185\}
+\end{equation*}
+
+\end{example}
+
+Aprovechando el ejemplo previo, vamos a introducir un nuevo concepto:
+
+\begin{definition}[Etiqueta lingüística]
+Llamamos \textbf{etiqueta lingüística} a aquella palabra en lenguaje natural que describe un conjunto difuso.
+\end{definition}
+
+\subsection{Conceptos sobre conjuntos difusos}
+
+Similar a los conceptos de la teoría clásica de conjuntos, vamos a dar una introducción a los conceptos sobre conceptos difusos, veremos como todos ellos depende de la función de pertenencia.
+
+Sean $\Omega$ un dominio, y sean $F_1$ y $F_2$ dos conjuntos difusos con $f_1$ y $f_2$ sus funciones de pertenencia, respectivamente. Entonces, se tiene:
+
+\begin{itemize}
+    \item $F_1$ y $F_2$ son \textbf{iguales} si, y solo si, las funciones de pertenencia son iguales. Esto es, $F_1 = F_2 \Leftrightarrow f_1(x) = f_2(x) \forall x \in \Omega$.
+    \item $F_1$ está \textbf{incluido} en $F_2$ si, y solo si, $f_1$ es menor o igual que $f_2$. Esto es, $F_1 \subseteq F_2 \Leftrightarrow f_1(x) \leq f_2(x) \forall x \in \Omega$.
+    \item Se define el \textbf{soporte} de $F_1$ como el subconjunto de valores de $\Omega$ tal que la función de pertenencia es mayor que cero. Esto es, $sop(F_1) = \{ x \in \Omega \enspace | \enspace f_1(x) > 0 \}$
+    \item Se define el \textbf{$\alpha$-corte} de $F_{1_\alpha}$ como el subconjunto de $\Omega$ tal que la función de pertenencia es mayor o igual que un valor dado, $\alpha$. Esto es, $F_{1_\alpha} = \{ x \in \Omega \enspace | \enspace f_1(x) \geq \alpha \}$.
+    \item Se define el \textbf{núcleo} de $F_1$ como el subconjunto de $\Omega$ tal que el grado de pertenencia es 1. Esto es, $ker(F_1) = \{ x\in \Omega \enspace | \enspace f_1(x) = 1 \}$.
+    \item Se define la \textbf{altura} de $F_1$ como el supremo de todos los grados de pertenencia. Esto es, $hgt(F_1) = \sup_{x\in \Omega} f_1(x)$.
+    \item Se dice que un conjunto $F_1$ difuso está \textbf{normalizado} si, y solo si, la altura es igual a 1. Esto es, $\exists x \in \Omega$ tal que $f_1(x) = 1$.
+\end{itemize}
+
+\subsection{Números difusos}\label{fuzzynumbers}
+
+Los números difusos fueron introducidos por Zadeh \cite{fuzzynumberszadeh} para poder trabajar con información imprecisa de forma práctica, posteriormente, otros trabajos han ido refinando y redefiniendo este concepto. En esta sección, vamos a definirlos y vamos a ver cómo trabajar con ellos. Es una sección muy importante para nuestro trabajo, ya que será con números difusos como representaremos la información en la base de datos. 
+
+\begin{definition}[Número difuso]
+Sea $F$ un conjunto difuso en $\Omega$ con $f$ su función de pertenencia. Diremos que $F$ es un \textbf{número difuso} si cumple:
+
+\begin{enumerate}
+    \item f es convexa
+    \item f es semi-continua superiormente
+    \item El soporte de $F$ está acotado 
+\end{enumerate}
+\end{definition}
+
+Veamos ahora la forma general de un número difuso. Sean $\alpha, \beta, \gamma, \delta \in \Omega$ con $\alpha \leq \beta \leq \gamma \leq \delta$, entonces la \textbf{forma de pertenencia general de un número difuso} es:
+
+\begin{equation*}
+    f(x) = \left\{ { \begin{array}{cc}
+                    0 & x < \alpha \\ 
+                    r(x) & x\in [\alpha,\beta) \\
+                    h & x\in [\beta,\gamma] \\
+                    s(x) & x\in (\gamma,\delta] \\
+                    0 & x > \delta \\ 
+                    \end{array}  } \right.
+\end{equation*}
+
+donde $r: \Omega \longrightarrow [0,1]$ es no decreciente, $s: \Omega \longrightarrow [0,1]$ es no creciente y $h \in (0,1]$ con $r(\beta) = h = s(\gamma)$.
+
+Los números difusos que nos interesan a nosotros especialmente, y que utilizaremos para dar nuestra solución son aquellos en los que $r,s$ son lineales. Estos son llamados los \textbf{trapezoides} y tienen la siguiente forma de pertenencia de número difuso.
+
+\begin{equation}\label{trapezoidrepresentation}
+    f(x) = \left\{ { \begin{array}{cc}
+                    0 & x < \alpha \\ 
+                    h + \frac{(x-\beta)h}{\beta-\alpha} & x\in [\alpha,\beta) \\
+                    h & x\in [\beta,\gamma] \\
+                    h + \frac{(x-\gamma)h}{\delta-\gamma} & x\in (\gamma,\delta] \\
+                    0 & x > \delta \\ 
+                    \end{array}  } \right.
+\end{equation}
+
+Además, habitualmente estará normalizado ($h=1$) y por tanto nos basta con una tupla $(\alpha, \beta, \gamma, \delta)$ para definir un número difuso.
+
+\begin{remark}\label{notaciontrapezoide}
+Notemos que esta representación nos vale incluso cuando se tengan solo 1,2 o 3 valores. Estos serán llamados \textit{crisp}, \textit{intervalo} y \textit{triangulares} respectivamente. Con un valor $a$, tendremos $\alpha = \beta = \gamma = \delta = a$, con dos valores, $a,b$ tendremos $\alpha = \beta = a$ y $\gamma = \delta = b$ y con tres valores, $a,b,c$ tendremos $\beta = \gamma = b$.
+\end{remark}
