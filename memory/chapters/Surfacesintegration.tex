@@ -1,198 +1,247 @@
-En este capítulo introduciremos los conceptos de integración en superficies. Vamos a ver como los conceptos que conocemos para las integrales en el sentido de Lebesgue son extensibles a superficies. Enunciaremos y probaremos algunos de los teoremas más utilizados en la teoría de integración como los teoremas como el cambio de variable o el teorema de Fubini. Por último, veremos los teoremas de divergencia que aplicaremos en capítulos posteriores.
+En este capítulo introduciremos las herramientas de integración en superficies. Vamos a ver cómo los conceptos que conocemos para las integrales en el sentido de Lebesgue son extensibles a superficies. Enunciaremos y probaremos algunos de los resultados más utilizados en la teoría de integración como el teorema de cambio de variable o el teorema de Fubini. Por último, estudiaremos los teoremas de la divergencia que aplicaremos en capítulos posteriores.
 
-\section{Integración en Superficies}
+\section{Integración en Superficies y fórmulas de integración}
 
-Comenzamos esta sección con la definición de Jacobiano definido entre superficies, que nos será fundamental en la última parte del trabajo y utilizaremos en muchas demostraciones.
+Comenzamos esta sección con la definición integral para funciones sobre superficies.
 
-\begin{definition}(Valor absoluto del Jacobiano)
+\begin{definition}[Valor absoluto del Jacobiano]
 Sea $\Phi: S \longrightarrow S'$ un difeomorfismo entre dos superficies. Se define el \textit{valor absoluto del jacobiano de $\Phi$} como la aplicación
 \begin{align*}
-    |Jac \Phi|: S &\longrightarrow \rmath \\
+    |\text{Jac} \, \Phi|: S &\longrightarrow \rmath \\
     p &\longrightarrow |det(d\Phi)_p| = |det(M_p)|
 \end{align*}
+%
+donde $M_p=M((d\Phi)_p, (B_1)_p, (B_2)_{\Phi(p)})$, siendo $(B_1)_p$ base ortonormal de $T_pS$ y $(B_2)_{\Phi(p)}$ base ortonormal de $T_{\Phi(p)}S'$. Esto no depende de las bases elegidas.
+\end{definition}
 
-donde $M_p=M((d\Phi)_p, (B_1)_p, (B_2)_{\Phi(p)})$, siendo $(B_1)_p$ base ortonormal de $T_pS$ y $(B_2)_{\Phi(p)}$ base ortonormal de $T_{\Phi(p)}S'$.
+\begin{definition}[Valor absoluto del Jacobiano para difeomorfismos en $S \times I$]
+Sea $S$ una superficie, $I \subseteq \rmath$ un intervalo, $O$ abierto de $\rtres$ y sea $\Phi: S \times I \longrightarrow O$ un difeomorfismo. Se define el \textit{valor absoluto del jacobiano de $\Phi$} como la aplicación
+\begin{align*}
+    |\text{Jac} \, \Phi|: S \times I &\longrightarrow O \\
+    (p,t) &\longrightarrow |det(d\Phi)_{(p,t)}| = |det(M_{(p,t)})|
+\end{align*}
+%
+donde $M_{(p,t)}=M((d\Phi)_{(p,t)}, (B_1)_{(p,t)}, (B_2)_{\Phi(p,t)})$, siendo $(B_1)_{(p,t)}$ base ortonormal de $T_pS \times \rmath$ y $(B_2)_{\Phi(p,t)}$ base ortonormal de $\rtres$.
 \end{definition}
 
 \begin{definition}[Integral en $S \times \rmath$]
-Sea $O$ un subconjunto abierto de $\rtres$, y sea el difeomorfismo $\phi: S \longrightarrow R \times (a,b)$ con $a < b$. Podemos decir que la función $h: R \times (a,b) \longrightarrow \rmath$ es integrable en su dominio cuando $(h \circ \phi)|Jac \phi|$ sea integrable en $O$ en el sentido de Lebesgue.
+Sea $S$ una superficie y sea $O$ un subconjunto abierto de $\rtres$, y sea el difeomorfismo $\phi: O \longrightarrow R \times (a,b)$ con $a < b$ y $R \subset S$ un abierto relativamente compacto. Decimos que la función $h: R \times (a,b) \longrightarrow \rmath$ es integrable cuando $(h \circ \phi)|\text{Jac} \, \phi|$ sea integrable en $O$ en el sentido de Lebesgue.
 
-En ese caso, llamaremos \textbf{integral de h en $R \times (a,b)$} al número real dado por:
+En ese caso, llamaremos \textbf{integral de $h$ en $R \times (a,b)$} al número real dado por:
 
 \begin{equation*}
-    \int_{R \times (a,b)} h = \int_{R \times (a,b)} h(p, t)dp dt = \int_{O} (h \circ \phi)|Jac \phi|
+    \int_{R \times (a,b)} h = \int_{R \times (a,b)} h(p, t) \, dp dt = \int_{O} (h \circ \phi)|Jac \phi|
 \end{equation*}
 \end{definition}
+
+Esta definición es correcta, en el sentido de que no depende del difeomorfismo $\Phi: O \longrightarrow R \times (0,1)$.
 
 \begin{definition}[Integral en $S$]
-Sea $R$ una region de una superficie orientable $S$ y sea $f:R \longrightarrow \rmath$ una función cualquiera. Diremos que $f$ es integrable en $R$ cuando la función $(p,t) \in R \longrightarrow (0,1) \mapsto f(p)$ sea integrable en $R \times (0,1)$. Llamaremos \textbf{integral de $f$ en $R$} al número real dado por:
+Sea $R$ una región (abierto relativamente compacto) de una superficie orientable $S$, y sea $f:R \longrightarrow \rmath$ una función cualquiera. Diremos que $f$ es integrable en $R$ cuando la función $(p,t) \in R \times (0,1) \mapsto f(p)$ sea integrable en $R \times (0,1)$. Llamaremos \textbf{integral de $f$ en $R$} al número real dado por:
 
 \begin{equation*}
-    \int_{R} f = \int_{R \times (0,1)} f(p,t)dp dt
+    \int_{R} f = \int_{R \times (0,1)} f(p,t) \, dp dt.
 \end{equation*}
 \end{definition}
+
+\begin{definition}[Área de una superficie compacta]
+Sea $S$ una superficie compacta, se define su área como:
+
+\begin{equation*}
+    A(S) = \int_S 1
+\end{equation*}
+\end{definition}
+
+Algunos resultados de integración que necesitaremos son los siguientes. Se puede consultar su prueba en el capítulo 5 de \cite{montielrosbook}.
 
 \begin{theorem}[Teorema del cambio de variable]
 Sea $\phi:R_1 \longrightarrow R_2$ un difeomorfismo entre dos regiones de dos superficies orientables, y sea $f: R_2 \longrightarrow \rmath$ una función integrable. Entonces la función $(f \circ \phi)|Jac \phi|$ es integrable en $R_1$ y además:
 
 \begin{equation*}
-    \int_{R_2} f = \int_{R_1} (f \circ \phi)|Jac \phi|
+    \int_{R_2} f = \int_{R_1} (f \circ \phi)|\text{Jac} \, \phi|
 \end{equation*}
 \end{theorem}
 
 \begin{theorem}[Teorema de Fubini]
-Sea $R$ una región de una superficie orientable, $a,b \in \rmath, a < b$ y $h:R \times (a,b) \longrightarrow \rmath$ una función integrable en $R \times (a,b)$. Entonces, para casi todo $t \in (a,b)$, la función $p \in R \mapsto h(p,t)$ es integrable en $R$ y para casi todo $p \in R$ la función $t \in (a,b) \mapsto h(p,t)$ es integrable en $(a,b)$. Además, las funciones
+Sea $R$ una región de una superficie orientable, $a,b \in \rmath, a < b$ y $h:R \times (a,b) \longrightarrow \rmath$ una función integrable en $R \times (a,b)$. Entonces, para casi todo $t \in (a,b)$, la función $p \in R \mapsto h(p,t)$ es integrable en $R$, y para casi todo $p \in R$ la función $t \in (a,b) \mapsto h(p,t)$ es integrable en $(a,b)$. Además, las funciones
 
 \begin{equation*}
     p \in R \mapsto \int_a^b h(p,t), \quad  t \in (a,b) \mapsto \int_S h(p,t) dp
 \end{equation*}
-
-son integrales en $R$ y $(a,b)$ respectivamente.
-
-Finalmente, tenemos que:
+%
+son integrables en $R$ y $(a,b)$ respectivamente. Finalmente, tenemos que:
 
 \begin{equation*}
-    \int_{R \times (a,b)} h(p,t) dpdt = \int_R \left( \int_a^b h(p,t)dt \right) dp = \int_a^b \left( \int_R h(p,t)dp \right) dt
+    \int_{R \times (a,b)} h(p,t) \, dpdt = \int_R \left( \int_a^b h(p,t) \, dt \right) \, dp = \int_a^b \left( \int_R h(p,t) \, dp \right) dt.
 \end{equation*}
 \end{theorem}
 
 
-\section{Teorema de Divergencia}
-Para finalizar este capítulo, en esta sección vamos a enunciar el teorema de divergencia y algunas consecuencias directas de este que, de nuevo, necesitaremos para demostrar algunos de los resultados más importantes en los capítulos finales.
+\section{Teoremas de la divergencia}
+En esta sección vamos a enunciar el teorema de la divergencia y algunas consecuencias directas de este que, de nuevo, necesitaremos para demostrar algunos de los resultados más importantes en los capítulos finales.
 
 \begin{definition}[Campo vectorial diferenciable]
-Sea $A$ un subconjunto de $\rtres$, se define un \textbf{campo vectorial diferenciable} como una aplicación diferenciable $X: A \longrightarrow \rtres$.
+Dado $A$ un subconjunto de $\rtres$, se define un \textbf{campo vectorial diferenciable} como una aplicación diferenciable $X: A \longrightarrow \rtres$.
 \end{definition}
 
 \begin{definition}[Divergencia de un campo vectorial diferenciable]
-Se define la \textbf{divergencia de X} como la función $div X: A \longrightarrow \rmath$ dada por $divX(p) = Traza(dX)_p$ con $p \in A$.
+Se define la \textbf{divergencia de X} como la función $div \, X: A \longrightarrow \rmath$ dada por 
+%
+\begin{equation*}
+    (div \, X)(p) = tr (dX)_p
+\end{equation*}
+%
+con $p \in A$. Si $X$ se expresa como $X(p) = (X_1(p), X_2(p), X_3(p))$, entonces
+%
+\begin{equation*}
+    (div \, X)(p) = \frac{\partial X_1}{\partial x}(p) + \frac{\partial X_2}{\partial y}(p) + \frac{\partial X_3}{\partial z}(p)
+\end{equation*}
+%
 \end{definition}
 
-\begin{theorem}[Teorema de divergencia clásico]\label{divergencetheorem}
-Sea $S$ una superficie conexa y compacta y $\Omega$ el dominio interior determinado por $S$. Si $X: \overline{\Omega} \longrightarrow \rtres$ es un campo vectorial diferenciable, entonces:
-
+\begin{theorem}[Teorema de la divergencia clásico]\label{divergencetheorem}
+Sea $S$ una superficie conexa y compacta, y $\Omega$ el dominio interior determinado por $S$. Si $X: \overline{\Omega} \longrightarrow \rtres$ es un campo vectorial diferenciable, entonces:
+%
 \begin{equation*}
-    \int_\Omega div X = -\int_S  \langle X,N \rangle
+    \int_\Omega div \, X = -\int_S  \langle X,N \rangle
 \end{equation*}
-
-donde $N: S \longrightarrow \mathbb{S}^2$ es el campo normal interior a lo largo de $S$.
+%
+donde $N: S \longrightarrow \mathbb{S}^2$ es el campo unitario normal interior a lo largo de $S$.
 \end{theorem}
 
-\begin{definition}[Volumen encerrado por una superficie compacta]\label{volumensuperficiecompacta}
-Si $S$ es una superficie compacta y $\Omega$ su dominio interior. Sea el campo vectorial diferenciable identidad $X: \overline{\Omega} \longrightarrow \rtres$ definido por $X(x) = x \quad \forall p \in \overline{\Omega}$. Su divergencia es la función constante 3. Entonces por el teorema de divergencia:
-\begin{equation*}
-    vol \Omega = - \frac{1}{3} \int_S  \langle p, N(p) \rangle  dp
-\end{equation*}
+Se puede consultar una demostración en la sección 5.7 de \cite{montielrosbook}.
 
-donde $N$ es el interior normal unitario de $S$.
+\begin{definition}[Volumen encerrado por una superficie compacta]\label{volumensuperficiecompacta}
+Sea $S$ una superficie compacta y $\Omega$ su dominio interior. Sea el campo vectorial diferenciable identidad $X: \overline{\Omega} \longrightarrow \rtres$ definido por $X(x) = x, \quad \forall p \in \overline{\Omega}$. Su divergencia es la función constante 3. Entonces por el teorema de divergencia:
+%
+\begin{equation*}
+    vol \, \Omega = - \frac{1}{3} \int_S  \langle p, N(p) \rangle  dp,
+\end{equation*}
+%
+donde $N$ es el normal unitario interior de $S$.
+\end{definition}
+
+\begin{definition}[Campo diferenciable sobre una superficie y campo diferenciable tangente]
+    Sea $S$ una superficie de $\rtres$, un \textbf{campo diferenciable sobre $S$} es una aplicación diferenciable $V: S \longrightarrow \rtres$. Además, si $V(p) \in T_pS$ para cada $p \in S$ diremos que es un \textbf{campo diferenciable tangente}.
+\end{definition}
+
+\begin{definition}[Divergencia de un campo vectorial sobre una superficie]
+    Sea $S$ una superficie compacta, y sea $V: S \longrightarrow \rtres$ un campo diferenciable y tangente sobre $S$. Se define la \textbf{divergencia de $V$} para $p \in S$ y $\{e_1,e_2\}$ base ortonormal de $T_pS$ como la aplicación $div_S \, V: S \longrightarrow \rmath$ definida por $(div_S \, V)(p) := \langle (dV)_p(e_1),e_1 \rangle + \langle (dV)_p(e_2),e_2 \rangle$. Esta definición no depende de la base ortonormal elegida.
 \end{definition}
 
 \begin{theorem}[Teorema de divergencia en superficies]\label{divergesurfaces}
 Sea $S$ una superficie compacta y $V: S \longrightarrow \rtres$ un campo vectorial diferenciable en $S$. Entonces, tenemos:
-
-\begin{enumerate}
-    \item $\int_S div V = -2 \int_S \langle V,N \rangle H$
-    \item $\int_S [k_2(p) \langle (dV)_p(e_1),e_1 \rangle  + k_1(p) \langle (dV)_p(e_2),e_2 \rangle ]dp = -2 \int_S \langle V,N \rangle K$ donde $\{e_1,e_2\}$ es una base ortonormal de direcciones principales en $p \in S$.
-\end{enumerate}
-
-donde $H$, $k_1$ y $k_2$ son las curvaturas media y principales de la superficie.
+%
+\begin{equation*}
+    \int_S div_S \, V = -2 \int_S \langle V,N \rangle H,
+\end{equation*}
+%
+donde $N$ es el normal interior sobre $S$ y $H$ es la curvatura media de $S$ calculada con respecto a $N$.
 \end{theorem}
 
-\begin{definition}[Gradiente]
-Sea $f$ una función diferenciable sobre una superficie $S$ y $p \in S$. Consideremos las diferencial $(df)_p: T_pS \longrightarrow \rmath$. Entonces por teoría de espacios vectoriales euclídeos, existe un único $x \in T_pS$ tal que $(df)_p(v)=  \langle x,v \rangle $, $\forall v \in T_pS$.
+Una demostración se puede encontrar en la sección 6.3 de \cite{montielrosbook}.
 
-Denotaremos $x= \gradientef $ y lo llamaremos \textbf{gradiente de f en p}. Así:
+\begin{definition}[Gradiente]
+Sea $f$ una función diferenciable sobre una superficie $S$ y $p \in S$. Consideremos la diferencial $(df)_p: T_pS \longrightarrow \rmath$. Entonces por teoría de espacios vectoriales euclídeos, existe un único $x \in T_pS$ tal que $(df)_p(v)=  \langle x,v \rangle $, $\forall v \in T_pS$.
+
+Denotaremos $x= \gradientef $ y lo llamaremos \textbf{gradiente de $f$ en p}. Así:
 
 \begin{equation*}
-    \langle \gradientef, v \rangle = (df)_p(v), \qquad \forall v \in T_pS
+    \langle \gradientef, v \rangle = (df)_p(v), \qquad \forall v \in T_pS.
 \end{equation*}
 
 En particular, si $\{e_1, e_2\}$ es una base ortonormal se tiene:
-
+%
 \begin{equation*}
-     \gradientef = \langle  \gradientef , e_1 \rangle e_1 + \langle \gradientef, e_2 \rangle e_2 = (df)_p(e_1)e_1 + (df)_p(e_2)e_2
+     \gradientef = \langle  \gradientef , e_1 \rangle e_1 + \langle \gradientef, e_2 \rangle e_2 = (df)_p(e_1) \, e_1 + (df)_p(e_2) \, e_2
 \end{equation*}
 \end{definition}
 
 \begin{corolario}\label{corolariogradiente}
 Si $f: S \longrightarrow \rmath$ es una función diferenciable sobre una superficie compacta, entonces:
-
+%
 \begin{equation*}
     \int_S \langle \gradientef, p \rangle dS + 2 \int_S f(p)dS = -2 \int_S f(p)H(p) \langle p, N(p) \rangle dS
 \end{equation*}
 \end{corolario}
 \begin{proof}
-Aplicando el \textbf{teorema de divergencia para superficies} [\ref{divergesurfaces}] a $V(p)=f(p)p$. Por la definición de divergencia, tenemos:
-
+Consideramos sobre $S$ el campo diferenciable dado por $V(p)=f(p)p$. Por la definición de divergencia, tenemos:
+%
 \begin{align*}
-    div_S V &= \sum_{i=1}^2 \langle (dV)_p(e_i), e_i \rangle \\
-    &= \sum_{i=1}^2 (df)_p(e_i) \langle p, e_i \rangle + 2f(p)
+    (div_S V)(p) &= \sum_{i=1}^2 \langle (dV)_p(e_i), e_i \rangle \\
+    &= \sum_{i=1}^2 (df)_p(e_i) \langle p, e_i \rangle + 2f(p),
 \end{align*}
+%
+donde $\{e_1,e_2\}$ es cualquier base ortonormal en $T_pS$.
 
-calculando el producto escalar de $p$ con el gradiente de $f$ en $p$:
-
+Por otro lado, calculando el producto escalar de $p$ con el gradiente de $f$ en $p$:
+%
 \begin{equation*}
-    \langle p, \gradientef \rangle = \langle p, (df)_p(e_1)e_1 + (df)_p(e_2)e_2 \rangle = \sum_{i=1}^2 (df)_p(e_i) \langle p, e_i \rangle 
+    \langle p, \gradientef \rangle = \langle p, (df)_p(e_1) \, e_1 \rangle + \langle (df)_p(e_2) \, e_2 \rangle = \sum_{i=1}^2 (df)_p(e_i) \langle p, e_i \rangle 
 \end{equation*}
-
+%
 y por tanto:
-
+%
 \begin{equation*}
     (div_S V)(p) = \langle \gradientef, p \rangle + 2f(p)
 \end{equation*}
+
+La demostración concluye sin más que aplicar el teorema de la diergencia para superficies \ref{divergesurfaces} al campo $V$.
 \end{proof}
 
-Vamos calcular a partir de lo obtenido previamente el área de una esfera, el volumen de una bola y el área y volumen encerrado por una superficie paralela.
+\section{Algunos cálculos necesarios}
 
-\begin{remark}[Área de la esfera]
-Veamos cuál es el área de una esfera, $\mathbb{S}^2(p_0, r)$. Sabemos que:
+Vamos calcular a partir de lo obtenido previamente el área de una esfera, el volumen de una bola, y el área y volumen encerrado por una superficie paralela.
+
+\begin{remark}[Área de una esfera]
+Veamos cuál es el área de una esfera $\mathbb{S}^2(p_0, r)$. Sabemos que:
 
 \begin{equation*}
     A(\mathbb{S}^2(p_0, r)) = \int_{\mathbb{S}^2(p_0, r)} 1dx
 \end{equation*}
 
-Consideremos la siguiente traslación: $T: \mathbb{S}^2(0, r) \longrightarrow \mathbb{S}^2(p_0, r)$ tal que $T(p) = p + p_0$, usando la fórmula del cambio de variable, tenemos que:
+Consideremos la traslación $T: \mathbb{S}^2(0, r) \longrightarrow \mathbb{S}^2(p_0, r)$ tal que $T(p) = p + p_0$. Usando la fórmula del cambio de variable, tenemos que:
 
 \begin{equation*}
-    \int_{\mathbb{S}^2(p_0, r)} 1dx = \int_{\mathbb{S}^2(0, r)} |Jac T|dx 
+    \int_{\mathbb{S}^2(p_0, r)} 1dx = \int_{\mathbb{S}^2(0, r)} |\text{Jac} \, T|dx.
 \end{equation*}
 
-Además, $|JacT|=1$, luego:
+Además, $|JacT|=1$ por ser $T$ un movimiento rígido, luego:
 
 \begin{equation*}
     \int_{\mathbb{S}^2(0, r)} |Jac T|dx = \int_{\mathbb{S}^2(0, r)} 1dx = A(\mathbb{S}^2(0, r))
 \end{equation*}
 
-Para calcular esta integral, consideramos la parametrización de la esfera centrada en 0 como una superficie de revolución: 
-
+Para calcular esta integral, consideramos una parametrización de la esfera $\unitsphere (0,r)$ como una superficie de revolución: 
+%
 \begin{align*}
     X: (\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi) &\longrightarrow \mathbb{S}^2(0, r) - C \\
     (t, \theta) &\longrightarrow (r\cos t\cos\theta, r\cos t\sen\theta, r\sen t)
 \end{align*}
-
-con $C = \{X(t,\pi): t\in [-\pi/2, \pi/2]\}$. Por tanto, $\mathbb{S}^2(0, r) - C = X((-\pi/2, \pi/2) \times (-\pi, \pi))$, como $C$ es un conjunto de medida nula, tenemos que:
+%
+con $C = \{X(t,\pi): t\in [-\pi/2, \pi/2]\}$. Por tanto, $\mathbb{S}^2(0, r) - C = X((-\pi/2, \pi/2) \times (-\pi, \pi))$. Como $C$ es un conjunto de medida nula, tenemos que:
 
 \begin{equation*}
-    \int_{\mathbb{S}^2(0, r)} 1da = \int_{\mathbb{S}^2(0, r) - C} 1da
+    \int_{\unitsphere(0, r)} 1da = \int_{\unitsphere(0, r) - C} 1da.
 \end{equation*}
 
 Utilizando de nuevo el cambio de variable:
 
 \begin{equation*}
-    \int_{\mathbb{S}^2(0, r) - C} 1da = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} |JacX| dtd\theta
+    \int_{\unitsphere(0, r) - C} 1da = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} |\text{Jac} \, X| \, dtd\theta.
 \end{equation*}
 
 Calculemos el jacobiano de $X$ a partir de la definición, sea $(dX)_{(t, \theta)}: \rdos \longrightarrow T_{X(t,\theta)} \mathbb{S}^2$, tomamos la base usual en $\rdos$ y tenemos:
 
 \begin{equation*}
-    (dX)_{(t, \theta)}(1,0) = X_t(t, \theta) \qquad (dX)_{(t, \theta)}(0,1) = X_\theta(t, \theta) 
+    (dX)_{(t, \theta)}(1,0) = X_t(t, \theta) \qquad (dX)_{(t, \theta)}(0,1) = X_\theta(t, \theta).
 \end{equation*}
 
 Calculamos las derivadas y obtenemos:
 
 \begin{align*}
-    X_t(t, \theta) &= (r\sen t\cos\theta, -r\sen t\sen\theta, r\cos t) \\
-    X_\theta(t, \theta) &= (-r\cos t\sen\theta, r\cos t\cos\theta, 0)
+    X_t(t, \theta) &= (-r\sen t\cos\theta, -r\sen t\sen\theta, r\cos t), \\
+    X_\theta(t, \theta) &= (-r\cos t\sen\theta, r\cos t\cos\theta, 0),
 \end{align*}
 
 y por tanto, $\{ X_t(t, \theta), X_\theta(t, \theta) \}$ es base de $T_{X(t,\theta)} \mathbb{S}^2$, además $\langle X_t(t, \theta), X_\theta(t, \theta) \rangle = 0$ luego es una base ortogonal y solo nos falta dividir por su norma para obtener la base ortonormal:
@@ -202,7 +251,7 @@ y por tanto, $\{ X_t(t, \theta), X_\theta(t, \theta) \}$ es base de $T_{X(t,\the
     |X_\theta|^2 &= r^2\cos^2t
 \end{align*}
 
-por tanto, $|Jac X|(t,\theta) = |det M(t,\theta)|$  donde $M(t,\theta)$ es la matriz de $(dX)_{(t, \theta)}$ en las bases $\{e_1, e_2\}$ y $\{ \frac{X_t}{r}, \frac{X_\theta}{r\cos t} \}$.
+por tanto, $|\text{Jac} \, X|(t,\theta) = |det M(t,\theta)|$  donde $M(t,\theta)$ es la matriz de $(dX)_{(t, \theta)}$ en las bases $\{e_1, e_2\}$ y $\{ \frac{X_t}{r}, \frac{X_\theta}{r\cos t} \}$.
 
 \begin{equation*}
     M(t,\theta) = \left( {\begin{array}{cc}
@@ -214,63 +263,62 @@ por tanto, $|Jac X|(t,\theta) = |det M(t,\theta)|$  donde $M(t,\theta)$ es la ma
 Luego:
 
 \begin{equation*}
-    |Jac X|(t,\theta) = r^2\cos t
+    |\text{Jac} \, X|(t,\theta) = r^2\cos t
 \end{equation*}
 
-y por tanto:
+y, por tanto:
 
 \begin{equation*}
     A(\mathbb{S}^2(0,r)) = \int_{(\frac{-\pi}{2}, \frac{\pi}{2}) \times (-\pi, \pi)} r^2\cos t da = 4\pi r^2 
 \end{equation*}
 
-Finalmente:
+Hemos probado que:
 \begin{equation*}
     A(\mathbb{S}^2(p_0,r)) = 4\pi r^2 
 \end{equation*}
 \end{remark}
 
 \begin{remark}[Volumen de una bola]
-Partiendo como en el cálculo del área de la esfera, consideramos la traslación, $T: B(0, r) \longrightarrow B(p_0, r)$ tal que $T(p) = p + p_0$, aplicando la fórmula del cambio de variable y sabiendo que $|JacT|=1$, tenemos:
-
+Vamos a calcular el volumen de Lebesgue de una bola euclídea $B(p_0,r)=\{ p \in \rtres |p-p_0| < r \}$. Como en el cálculo del área de la esfera, consideramos la traslación, $T: B(0, r) \longrightarrow B(p_0, r)$ tal que $T(p) = p + p_0$. Aplicando la fórmula del cambio de variable y sabiendo que $|\text{Jac} \, T|=1$, tenemos:
+%
 \begin{equation*}
-    vol B(p_0,r) = \int_{B(p_0,r)} 1 dx = \int_{B(0,r)} |JacT|dx = \int_{B(0,r)} 1dx = vol B(0,r)
+    vol \, B(p_0,r) = \int_{B(p_0,r)} 1 \, dx = \int_{B(0,r)} |\text{Jac} \, T| \, dx = \int_{B(0,r)} 1dx = vol \, B(0,r).
 \end{equation*}
 
-Utilizando el teorema de la divergencia con $S=\mathbb{S}^2(0,r)$ y $\Omega=B(0,r)$, tomando $X(p)=p$ tenemos que $(div X)(p)=3$, con $t\in \rtres$ y nos queda:
+Utilizando el teorema de la divergencia clásico \ref{divergencetheorem} con $S=\unitsphere(0,r)$ y $\Omega=B(0,r)$ y $X(p)=p$, tenemos que $(div \, X)(p)=3$, con $\forall t\in \rtres$, y nos queda:
 
 \begin{align*}
-    vol B(0,r) &= \frac{-1}{3} \int_{\mathbb{S}^2(0,r)}  \langle p, \frac{-p}{r} \rangle da \\
-    vol B(0,r) &= \frac{-1}{3r} \int_{\mathbb{S}^2(0,r)}  \langle p, -p \rangle da \\
-    vol B(0,r) &= \frac{r}{3} \int_{\mathbb{S}^2(0,r)} 1da
+    vol B(0,r) &= \frac{-1}{3} \int_{\mathbb{S}^2(0,r)}  \langle p, \frac{-p}{r} \rangle da = \frac{-1}{3r} \int_{\mathbb{S}^2(0,r)}  \langle p, -p \rangle da \\
+    &= \frac{r}{3} \int_{\mathbb{S}^2(0,r)} 1da
 \end{align*}
-
+%
 ya que $ \langle p,p \rangle  = |p|^2 = r^2$ con $p \in \mathbb{S}^2(0,r)$.
 
-Por tanto tenemos que el $vol B(0,r) = \frac{r}{3}A(\mathbb{S}^2(0,r))$ que hemos calculado previamente:
+Por tanto tenemos que $vol \, B(0,r) = \frac{r}{3}A(\unitsphere(0,r))$ utilizando la expresión para $A(\unitsphere(0,r))$ antes calculada, concluimos que:
 
 \begin{equation*}
-    vol B(p,r) = \frac{4}{3}\pi r^3
+    vol B(p_0,r) = \frac{4}{3}\pi r^3.
 \end{equation*}
 \end{remark}
 
 \begin{remark}[Volumen encerrado por una superficie paralela]
-Sea $S$ una superficie compacta y $\epsilon  \rangle  0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$. Vamos a calcular el volumen comprendido entre $S$ y $S_t$ con $t\in (0, \epsilon)$. Sea $F: S \times (0, \epsilon) \longrightarrow V_t(S)$ definida como $F(p, t) = p + tN(p)$, donde $V_t(S)$ es el volumen que buscamos. Sean $\Omega$ y $\Omega_t$ los dominios interiores determinados por $S$ y $S_t$, respectivamente. Teniendo en cuenta que $F$ es un difeomorfismo, tenemos:
-
+Sea $S$ una superficie compacta y $\epsilon > 0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Hemos denotado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$. Vamos a calcular el volumen comprendido entre $S$ y $S_t$ con $t\in (0, \epsilon)$. Sea $F: S \times (0, \epsilon) \longrightarrow V_t(S)$ definida como $F(p, t) = p + tN(p)$, donde $V_t(S)=F(S \times (0,\epsilon))$. Sean $\Omega$ y $\Omega_t$ los dominios interiores determinados por $S$ y $S_t$, respectivamente. Teniendo en cuenta que $F$ es un difeomorfismo, tenemos:
+%
 \begin{equation*}
-    vol \Omega - vol \Omega_t = vol (V_t(S)) = \int_{V_t(S)} 1dx = \int_{S \times (0,t)} |JacF|(p,t)dSdt
+    vol \, \Omega - vol \, \Omega_t = vol \, V_t(S) = \int_{V_t(S)} 1 \, dx = \int_{S \times (0,t)} |\text{Jac} \, F|(p,t)dSds
 \end{equation*}
 
-Calculemos $|Jac F|$. Sean $\{e_1, e_2\}$ una base ortonormal de direcciones principales en $p \in S$, sabemos que:
-
+Calculemos $|\text{Jac} \, F|$. Dada una base ortonormal $\{e_1, e_2\}$ de direcciones principales en $p \in S$, sabemos que:
+%
 \begin{align*}
     (dF)_{(p,t)}(e_i,0) &= (1-tk_i(p))e_i, \qquad i = 1,2 \\
     (dF)_{(p,t)}(0,1) &= N(p)
 \end{align*}
 
-Tomamos ahora $\{(e_1,0), (e_2,0), (0,1)\}$ base ortonormal de $T_pS \times \rmath$ y $\{e_1, e_2, N(p)\}$ como base ortonormal de $\rtres$, y obtenemos:
-
+Tomando $\{(e_1,0), (e_2,0), (0,1)\}$ como base ortonormal de $T_pS \times \rmath$ y $\{e_1, e_2, N(p)\}$ como base ortonormal de $\rtres$, obtenemos:
+%
 \begin{align*}
-    |Jac F|(p,t) &= \left|
+    |\text{Jac} \, F|(p,t) &= \left|
   det \left( {\begin{array}{ccc}
    1 - tk_1(p) & 0 & 0 \\
    0 & 1-tk_2(p) & 0 \\
@@ -279,42 +327,42 @@ Tomamos ahora $\{(e_1,0), (e_2,0), (0,1)\}$ base ortonormal de $T_pS \times \rma
   |Jac F|(p,t) &= 1 - 2tH(p) + t^2K(p)
 \end{align*}
 
-Y por último, utilizando el teorema de Fubini:
+Utilizando el teorema de Fubini:
 
 \begin{equation*}
-    vol \Omega - vol \Omega_t = \int_0^t \left( \int_{S} 1-2tH(p)+t^2K(p) dp \right) dt
+    vol \Omega - vol \Omega_t = \int_0^t \left( \int_{S} \left( 1-2tH(p)+t^2K(p) \right) \, dp \right) ds
 \end{equation*}
 
-obtenemos:
+y, por tanto:
 
 \begin{equation}\label{volumeparallelsurface}
-    vol \Omega - vol \Omega_t = tA(S) - t^2\int_S HdS + \frac{t^3}{3}\int_S KdS
+    vol \Omega - vol \Omega_t = tA(S) - t^2\int_S H \, dS + \frac{t^3}{3}\int_S K \, dS-
 \end{equation}
 \end{remark}
 
 \begin{remark}[Área de una superficie paralela]
-Sea $S$ una superficie compacta y $\epsilon  \rangle  0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Recordamos que hemos notado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$.
+Sea $S$ una superficie compacta y $\epsilon > 0$ tal que $N_\epsilon(S)$ sea un entorno tubular. Recordamos que hemos denotado a las superficies paralelas como $\{S_t\}_{t \in (-\epsilon, \epsilon)}$.
 
-Sabemos que la función $F_t: S \longrightarrow S_t$ es un difeomorfismo, definido como $F_t(p, t) = p + tN(p)$, luego utilizando el cambio de variable, tenemos:
+Sabemos que la función $F_t: S \longrightarrow S_t$ es un difeomorfismo, definido como $F_t(p, t) = p + tN(p)$. Utilizando el cambio de variable, tenemos:
 
 \begin{equation*}
-    A(S_t) = \int_{S_t} 1dS_t = \int_S |Jac F_t|(p,t)dS
+    A(S_t) = \int_{S_t} 1 \, dS_t = \int_S |\text{Jac} \, F_t|(p,t) \, dS
 \end{equation*}
 
-Hemos visto previamente:
+Por los cálculos previamente realizados:
 
 \begin{align*}
-    |Jac F_t|(p,t) &= \left|
+    |\text{Jac} \, F_t|(p,t) &= \left|
   det \left( {\begin{array}{cc}
    1 - tk_1(p) & 0 \\
    0 & 1-tk_2(p) \\
   \end{array} } \right) \right| \\
-  |Jac F_t|(p,t) &= 1-2tH(p) + t^2K(p)
+  &= 1-2tH(p) + t^2K(p)
 \end{align*}
 
 Por tanto, tenemos que:
 
 \begin{equation*}\label{areaparallelsurface}
-    A(S_t) = A(S) -2t\int_{S} H(p)dS + t^2\int_{S} K(p)dS
+    A(S_t) = A(S) -2t\int_{S} H(p) \, dS + t^2\int_{S} K(p) \, dS.
 \end{equation*}
 \end{remark}

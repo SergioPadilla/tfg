@@ -59,7 +59,7 @@ Se dice que $S$ es \textbf{una superficie llana} si $K(p)=0$, $\forall p \in S$
 
 \begin{definition}[Superficie totalmente umbilical]
 Un punto $p$ es \textbf{umbilical} si $k_1(p)=k_2(p)$.
-Se dice que una superficie $S$ es \textbf{totalmente umbilical} si todos son puntos son umbilicales.
+Se dice que una superficie $S$ es \textbf{totalmente umbilical} si todos son puntos son umbilicales. Esto es equivalente a $H(p)^2=K(p)$.
 \end{definition}
 
 \begin{theorem}[Clasificación de las superficies totalmente umbilicales]\label{umbilicaltheorem}
@@ -193,6 +193,12 @@ Esta aplicación, claramente diferenciable, envía cada par $(p,t)$ a un punto s
 \begin{definition}[Entornos tubulares]
 La unión $N_\delta(S)$ de todos los segmentos normales de radio $\delta > 0$ centrados en los puntos de una superficie $S$ orientable es llamada \textbf{entorno tubular} de radio $\delta$ si es un abierto como subconjunto de $\rtres$ y la función $F: S \times (-\delta, \delta) \longrightarrow N_\delta(S)$ definida previamente es un difeomorfismo.
 \end{definition}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{gfx/tubular_neighbourhoods.png}
+  \caption{Entorno tubular}
+\end{figure}
 
 \begin{lemma}
 Sea $S$ una superficie. Para cada $p \in S$, $\exists V_p$, entorno abierto orientable de $p$ en $S$ y $\delta > 0$ de forma que el conjunto $N_\delta(V_p)$ es un entorno tubular de $V_p$.
