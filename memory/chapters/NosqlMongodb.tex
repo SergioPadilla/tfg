@@ -29,12 +29,12 @@ En \cite{captheorem} se introduce el \textbf{teorema de CAP} que establece que e
 
 \textbf{Tolerancia a particiones}: El sistema tiene que seguir disponible aunque existan problemas de comunicación entre algunos nodos o alguno de ellos se encuentre caído.
 
-En base a éste teorema, en la siguiente figura podemos ver como se clasifican algunas de las bases de datos más utilizadas, atendiendo a las dos características que éstas garantizan:
+En base a éste teorema, en la figura \ref{fig:captheorem} podemos ver como se clasifican algunas de las bases de datos más utilizadas, atendiendo a las dos características que éstas garantizan:
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{gfx/CAPTheorem.png}
-  \caption{Clasificación de bases de datos mediante el teorema de CAP.}
+  \caption{\label{fig:captheorem}Clasificación de bases de datos mediante el teorema de CAP.}
 \end{figure}
 
 \section{Tipos de bases de datos NoSQL}
@@ -58,21 +58,21 @@ En primer lugar, además de las dos diferencias comentadas anteriormente, es de 
 
 \subsection{Sistemas de Gestión de Bases de Datos Relacionales}
 
-Vamos a dar algunas características que caracterizan a Sistemas de Gestión de Bases de Datos Relacionales (SGBDR), para comenzar veremos algunos de las características favorables de este tipo de base de datos:
+Vamos a dar algunas características que caracterizan a Sistemas de Gestión de Bases de Datos Relacionales (SGBDR), para comenzar veremos algunos de las ventajas que presentan de este tipo de base de datos:
 
 \begin{itemize}
-    \item Mayor soporte y herramientas debido a su largo recorrido en el mercado.
+    \item Mayor soporte y herramientas debido a su amplia presencia en el mercado.
     \item Permiten combinar diferentes tablas eficientemente para obtener información relacionada.
     \item Los datos siguen una estructura predefinida en los esquemas.
-    \item Proporcionan atomicidad en las operaciones y transaccionalidad entre tablas, esto evita que se queden datos inconsistentes si hay un error en cualquier punto de una operación.
+    \item Proporcionan atomicidad en las operaciones y transaccionalidad entre tablas, esto evita que queden datos inconsistentes si se produce un error en cualquier punto de una operación.
 \end{itemize}
 
-Por contra:
+Como inconvenientes señalar:
 
 \begin{itemize}
     \item No son flexibles, en el sentido de que los datos tienen que seguir el esquema definido y tienen que estar correctamente validados.
     \item Incremento del procesamiento con el incremento de la complejidad en las relaciones.
-    \item Dificultad para escalar, habitualmente necesitan de ampliación de hardware costoso.
+    \item Dificultad para escalar, habitualmente necesitan de ampliaciones costosas de hardware.
 \end{itemize}
 
 \subsection{Bases de Datos NoSQL}
@@ -83,14 +83,14 @@ Una de las principales características que tendría el conjunto de bases de dat
     \item Escalabilidad. En general, tienen buen escalamiento horizontal.
     \item Soporte para modelos flexibles, libres de esquemas, tipos y validaciones.
     \item Optimizadas para grandes volúmenes de datos.
-    \item Necesita de pocos recursos para su funcionamiento.
+    \item Precisan de menos recursos para su funcionamiento.
 \end{itemize}
 
 Por contra:
 
 \begin{itemize}
-    \item No todas garantizas atomicidad y consistencia en los datos.
-    \item Falta de estandarización. No existe un estándar para estas bases de datos como si lo hay para las de tipo SQL.
+    \item No todas garantizan la atomicidad y consistencia en los datos.
+    \item Falta de estandarización. No existe lenguaje un estándar para estas bases de datos, al contrario que ocurre con las BD Relacionales que todas usan SQL.
     \item Falta de herramientas de gestión. Muchas de ellas solo son accesibles por consola.
 \end{itemize}
 
@@ -101,8 +101,8 @@ En esta sección vamos a centrarnos en la base de datos NoSQL más popular hasta
 Las principales características son:
 
 \begin{itemize}
-    \item MongoDB es una base de datos \textit{open source}, escrita en C++, lo que hace favorece su rapidez y le proporciona un buen rendimiento.
-    \item Es una base de datos distribuida en su núcleo, por lo que es escala horizontalmente de forma fácil, permite la distribución geográfica y una alta disponibilidad.
+    \item MongoDB es una base de datos \textit{open source}, escrita en C++, lo que favorece su rapidez y le proporciona un buen rendimiento.
+    \item Es una base de datos distribuida en su núcleo, por lo que se escala horizontalmente de forma fácil, permite la distribución geográfica y una alta disponibilidad.
     \item Almacenamiento de modelo de datos flexibles. Basada en documentos en forma de JSON, permite indexación y operaciones de agregación.
     \item Garantiza transacciones ACID (atomicidad, consistencia, aislamiento y durabilidad) en multidocumentos. Esta reciente característica ha sido integrada en la versión 4.0 de MongoDB.
 \end{itemize}
@@ -113,9 +113,9 @@ MongoDB nos provee de un modelo de datos flexible, esto nos permite almacenar de
 
 Posee una sintaxis para realizar consultas muy variada, nos permite hacer consultas simples, con un lenguaje muy descriptivo, sofisticados \textit{pipeline} para consulta, transformación y explotación de datos, búsquedas facetadas, etc.
 
-Mongo almacena los datos en formato BSON \cite{bsonspec} que es una extensión de los objetos nativos de JavaScript (JSON) a los que añade algunos tipos de datos extra. Estos tipos de datos, se asemejan a los objetos que encontramos en los distintos lenguajes de programación, lo que hace que se produzca una rápida adaptación y una fácil integración con el modelo de datos de MongoDB.
+MongoDB almacena los datos en formato BSON \cite{bsonspec} que es una extensión de los objetos nativos de JavaScript (JSON) a los que añade algunos tipos de datos extra. Estos tipos de datos, se asemejan a los objetos que encontramos en los distintos lenguajes de programación, lo que hace que se produzca una rápida adaptación y una fácil integración con el modelo de datos de MongoDB.
 
-Una de las principales diferencias con las bases de datos relacionales a la hora de modelizar es que mientras que en las bases de datos relaciones es habitual crear distintas tablas para trabajar mediante JOINs, en MongoDB es habitual tener todos los datos necesarios para un registro en un mismo documento, lo que reduce la complejidad de tener que realizar JOINs entre tablas y ayuda a la mejora de las consultas.
+Una de las principales diferencias con las bases de datos relacionales a la hora de modelizar, es que, mientras que en las bases de datos relaciones es habitual crear distintas tablas para trabajar mediante JOINs, en MongoDB es habitual tener todos los datos necesarios para un registro en un mismo documento, lo que reduce la complejidad de tener que realizar JOINs entre tablas y ayuda a la mejora del rendimiento de las consultas.
 
 \subsection{Tipos de consultas}
 
@@ -126,7 +126,7 @@ MongoDB tiene distintos métodos para la consulta y explotación de los datos al
     \item Rangos: Es posible utilizar los operadores de desigualdades (mayor que, menor que...) para hacer búsquedas por rango y obtener un subconjunto de documentos que satisfagan las condiciones.
     \item Búsquedas Geoespaciales: Devuelven resultados basados en proximidad a ciertos criterios.
     \item Búsquedas de resutlados en un orden relevante, o en búsquedas facetadas. Es posible utilizar operadores lógicos (and, or...), agrupar, contar resultados, etc.
-    \item Operador de agregación: Permite hacer consultas y transformaciones de los datos almacenados. Provee una interfaz completa de operadores dedicados (operaciones lógicas, desigualdades, proyecciones...). En este trabajo, veremos la implementación de consultas de bases de conjuntos difusos sobre este operador de agregación.
+    \item Operadores de agregación: Permite hacer consultas y transformaciones de los datos almacenados. Provee una interfaz completa de operadores dedicados (operaciones lógicas, desigualdades, proyecciones...). En este trabajo, veremos la implementación de consultas de bases de conjuntos difusos sobre este operador de agregación.
     \item JOINs y grafos: con el operador \textit{lookup} podemos hacer JOIN entre colecciones, y con el operador \textit{graphLookup} mongo provee una forma nativa de procesar grafos, árboles y estructuras jerárquicas.
 \end{itemize}
 
@@ -141,19 +141,19 @@ Además, la intersección de índices permite a MongoDB usar más de un índice 
 
 \subsection{Agregación}
 
-Una de las características más importante de MongoDB a la hora de explotar y transformar datos son las agregaciones. Esta base de datos nos provee dos formas de realizarla, mediante \textit{pipeline}    y mediante \textit{map-reduce}.
+Una de las características más importantes de MongoDB a la hora de explotar y transformar datos son las agregaciones. Esta base de datos nos provee dos formas de realizarla, mediante \textit{map-reduce} y mediante \textit{pipeline}.
 
 \subsubsection{Map-Reduce}\label{mapreduce}
 
 Map-Reduce es un modelo de programación general muy utilizado para trabajar con grandes volúmenes de datos y poder introducir paralelismo. MongoDB provee un comando para utilizarlo directamente sobre la base de datos de forma nativa.
 
-El modelo map-reduce, consiste en generar un subconjunto de documentos útiles preprocesando un conjunto más amplio previamente y agrupando en una última etapa.
+El modelo map-reduce, consiste en generar un subconjunto de documentos útiles preprocesando un conjunto más amplio previamente y agrupando en una última etapa. Puede encontrarse más información de este comando y sus usos en \href{https://docs.mongodb.com/manual/core/map-reduce/}{la documentación oficial}.
 
 \subsubsection{Pipeline}\label{pipeline}
 
-La segunda forma para realizar el operador de agregación es mediante el framework \textit{pipeline}. Con este comando los documentos son procesados mediante una secuencia ordenada de etapas para producir un subconjunto de documentos. Con esta opción, una consulta normal sobre una colección se haría sobre una etapa \textit{match} de la tubería de agregación.
+La segunda forma para implementar operaciones de agregación es mediante el framework \textit{pipeline}. Con este comando los documentos son procesados mediante una secuencia ordenada de etapas, donde cada etapa recibe una colección de documentos procesados por la etapa anterior, los procesa y los envía como entrada de la siguiente etapa, así hasta producir el resultado final. Mediante este operador, el filtrado de documentos sobre una colección de documentos se haría usando el operador \textit{match} en la etapa correspondiente del \textit{pipeline} de agregación.
 
-Las etapas permitidas para este operador se pueden encontrar en la \href{https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/}{documentación del operador}. En este trabajo, se da una ampliación de los operadores que se pueden utilizar en las etapas de \textit{match} y \textit{projection}.
+Las etapas permitidas para este operador se pueden encontrar en la \href{https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/}{documentación del operador}. En nuestra propuesta se proporciona una serie de operadores adicionales que se pueden utilizar en las etapas de \textit{match} y \textit{projection}.
 
 La etapa \textbf{match}, como se describe en su propia documentación, sirve para filtrar los documentos que van a pasar a la siguiente etapa. Selecciona aquellos que cumplan ciertas condiciones descritas mediante los operadores permitidos para esta etapa que pueden verse \href{https://docs.mongodb.com/manual/reference/operator/query/}{aquí}. Los operadores que hemos extendido para trabajar con datos difusos son:
 
@@ -165,6 +165,6 @@ La etapa \textbf{match}, como se describe en su propia documentación, sirve par
     \item \textbf{\$lte}: selecciona los documentos cuyo valor sea menor o igual que el especificado.
 \end{itemize}
 
-La etapa \textbf{projection} sirve para filtrar los campos de los documentos resultantes. Nos permite tanto eliminar campos del propio documento, como proyectar campos nuevos. En esta parte nos hemos centrado en ampliar la posibilidad de proyectar el grado de cumplimiento para los campos difusos.
+La etapa \textbf{projection} sirve para establecer que campos mostrar de la colección resultante. Nos permite tanto eliminar campos del propio documento, como generar y visualizar campos nuevos. En esta parte nos hemos centrado en ampliar la posibilidad de proyectar el grado de cumplimiento para los campos difusos.
 
 En el capítulo \ref{propuesta} veremos estos operadores y la propuesta realizada para ampliar estas etapas.
