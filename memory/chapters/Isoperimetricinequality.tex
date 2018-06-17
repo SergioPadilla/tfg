@@ -13,7 +13,7 @@ Sea $S$ una superficie compacta, $N$ el normal unitario interior y $H$ la curvat
 Si $A, B$ son dos conjuntos de $\rmath^n$, definimos la \textbf{suma conjuntista} $A+B$ como:
 
 \begin{equation*}
-    A+B = \{a+b; a \in A, b \in B\}.
+    A+B = \{a+b \enspace | \enspace a \in A, b \in B\}.
 \end{equation*}
 \end{definition}
 
@@ -25,12 +25,12 @@ Sean $A,B \subseteq \rmath^n$. Si uno de los dos conjuntos es abierto, entonces 
 \begin{proof}
 Supongamos que $A$ es abierto. Nótese que:
 \begin{equation*}
-    A + B = \{a+b; a \in A, b \in B\} = \bigcup_{b \in B} \{a+b; a \in A\}
+    A + B = \{a+b \enspace | \enspace a \in A, b \in B\} = \displaystyle\bigcup_{b \in B} \{a+b \enspace | \enspace a \in A\}
 \end{equation*}
 
-Como la unión de abiertos es abierta, luego solo nos falta ver que cada conjunto $\{a+b; a \in A\}$ es abierto.
+Como la unión de abiertos es abierta, luego solo nos falta ver que cada conjunto $\{a+b \enspace | \enspace a \in A\}$ es abierto.
 
-En efecto, tenemos que el conjunto $\{a+b; a \in A\}$ es la traslación por el vector $b$ del conjunto $A$, que es un movimiento rígido y una aplicación abierta. Concluimos que $A+B$ es un abierto.
+En efecto, tenemos que el conjunto $\{a+b \enspace | \enspace a \in A\}$ es la traslación por el vector $b$ del conjunto $A$, que es un movimiento rígido y una aplicación abierta. Concluimos que $A+B$ es un abierto.
 
 Análogo razonamiento sirve cuando $B$ abierto.
 \end{proof}
@@ -72,8 +72,12 @@ son llamados \textbf{paralelepípedos con los ejes paralelos a los ejes coordena
     A + B = (I_1 + J_1) \times (I_2 + J_2) \times (I_3 + J_3)
 \end{equation*}
 
-Además, si A y B son disjuntos, tenemos que existe un plano paralelo a uno de los ejes coordenado que separan $A$ y $B$.
+Además, si $A$ y $B$ son disjuntos, tenemos que existe un plano paralelo a uno de los ejes coordenados que separan $A$ y $B$.
 \end{lemma}
+\begin{proof}
+La igualdad sale directamente de la definición de suma conjuntista.
+Veamos que si $A$ y $B$ son disjutos, entonces existe un plano paralelo a uno de los ejes coordenados que separan $A$ y $B$. Si $A \cap B = \emptyset$ entonces $I_i \cap J_i = \emptyset$ para al menos algún $i = 1,2,3$. Supongamos sin perder generalidad que se cumple para $i=1$, existe $a \in \rmath$ tal que los intervalos $I_1$ y $J_1$ están a lados distintos de $a$. Luego sea $x=a$ el plano que buscamos.
+\end{proof}
 
 Con estos preliminares, vamos a demostrar la desigualdad de Brunn-Minkowski seguiremos la demostración que aparece en la sección 6.5 de \cite{montielrosbook}.
 
@@ -252,7 +256,11 @@ y elevando al cubo tenemos la desigualdad que buscamos:
 \end{equation*}
 \end{proof}
 
-\begin{proposition}\label{propo1}
+\begin{definition}[Superficie isoperimétrica]
+Sea $S \subset \rtres$ una superficie compacta y conexa, $\Omega$ el dominio interior encerrado por $S$, $A(S)$ el área de $S$ y $vol \, \Omega$ el volumen de $\Omega$. Diremos que $S$ es una \textbf{superficie isoperimétrica} si para cada superficie $S'$ compacta y conexa con $\Omega'$ el dominio interior encerrado por $S'$ tal que $vol \, \Omega' = vol \, \Omega$ se cumple que $A(S) \leq A(S')$.
+\end{definition}
+
+\begin{proposition}\label{prop:spheresasisoperimetricsurfaces}
 Las esferas son superficies isoperimétricas.
 \end{proposition}
 \begin{proof}
@@ -300,12 +308,12 @@ luego
 y concluimos que $S$ es una superficie isoperimétrica.
 \end{proof}
 
-\paragraph{Nota:} En la proposición \ref{propo1} hemos probado que las esferas minimizan el área entre todas las superficies conexas y compactas que encierran un volumen dado. Con argumentos similares se puede probar también que las esferas maximizan el volumen entre todas las superficies conexas y compactas de área dada.
+\paragraph{Nota}{En la proposition \ref{prop:spheresasisoperimetricsurfaces} hemos probado que las esferas minimizan el área entre todas las superficies conexas y compactas que encierran un volumen dado. Con argumentos similares se puede probar también que las esferas maximizan el volumen entre todas las superficies conexas y compactas de área dada.}
 
-\paragraph{Nota:} La desigualdad de Brunn-Minkowski que hemos probado admite una extensión a $\rmath^n$ que se demuestra con los mismos argumentos. En concreto, si $A,B \subset \rmath^n$ son abiertos y acotados, entonces se cumple que:
+\paragraph{Nota}{La desigualdad de Brunn-Minkowski que hemos probado admite una extensión a $\rmath^n$ que se demuestra con los mismos argumentos. En concreto, si $A,B \subset \rmath^n$ son abiertos y acotados, entonces se cumple que:
 \begin{equation*}
     (vol \, A)^{\frac{1}{n}} + (vol \, B)^{\frac{1}{n}} \leq (vol \, (A+B))^{\frac{1}{n}}.
 \end{equation*}
 %
 Una prueba detallada puede encontrarse en el capítulo 2 de \cite{geometricinequalities}.
-Como consecuencia, puede probarse en $\rmath^n$ un resultado análogo a la \ref{propo1}: las esferas de $\rmath^n$ minimizan el área (n-1)-dimensional entre todas las hipersuperficies conexas y compactas que encierran un volumen dado.
+Como consecuencia, puede probarse en $\rmath^n$ un resultado análogo a la proposición \ref{prop:spheresasisoperimetricsurfaces}: las esferas de $\rmath^n$ minimizan el área (n-$1$)-dimensional entre todas las hipersuperficies conexas y compactas que encierran un volumen dado.}
