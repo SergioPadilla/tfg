@@ -155,7 +155,7 @@ La implementación se ha realizado en lenguaje Javascript, el motivo principal e
 %
 de esta forma facilitamos la integración del comando al usuario final.
 
-Para optimizar la búsqueda utilizando el comando \texttt{aggregate}, necesitamos hacer primero una etapa \texttt{match} que filtre lo máximo posible, pues recordemos que esta etapa es la única que aprovechará la indexación para optimizar la búsqueda. Es por esto que no podemos aprovechar directamente las fórmulas para obtener el grado de pertenencia de cada tupla \ref{cdeg} y después evaluar con el umbral deseado, ya que esto obligaría a recorrer todos los documentos de la base de datos antes de filtrar y no sería eficiente.
+Para optimizar la búsqueda utilizando el comando \texttt{aggregate}, necesitamos hacer primero una etapa \texttt{match} que filtre lo máximo posible, pues recordemos que esta etapa es la única que aprovechará la indexación para optimizar la búsqueda. Es por esto que no podemos aprovechar directamente las fórmulas para obtener el grado de pertenencia de cada tupla \ref{cdeg} y después evaluar con el umbral deseado, ya que esto obligaría a recorrer todos los documentos de la base de datos antes de filtrar y no sería eficiente. 
 
 Vamos a utilizar las técnicas de \textbf{preselección} y \textbf{selección} basadas en las estudiadas en \cite{indexingstrategies}. La técnica de preselección consiste en calcular los cortes superior, \texttt{U\_CT}, e inferior, \texttt{L\_CT}, sobre el trapezoide que se pretende comparar con los de la base de datos, para calcular estos cortes, es necesario el umbral mínimo (grado de pertenencia) que se quiere considerar, veremos como calcular cada uno de ellos dependiendo del operador en cuestión en las secciones posteriores. La técnica de selección, consistirá en evaluar y comparar los mismos cortes calculados sobre los trapezoides restante y comparar directamente con los cortes obtenidos en la etapa de preselección. Véase la figura~\ref{fig:preselection} obtenida de \cite{indexingstrategies} que ilustra cómo funcionan ambas etapas.
 
@@ -172,12 +172,12 @@ Para poder trabajar con cláusulas difusas, se han realizado extensiones de los 
 Los operadores difusos son operadores ternarios que reciben los siguientes parámetros:
 
 \begin{itemize}
-    \item \textbf{field\_name}: Nombre del campo a evaluar. El campo tiene que corresponder con un atributo difuso cuyo valor debe ser un array de cuatro posiciones.
+    \item \textbf{field\_name}: Nombre del campo a evaluar. El campo tiene que corresponder con un atributo difuso cuyo valor debe ser un array de cuatro posiciones. 
     \item \textbf{value}: Trapezoide de referencia que estamos comparando.
     \item \textbf{threshold}: Grado mínimo pertenencia que debe cumplir el trapezoide a evaluar para superar el mínimo pedido.
 \end{itemize}
 
-Para la etapa de preselección debemos de calcular los cortes inferior y superior, L\_CT y U\_CT, respectivamente con respecto al trapezoide de referencia (el que se pretende comparar con los de la base de datos) y dar ciertas condiciones que deben de verificar alguno de los valores del array de la base de datos con respecto a estos cortes. La etapa de selección consiste en comparar los cortes calculados previamente con los cortes calculados sobre cada uno de los trapezoides almacenados en la base de datos.
+Para la etapa de preselección debemos de calcular los cortes inferior y superior, L\_CT y U\_CT, respectivamente con respecto al trapezoide de referencia (el que se pretende comparar con los de la base de datos) y dar ciertas condiciones que deben de verificar alguno de los valores del array de la base de datos con respecto a estos cortes. La etapa de selección consiste en comparar los cortes calculados previamente con los cortes calculados sobre cada uno de los trapezoides almacenados en la base de datos. 
 
 Sean $A$ y $B$ dos distribuciones de posibilidad trapezoidales definidas sobre un dominio ordenado $\Omega$, con $A = \trapezoidA$ y $B=\trapezoidB$ y $T \in [0,1]$ el parámetro \textit{threshold}. Vamos a definir los distintos operadores difusos dependiende del tipo de medida para posibilidad y necesidad.
 
@@ -222,7 +222,7 @@ Veamos un ejemplo de una consulta utilizando el operador \texttt{\$feq}:
 %
 Especificando un umbral mínimo de 0.6:
 %
-\begin{verbatim}
+\begin{verbatim}         
 {"superficie": {"$feq": [80,90,110,120], "$thold": 0.6}}
 \end{verbatim}
 
@@ -271,7 +271,7 @@ Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nfeq}:
 %
 Especificando un umbral mínimo de 0.4:
 %
-\begin{verbatim}
+\begin{verbatim}         
 {"superficie": {"$nfeq": [80,90,110,120], "$thold": 0.4}}
 \end{verbatim}
 
@@ -599,8 +599,8 @@ Para utilizarlos, basta con añadir en la proyección el nombre del atributo dif
 Supongamos que queremos obtener todas las viviendas que tengan alrededor de 100$m^2$, teniendo en cuenta que entre $90m^2$ y $110m^2$ nos seguiría interesando pero no queremos que tenga menos de $80m^2$  mayor de $120m^2$, además queremos saber cuáles corresponden mejor con nuestro criterio, obteniendo el grado en que se cumple:
 %
 \begin{verbatim}
-fuzzy_find("viviendas",
-           {"superficie": {"$feq": [80,90,110,120]}},
+fuzzy_find("viviendas", 
+           {"superficie": {"$feq": [80,90,110,120]}}, 
            {"superficie_cdeg": 1, "id_inm": 1, "_id": 0})
 \end{verbatim}
 %

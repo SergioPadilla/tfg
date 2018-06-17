@@ -1,142 +1,148 @@
-En el capítulo previo, hemos visto que las esferas son superficies isoperimétricas, superficies que encierran un volumen dado con área mínima. En este capítulo, vamos a ver que son las únicas. Para esto, vamos a comenzar demostrando que todas las superficies isoperimétricas tienen curvatura media constante. Nos ayudaremos de técnicas variacionales que introduciremos a continuación.
+En el capítulo previo, hemos probado que las esferas son superficies isoperimétricas, es decir,  encierran un volumen dado con área mínima. En este capítulo, vamos a mostrar que son las únicas. Para esto, vamos a comenzar demostrando que todas las superficies isoperimétricas tienen curvatura media constante. Nos ayudaremos de técnicas variacionales que introduciremos a continuación.
 
 \section{Propiedad variacional de las superficies isoperimétricas}
 
-Sea $S$ superficie compacta y conexa de $\rtres$, sea $\epsilon > 0$ suficientemente pequeño tal que $N_\epsilon$ sea un entorno tubular y sea $f: S \longrightarrow \rmath$ diferenciable. Consideremos la función $\Phi_t(p) = p + tf(p)N(p)$ con $p \in S$ y el conjunto:
+Sea $S$ una superficie compacta y conexa de $\rtres$, sea $\epsilon > 0$ suficientemente pequeño tal que $N_\epsilon(S)$ sea un entorno tubular. Recordemos que la aplicación $F: S \times (-\epsilon, \epsilon) \longrightarrow N_\epsilon(S)$ dada por $F(p,t)=p + tN(p)$ es un difeomorfismo, donde $N: S \longrightarrow \unitsphere$ es el normal unitario interior sobre $S$.
 
+Sea $f: S \longrightarrow \rmath$ diferenciable. Como $S$ es compacta entonces $f$ alcanza su máximo absoluto sobre $S$. Sea $M=\max \{ |f(p)| \quad | \quad p \in S \}$. Definimos $\delta = \frac{\epsilon}{M} > 0$. Tenemos que, si $t \in (-\epsilon, \epsilon)$ y $p\in S$, entonces $|tf(p)| \leq tM < \epsilon$. Esto nos indica que la aplicación $\Phi: S \times (-\delta, \delta) \longrightarrow \rtres$ dada por $\Phi(p,t) = F(p, tf(p)) = p + tf(p)N(p)$ está bien definida.
+
+Dado $t \in (-\delta, \delta)$, sea:
+%
 \begin{equation*}
-    S_t(f) = \left\{ x \in N_\epsilon(S) \ | \ x = p + tf(p)N(p); \ p \in S, t \in (-\delta, \delta) \right\}
+    S_t(f) = \{ p + tf(p)N(p) \quad | \quad p \in S \}
 \end{equation*}
+%
+Vamos a demostrar que $S_t(f)$ es una superficie compacta y $\Phi_t: S \longrightarrow S_t(f)$ es un difeomorfismo. Por un resultado previo basta probar que la aplicación $\Phi_t: S \longrightarrow \rtres$ dada por $\Phi_t(p)=p+tf(p)N(p)$ es diferenciable, inyectiva, y tiene diferencial inyectiva en cada punto.
 
-La función $\Phi_t(s) = p + tf(p)N(p) = F(p, tf(p))$, donde $F$ es el difeomorfismo $F: S \times (-\epsilon, \epsilon) \longrightarrow N_\epsilon(S)$ dado por $F(p,t) = p + tN(p)$ con $N$ el normal interior, está bien definido por ser composición de funciones diferenciables.
+Tenemos que $\Phi_t$ es inyectiva. Si $p,q \in S$ con $\Phi_t(p) = \Phi_t(q)$, entonces $F(p, tf(p)) = F(q, tf(q))$ lo que implica que $p=q$ al ser $F: S \times (-\epsilon, \epsilon) \longrightarrow \rtres$ inyectiva.
 
-Tenemos que $\Phi_t$ es inyectiva, por definición de inyectiva, Si $p,q \in S$ con $\Phi_t(p) = \Phi_t(q)$, entonces $F(p, tf(p)) = F(q, tf(q))$ lo que implica que $p=q$ al se $F$ inyectiva.
-
-Veamos ahora, que $(d\Phi_t)_p: T_pS \longrightarrow \rtres$ es inyectiva. Dado $v \in T_pS$, se tiene:
-
+Es claro que $\Phi_t: S \longrightarrow \rtres$ es diferenciable,  veamos ahora que $(d\Phi_t)_p: T_pS \longrightarrow \rtres$ es inyectiva $\forall p \in S$. Dado $v \in T_pS$, se tiene:
+%
 \begin{align*}
-    (d\Phi_t)_p(v) &= v + t((df)_p(v)N(p) + f(p)(dN)_p(v)) \\
-    (d\Phi_t)_p(v) &= (v - tf(p)A_p(v)) + (t(df)_p(v)N(p))
+    (d\Phi_t)_p(v) &= v + t \left( (df)_p(v)N(p) + f(p)(dN)_p(v) \right) \\
+    &= \left( v - tf(p)A_p(v) \right) + t(df)_p(v)N(p)
 \end{align*}
 
-Nótese que tenemos la expresión dividida en dos partes, la primera, la parte tangente a $S$ y la segunda la parte normal. Supongamos que $(d\Phi_t)_p(v) = 0$, entonces ambas partes son $0$, esto es, $v - tf(p)A_p(v) = 0$.
+Nótese que tenemos la expresión dividida en dos partes, la primera es tangente a $S$ y la segunda es normal. Supongamos que $(d\Phi_t)_p(v) = 0$. Entonces ambas partes son $0$ y, en particular, $v - tf(p)A_p(v) = 0$.
 
-Recordemos que $F_u: S \longrightarrow \rtres$ dada por $F_u(p) = p + uN(p)$ tiene diferencial inyectiva si $|u| < \epsilon$. Tomando $u=tf(p)$ tenemos que, $v - tf(p)A_p(v) = (dF_u)_p(v)$, luego $v=0$. Con esto tenemos que $ker((d\Phi_t)_p) = \{0\}$ y por tanto la diferencial de $\Phi_t$ es inyectiva y podemos concluir que $\Phi_t: S \longrightarrow S_t(f)$ es un difeomorfismo y $S_t(f)$ es una superficie compacta por ser difeomorfa a $S$.
+Recordemos que $F_u: S \longrightarrow \rtres$ dada por $F_u(p) = p + uN(p)$ tiene diferencial inyectiva si $|u| < \epsilon$. Tomando $u=tf(p)$ tenemos que, $v - tf(p)A_p(v) = (dF_u)_p(v)$, luego $v=0$. Con esto tenemos que $ker((d\Phi_t)_p) = \{0\}$ y por tanto la diferencial de $\Phi_t$ es inyectiva en cada $p\in S$. Concluimos que $S_t(f)$ es una superficie compacta y $\Phi_t: S \longrightarrow S_t(f)$ es un difeomorfismo.
 
-Se llama \textbf{variación de $S$ correspondiente a la función f} a la familia de superficies $S_t(f)$ con $t < \delta$.
+\begin{definition}[Variación]
+Se llama \textbf{variación de $S$ correspondiente a la función $f$} a la familia de superficies $S_t(f)$ con $t < \delta$.
+\end{definition}
 
-\begin{remark}[Primera variación del área]
-Sea $S_t(f)$, con $t \in (-\delta, \delta)$, la variación de la superficie $S$ para la función $f: S \longrightarrow \rmath$. Entonces, la función dada por:
-
+\begin{proposition}[Primera variación del área]
+Sea $S_t(f)$, con $t \in (-\delta, \delta)$, la variación de la superficie compacta $S$ para la función diferenciable $f: S \longrightarrow \rmath$. Entonces, la función dada por:
+%
 \begin{equation*}
     t \longrightarrow A(t) = A(S_t(f))
 \end{equation*}
-
-es diferenciable y
-
+%
+es diferenciable, y
+%
 \begin{equation}\label{variacionarea}
-    \diff{}{t}{t=0} A(S_t(f)) = -2 \int_S f(p)H(p) dp
+    A'(0) = \diff{}{t}{t=0} A(S_t(f)) = -2 \int_S f(p)H(p) dp
 \end{equation}
-\end{remark}
+\end{proposition}
 \begin{proof}
-Sean $\{e_1, e_2\}$ una base ortonormal de curvaturas principales de $S$ en el punto $p \in S$, tenemos:
-
+Sea $\{e_1, e_2\}$ una base ortonormal de curvaturas principales de $S$ en el punto $p \in S$. Por el cálculo antes realizado para $(d\Phi_t)_p$ tenemos:
+%
 \begin{equation*}
-    (d\Phi_t)_p(e_i) = (1 - tf(p)k_i(p))e_i + t(df)_p(e_i)N(p) \qquad i=1,2
+    (d\Phi_t)_p(e_i) = (1 - tf(p)k_i(p))e_i + t(df)_p(e_i)N(p), \qquad i=1,2.
 \end{equation*}
-
-y
-
-\begin{equation}\label{productoescalar}
-    (d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2) = (1 - 2tf(p)H(p))N(p) - t(\triangledown f)_p + t^2G(p,t)
-\end{equation}
-
+%
+Un cálculo sencillo muestra que el producto vectorial de estos dos vectores esta dado por:
+%
+\begin{multline}\label{productoescalar}
+    (d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2) = (1 - 2tf(p)H(p))N(p) - \\ t(\triangledown f)_p + t^2G(p,t)
+\end{multline}
+%
 donde $\triangledown f$ es el gradiente de la función $f$ y $G$ es una función diferenciable definida en $S \times (-\delta, \delta)$ tomando valores en $\rtres$. Aplicando el teorema del cambio de variable, tenemos:
+%
+\begin{equation*}
+    A(t) = A(S_t(f)) = \int_{S_t(f)} 1 = \int_S |\text{Jac} \, \Phi_t|
+\end{equation*}
+%
+Derivando bajo el signo integral en $t=0$ llegamos a:
 
 \begin{equation*}
-    A(t) = A(S_t(f)) = \int_{S_t(f)} 1 = \int_S |Jac \Phi_t|
+    A'(0) = \int_S \left( \diff{}{t}{t=0} |(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)| \right) \, dp 
 \end{equation*}
 
-Calculamos la diferencial en $t=0$:
-
+Por otro lado, la \autoref{productoescalar} nos dice que:
+%
 \begin{equation*}
-    A'(0) = \int_S \diff{}{t}{t=0} |(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)|dp 
+    \diff{}{t}{t=0} |(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)| = -2f(p)H(p),
 \end{equation*}
-
-usando \autoref{productoescalar}:
-
-\begin{equation*}
-    \diff{}{t}{t=0} |(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)|dp = -2f(p)H(p)
-\end{equation*}
+%
+lo que concluye la demostración.
 \end{proof}
 
 
-\begin{remark}[Primera variación del volumen]
-Sea $S_t(f)$, con $t \in (-\delta, \delta)$, la variación de la superficie $S$ para la función $f: S \longrightarrow \rmath$. Entonces, la función dada por:
+\begin{proposition}[Primera variación del volumen]
+Sea $S_t(f)$, con $t \in (-\delta, \delta)$, la variación de la superficie compacta $S$ para la función diferenciable $f: S \longrightarrow \rmath$. Denotemos por $\Omega_t(f)$ al dominio interior encerrado por $S_t(f)$. Entonces, la función dada por:
 
 \begin{equation*}
     t \longrightarrow V(t) = vol \Omega_t (f)
 \end{equation*}
-
-es diferenciable y
-
+%
+es diferenciable, y:
+%
 \begin{equation}\label{variacionvolumen}
-    \diff{}{t}{t=0} vol \Omega_t (f) = - \int_S f(p) dp
+    V'(0) = \diff{}{t}{t=0} vol \Omega_t (f) = - \int_S f(p) \, dp
 \end{equation}
+\end{proposition}
 \begin{proof}
-Sabemos por \ref{volumensuperficiecompacta} que:
-
+Por la ecuación que hay en la definición \ref{volumensuperficiecompacta}, sabemos que:
+%
 \begin{equation*}
-    V(t) = - \frac{1}{3} \int_{S_t}  \langle p, N_t(p) \rangle  dp
+    V(t) = - \frac{1}{3} \int_{S_t}  \langle p, N_t(p) \rangle \, dp,
 \end{equation*}
-
+%
 donde $N_t$ es el normal interior de $S_t(f)$. Usando de nuevo el teorema del cambio de variable, tenemos:
-
+%
 \begin{equation*}
-    V(t) = - \frac{1}{3} \int_{S}  \langle N_t \circ \Phi_t, \Phi_t \rangle |Jac \Phi_t|
+    V(t) = - \frac{1}{3} \int_{S}  \langle N_t \circ \Phi_t, \Phi_t \rangle |\text{Jac} \, \Phi_t|
 \end{equation*}
 
-Como el difeomorfismo $\Phi_t$ es la función identidad cuando $t=0$, teniendo en cuenta que:
-
+Como el difeomorfismo $\Phi_t$ es la identidad cuando $t=0$, se sigue que:
+%
 \begin{equation*}
-    (N_t \circ \Phi_t)(p) = \frac{(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)}{|(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)|} = \frac{(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)}{|Jac \Phi_t|(p)}
+    (N_t \circ \Phi_t)(p) = \frac{(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)}{|(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)|} = \frac{(d\Phi_t)_p(e_1) \wedge (d\Phi_t)_p(e_2)}{|\text{Jac} \, \Phi_t|(p)}
 \end{equation*}
-
-y utilizando \autoref{productoescalar} tenemos:
-
+%
+donde $\{e_1,e_2\}$ es una base ortonormal en $T_pS$. Sustituyendo en la ecuación previa para $V(t)$ y usando la ecuación \ref{productoescalar}, tenemos:
+%
 \begin{align*}
-    V(t) = - \frac{1}{3} \int_S (1-2tf(p)H(p)) \langle N(p), p \rangle  \\ - \frac{1}{3} \int_S tf(p) - t \langle (\triangledown f)_p, p \rangle  + t^2D(p,t) dS
+    V(t) = - \frac{1}{3} \int_S \left( 1-2tf(p)H(p) \right) \langle N(p), p \rangle  \\ - \frac{1}{3} \int_S \left( tf(p) - t \langle (\triangledown f)_p, p \rangle  + t^2D(p,t) \right) \, dS,
 \end{align*}
-
-siendo $D$ una función diferenciable definida en $S \times (-\delta, \delta)$. Derivando cuando $t=0$, tenemos:
-
+%
+siendo $D$ una función diferenciable definida en $S \times (-\delta, \delta)$. Derivando cuando $t=0$, llegamos a:
+%
 \begin{align*}
     V'(0) = \frac{1}{3} \int_S [-f(p) + 2f(p)H(p) \langle N(p),p \rangle  +  \langle (\triangledown f)_p, p \rangle ] dp
 \end{align*}
 
 Utilizando el corolario \ref{corolariogradiente}:
-
+%
 \begin{align*}
-    V'(0) &= \frac{1}{3} \int_S -f(p) dp + \frac{1}{3} \int_S [2f(p)H(p) \langle N(p),p \rangle  +  \langle (\triangledown f)_p, p \rangle ] dp \\
-    V'(0) &= \frac{1}{3} \int_S -f(p) - 2 f(p)dp \\
-    V'(0) &= - \int_S f(p) dp
+    V'(0) &= \frac{1}{3} \int_S -f(p) \, dp + \frac{1}{3} \int_S [2f(p)H(p) \langle N(p),p \rangle  +  \langle (\triangledown f)_p, p \rangle ] \, dp  = - \int_S f(p) \, dp
 \end{align*}
 \end{proof}
-\end{remark}
 
-Veamos ahora el resultado que íbamos buscando con ayuda de las propiedades variacionales calculadas.
+Gracias a la desigualdad isoperimétrica del capítulo anterior y a las fórmulas de variación del área y el volumen recién calculadas, podemos deducir el siguiente resultado.
 
 \begin{theorem}[Las superficies isoperimétricas tienen curvatura media constante]\label{meancurvaturecte}
-Sea $S$ una superficie compacta y conexa. Si $S$ es isoperimétrica, entonces, $S$ tiene curvatura media constante.
+Sea $S$ una superficie compacta y conexa. Si $S$ es isoperimétrica, entonces $S$ tiene curvatura media constante.
 \end{theorem}
 \begin{proof}
-Si $S$ es una superficie isoperimétrica, consideramos la función $f: S \longrightarrow \rmath$ diferenciable y la variación $S_t(f)$ de $S$ con respecto a $f$, con $t \in (-\delta, \delta)$. Entonces la función $h: (-\delta, \delta) \longrightarrow \rmath$ dada por $h(t) = A(S_t(f))^3 - 36\pi(vol \Omega_t(f))^2$ es diferenciable y alcanza su mínimo en $t=0$ ya que se $S_0=S$ y partimos de la suposición de que $S$ es isoperimétrica. Luego $h'(0)=0$ y por tanto, tenemos:
-
+Sea $S$ una superficie isoperimétrica. Tomamos una función $f: S \longrightarrow \rmath$ diferenciable y la variación $S_t(f)$ de $S$ con respecto a $f$, definida para $t \in (-\delta, \delta)$. Sea $\Omega_t(f)$ al dominio interior encerrado por $S_t(f)$. Definimos la función $h: (-\delta, \delta) \longrightarrow \rmath$ dada por $h(t) = A(S_t(f))^3 - 36\pi(vol \Omega_t(f))^2$. LA función $h$ es diferenciable y no negativa gracias a la desigualdad isoperimétrica en $\rtres$. Como $S_0=S$ y asumimos que $S$ es una superficie isoperimétrica, el corolario \autoref{cor2} nos dice que $h(0)=0$. Así, $h$ alcanza en $t=0$ su mínimo absoluto, por lo que $h'(0)=0$. Nótese que:
+%
 \begin{equation*}
     h'(0) = 3A(S_0(f))^2 \diff{}{t}{t=0} A(S_t(f)) - 72\pi vol \Omega_0(f) \diff{}{t}{t=0} vol \Omega_t(f)
 \end{equation*}
 
-Utilizando las \autoref{variacionarea} y \autoref{variacionvolumen}:
+Utilizando la \autoref{variacionarea} y \autoref{variacionvolumen} llegamos a:
 
 \begin{equation*}
     0 = h'(0) = 3A(S)^2 \left( -2 \int_S f(p)H(p)dp \right) - 72\pi vol \Omega \left( - \int_S f(p) dp \right)
@@ -145,94 +151,97 @@ Utilizando las \autoref{variacionarea} y \autoref{variacionvolumen}:
 Sacando factor común obtenemos:
 
 \begin{equation*}
-    0 = 6 \int_S f(p)(-A(S)H(p) + 12 \pi vol \Omega)
+    0 = 6 \int_S f(p)(-A(S)^2H(p) + 12 \pi vol \Omega)
 \end{equation*}
 
-Al estar igualado a $0$, podemos omitir el producto por un número positivo. Además, esta igualdad de tiene que cumplir para toda función $f$ diferenciable en $S$, luego tomemos $f = 12 \pi vol \Omega - A(S)H(p)$ diferenciable:
-
+Al estar igualado a $0$, podemos omitir el producto por un número positivo. Además, esta igualdad se tiene que cumplir para toda función $f$ diferenciable en $S$. En particular, si tomamos $f(p) = 12 \pi vol \Omega - A(S)^2H(p)$ se sigue que:
+%
 \begin{equation*}
-    0 = \int_S (12 \pi vol \Omega - A(S)H(p))^2
+    0 = \int_S \left( 12 \pi vol \Omega - A(S)^2H(p) \right)^2.
 \end{equation*}
 
-Luego $12 \pi vol \Omega(f) - A(S)H(p) = 0$ y despejando $H$:
-
+Luego $12 \pi vol \, \Omega - A(S)^2H(p) = 0$ y despejando $H$:
+%
 \begin{equation*}
-    H(p) = \frac{12 \pi vol \Omega}{A(S)^2}, \qquad p \in S
+    H(p) = \frac{12 \pi vol \Omega}{A(S)^2}, \qquad \forall p \in S
 \end{equation*}
 
-
-Luego $H$ es constante.
+Esto prueba que $H$ es constante y concluye la prueba.
 \end{proof}
 
 \section{Unicidad de las esferas como superficies isoperimétricas}
 
-En la sección anterior hemos probado, que todas las superficies isoperimétricas tienen curvatura media constante. A partir de esto, estamos en condiciones de probar que las esferas son las únicas superficies isoperimétricas, es decir, dado un volumen fijo, la esfera es la superficie que encierra dicho volumen y además con área mínima entre todas las superficies.
+En la sección anterior hemos probado que todas las superficies isoperimétricas tienen curvatura media constante. A partir de esto, estamos en condiciones de probar que las esferas son las únicas superficies isoperimétricas, es decir, dado un volumen fijo, cualquier superficie isoperimétrica que encierre dicho volumen es necesariamente una esfera.
 
-Demostrar la unicidad de las esferas como superficies isoperimétricas una vez tenemos que las superficies isoperimétricas tienen curvatura media constante es directo mediante el \textbf{Teorema de Alexandrov} que nos asegura que si una superficie compacta y conexa tiene curvatura media constante, entonces es una esfera. Sin embargo, para concluir este trabajo, se decide ilustrar una demostración alternativa al Teorema de Alexandrov, más novedosa, basada en la \textbf{prueba de Wente} \cite{wenteproof} publicada en 1991.
+Demostrar la unicidad de las esferas como superficies isoperimétricas una vez sabido que las superficies isoperimétricas tienen curvatura media constante es directo mediante el \textbf{Teorema de Alexandrov} que nos asegura que si una superficie compacta y conexa tiene curvatura media constante, entonces es una esfera. Sin embargo, para concluir este trabajo, se decide mostrar una demostración alternativa al Teorema de Alexandrov, más novedosa, basada en un artículo de Wente \cite{wenteproof} publicado en 1991.
 
-Para llevar la prueba a cabo, son necesarios algunos preliminares, parte de la prueba, implicar trabajar con homotecias, así que comencemos viendo como se comportan la formula del volumen y del área vista en capítulos previos, con estas.
+Para llevar la prueba a cabo son necesarios algunos preliminares.Comencemos viendo como se comportan el volumen y el área respecto de homotecias en $\rtres$.
 
 \begin{lemma}
-Sea $S$ una superficie compacta y conexa y $\Omega$ su dominio interior. Sea $\lambda \in \rmath$ positivo, sea $h_\lambda: \rtres \longrightarrow \rtres$ definida como $h_\lambda(p)=\lambda p$, $\forall p \in \rtres$, la homotecia de centro 0 y razón $\lambda$, tenemos que:
-
+Sea $S$ una superficie compacta y conexa, y $\Omega$ su dominio interior. Dado $\lambda \in \rmath$ positivo, sea $h_\lambda: \rtres \longrightarrow \rtres$ la homotecia de centro $0$ y razón $\lambda$ definida como $h_\lambda(p)=\lambda p$, $\forall p \in \rtres$. Entonces, tenemos que:
+%
 \begin{align*}
-    A(h_\lambda(S)) &= \lambda^2A(S) \\
-    vol h_\lambda(S) &= \lambda^3 vol \Omega
+    A(h_\lambda(S)) &= \lambda^2A(S), \\
+    vol \, h_\lambda(S) &= \lambda^3 vol \, \Omega.
 \end{align*}
 \end{lemma}
 \begin{proof}
-Consideramos la aplicación $h_\lambda: S \longrightarrow h\lambda(S)$. $h_\lambda(S)$ es una superficie compacta y conexa con $T_{h_\lambda (p)} h_\lambda (S) = T_pS$, $\forall p \in S$, por ser $h_\lambda$ una homotecia.
+Consideramos la aplicación $h_\lambda: S \longrightarrow h_\lambda(S)$. Como $h_\lambda(S)$ es una homotecia, es un difeomorfismo de $\rtres$ y, por tanto, $h_\lambda(S)$ es una superficie compacta y conexa con $T_{h_\lambda (p)} h_\lambda (S) = T_pS$, $\forall p \in S$.
 
-Veamos primero el área.
-
+Veamos primero como cambia el área. Sabemos que:
+%
 \begin{equation*}
-    A(h_\lambda(S)) = \int_{h_\lambda(S)} 1dp
+    A(h_\lambda(S)) = \int_{h_\lambda(S)} 1dp,
+\end{equation*}
+%
+y utilizando el cambio de variable:
+%
+\begin{equation*}
+    A(h_\lambda(S)) = \int_{S} |\text{Jac} \, h_\lambda| dS
 \end{equation*}
 
-utilizando el cambio de variable:
-
-\begin{equation*}
-    A(h_\lambda(S)) = \int_{S} |Jac h_\lambda| dS
-\end{equation*}
-
-Calculemos el Jacobiano. Tenemos que $(dh_\lambda)_p: T_pS \longrightarrow T_pS$ es el endomorfismo dado por $(dh_\lambda)_p(v) = \lambda v$, $\forall v \in T_pS$. Por definición de Jacobiano, tomando $\{e_1, e_2\}$ base ortonormal de $T_pS$, tenemos:
-
+Calculemos $|\text{Jac} \, h_\lambda|$. Tenemos que $(dh_\lambda)_p: T_pS \longrightarrow T_pS$ es el endomorfismo dado por $(dh_\lambda)_p(v) = \lambda v$, $\forall v \in T_pS$. Tomando $\{e_1, e_2\}$ una base ortonormal de $T_pS$, tenemos:
+%
 \begin{align*}
-    (dh_\lambda)_p(e_1) &= \lambda e_1 \\
-    (dh_\lambda)_p(e_2) &= \lambda e_2
+    (dh_\lambda)_p(e_1) &= \lambda e_1, \\
+    (dh_\lambda)_p(e_2) &= \lambda e_2,
 \end{align*}
-
-luego, $|Jac h_\lambda|(p) = \begin{vmatrix}
+%
+luego: 
+%
+\begin{equation*}
+|\text{Jac} \, h_\lambda|(p) = \begin{vmatrix}
 \lambda & 0 \\ 
 0 & \lambda
-\end{vmatrix} = \lambda^2$.
-
-Volviendo a la ecuación del área tenemos:
-
-\begin{equation*}
-    A(h_\lambda(S)) = \int_{h_\lambda(S)} 1dp = \int_{S} |Jac h_\lambda| dS = \int_{S} \lambda^2dS = \lambda^2A(S)
+\end{vmatrix} = \lambda^2.
 \end{equation*}
 
-Veamos ahora el volumen, análogo al área, consideremos la aplicación $h_\lambda: \Omega \longrightarrow h\lambda(S)$. $h_\lambda(\Omega)$ y utilicemos el cambio de variable:
-
+Volviendo a la expresión para $A(h_\lambda(S))$, tenemos:
+%
 \begin{equation*}
-    vol h_\lambda(\Omega) = \int_{h_\lambda(\Omega)} 1dv = \int_{\Omega} |Jac h_\lambda| d\Omega
+    A(h_\lambda(S)) = \int_{h_\lambda(S)} 1dp = \int_{S} |\text{Jac} \, h_\lambda| dS = \int_{S} \lambda^2dS = \lambda^2A(S).
+\end{equation*}
+%
+Veamos ahora como cambia el volumen. Consideremos la aplicación $h_\lambda: \Omega \longrightarrow h_\lambda(S)$ y utilicemos el cambio de variable:
+%
+\begin{equation*}
+    vol h_\lambda(\Omega) = \int_{h_\lambda(\Omega)} 1dv = \int_{\Omega} |\text{Jac} \, h_\lambda| d\Omega
 \end{equation*}
 
-Calculemos el jacobiano. En este caso, $h_\lambda$ está definida en abiertos de $\rtres$, luego $(dh_\lambda)_p: \rtres \longrightarrow \rtres$ dada por $(dh_\lambda)_p(v) = \lambda v$, y tomamos en este caso la base usual de $\rtres$ y por tanto:
-
+Calculemos $|\text{Jac} \, h_\lambda|$. En este caso, $h_\lambda$ está definida entre abiertos de $\rtres$. Como la diferencial $(dh_\lambda)_p: \rtres \longrightarrow \rtres$ viene dada por $(dh_\lambda)_p(v) = \lambda v$, tomamos la base usual de $\rtres$ como base ortonormal, obtenemos:
+%
 \begin{equation*}
-  |Jac h_\lambda|(p) = \begin{vmatrix}
+  |\text{Jac} \, h_\lambda|(p) = \begin{vmatrix}
                         \lambda & 0 & 0 \\ 
                         0 & \lambda & 0 \\
                         0 & 0 & \lambda \\
-                        \end{vmatrix} = \lambda^3
+                        \end{vmatrix} = \lambda^3,
 \end{equation*}
-
-y podemos concluir:
-
+%
+y podemos concluir que:
+%
 \begin{equation*}
-    vol h_\lambda(\Omega) = \int_{h_\lambda(\Omega)} 1dv = \int_{\Omega} |Jac h_\lambda| d\Omega = \int_{\Omega} \lambda^3 d\Omega = \lambda^3 vol \Omega
+    vol h_\lambda(\Omega) = \int_{h_\lambda(\Omega)} 1dv = \int_{\Omega} |\text{Jac} \, h_\lambda| d\Omega = \int_{\Omega} \lambda^3 d\Omega = \lambda^3 vol \Omega.
 \end{equation*}
 
 \end{proof}
@@ -242,134 +251,141 @@ y podemos concluir:
 Si $S \subset \rtres$ es una superficie isoperimétrica, entonces $S$ es una esfera.
 \end{theorem}
 \begin{proof}
-Vamos a construir deformaciones de $S$ que preserven su volumen mediante homotecias de la variación por paralelas, esto es, sea $\lambda(t) > 0$ con $t \in (-\epsilon, \epsilon)$ tal que $vol h_{\lambda(t)}(\Omega_t) = vol \Omega$. Además, acabamos de probar que $vol h_{\lambda(t)}(\Omega_t) = \lambda(t)^3 vol \Omega_t$, luego igualando ambas expresiones nos queda:
+Vamos a construir deformaciones de $S$ que preserven su volumen mediante homotecias de la variación por paralelas. Sea $\Omega$ el dominio interior encerrado por $S$ y sea $\epsilon > 0$ tal que $N_\epsilon(S)$ es un entorno tubular de $S$. Para cada $t\in (-\epsilon, \epsilon)$ sea $S_t$ la superficie paralela correspondiente y $\Omega_t$ el dominio interior encerrado por $S_t$. Para cada $t\in (-\epsilon, \epsilon)$ sea $\lambda(t) > 0$ tal que $vol \, h_{\lambda(t)} (\Omega_t) = vol \, \Omega$. Como acabamos de probar que $vol \, h_{\lambda(t)}(\Omega_t) = \lambda(t)^3 vol \Omega_t$, igualando ambas expresiones nos queda:
 
 \begin{equation*}\label{lambdafunction}
-    \lambda(t) = \left( \frac{vol \Omega}{vol \Omega_t} \right) ^{1/3}, \qquad \forall t \in (-\epsilon, \epsilon)
+    \lambda(t) = \left( \frac{vol \Omega}{vol \Omega_t} \right) ^{1/3}, \qquad \forall t \in (-\epsilon, \epsilon).
 \end{equation*}
 
-Luego tenemos la aplicación $\lambda: (-\epsilon, \epsilon) \longrightarrow \rmath$ definida previamente, $C^\infty(-\epsilon, \epsilon)$ y claramente $\lambda(0) = 1$ ya que $\Omega_0 = \Omega$. 
+Esto define una aplicación diferenciable $\lambda: (-\epsilon, \epsilon) \longrightarrow \rmath$ con $\lambda(0) = 1$ ya que $\Omega_0 = \Omega$. 
 
 Consideremos ahora la aplicación $A: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por:
-
+%
 \begin{equation}\label{funcA}
-    A(t) = A(h_{\lambda(t)} (S_t)) = \lambda(t)^2 A(S_t)
+    A(t) = A(h_{\lambda(t)} (S_t)) = \lambda(t)^2 A(S_t).
+\end{equation}
+%
+Utilizando la hipótesis de que $S$ es una superficie isoperimétrica, sabemos que $A'(0) = 0$ y $A''(0) \geq 0$ ya que $A$ alcanza su mínimo global en $t=0$.
+
+Vamos a calcular las derivadas $A'(0)$ y $A''(0)$. Como demostramos al final del capítulo \ref{chapter:isoperimetricinequality} tenemos:
+
+\begin{equation*}
+    A(S_t) = A(S) -2t\int_{S} H \, dS + t^2\int_{S} K \, dS
+\end{equation*}
+%
+si definimos la función $a: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por $a(t) = A(S_t)$, la \autoref{funcA} nos queda como:
+%
+\begin{equation}
+    A(t) = \lambda(t)^2 a(t)
 \end{equation}
 
-Utilizando la hipótesis de que $S$ es una superficie isoperimétrica, sabemos que $A'(0) = 0$ y $A''(0) \geq 0$ ya que $A$ alcanza el mínimo global en $t=0$.
+Calculemos las derivadas de $a$:
+%
+\begin{align*}
+    a'(t) &= -2\int_{S} H \, dS + 2t\int_{S} K \, dS, \\
+    a''(t) &= 2\int_{S} K \, dS.
+\end{align*}
+%
+evaluando en $t=0$ y teniendo en cuenta que hemos probado en el \autoref{meancurvaturecte} que las superficies isoperimétricas tienen curvatura media constante:
+%
+\begin{align*}
+    a'(0) &= -2\int_{S} H \, dS = -2HA(S), \\
+    a''(0) &= 2\int_{S} K \, dS.
+\end{align*}
 
-Vamos a calcular las derivadas. Comenzamos recordando que como probamos en \ref{areaparallelsurface} tenemos:
-
+Ahora queremos calcular las derivadas $\lambda'(0)$ y $\lambda''(0)$ de $\lambda(t) = \left( \frac{vol \, \Omega}{vol \, \Omega_t} \right) ^{1/3}$. Por lo probado en la \autoref{volumeparallelsurface}:
+%
 \begin{equation*}
-    A(S_t) = A(S) -2t\int_{S} HdS + t^2\int_{S} KdS
+    vol \, \Omega_t = vol \, \Omega - tA(S) + t^2\int_S H \, dS - \frac{t^3}{3}\int_S K \, dS.
 \end{equation*}
-
-consideremos la función $a: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por $a(t) = A(S) -2t\int_{S} HdS + t^2\int_{S} KdS$ luego \autoref{funcA} nos queda como $A(t) = \lambda(t)^2 a(t)$. Calculemos las derivadas de $a$:
-
+%
+consideremos la función $v: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por $v(t) = vol \, \Omega_t$. Calculemos las derivadas de $v$:
+%
 \begin{align*}
-    a'(t) &= -2\int_{S} HdS + 2t\int_{S} KdS \\
-    a''(t) &= 2\int_{S} KdS
+    v'(t) &= - A(S) + 2t\int_S HdS - t^2\int_S K \, dS, \\
+    v''(t) &= 2\int_{S} HdS - 2t\int_S K \, dS.
+\end{align*}
+%
+De nuevo, evaluando en $t=0$, y sabiendo que $H$ es constante:
+%
+\begin{align*}
+    v'(0) &= -A(S), \\
+    v''(0) &= 2HA(S).
 \end{align*}
 
-evaluando en $0$ y teniendo en cuenta que hemos probado en el \autoref{meancurvaturecte} que las superficies isoperimétricas tienen curvatura constante:
-
-\begin{align*}
-    a'(0) &= -2\int_{S} HdS = -2HA(S) \\
-    a''(0) &= 2\int_{S} KdS
-\end{align*}
-
-Veamos ahora la derivada de $\lambda(t) = \left( \frac{vol \Omega}{vol \Omega_t} \right) ^{1/3}$. Hemos visto en \autoref{volumeparallelsurface}:
-
+Nótese que podemos escribir:
+%
 \begin{equation*}
-    vol \Omega_t = vol \Omega - tA(S) + t^2\int_S HdS - \frac{t^3}{3}\int_S KdS
+    \lambda(t) = (vol \, \Omega)^{1/3} v(t)^{-1/3},
 \end{equation*}
-
-consideremos la función $v: (-\epsilon, \epsilon) \longrightarrow \rmath$ dada por $v(t) = vol \Omega - tA(S) + t^2\int_S HdS - \frac{t^3}{3}\int_S KdS$. Calculemos las derivadas de $v$:
-
+%
+y al derivar obtenemos:
+%
 \begin{align*}
-    v'(t) &= - A(S) + 2t\int_S HdS - t^2\int_S KdS \\
-    v''(t) &= 2\int_{S} HdS - 2t\int_S KdS
+    \lambda'(t) &= \frac{-1}{3} (vol \, \Omega)^{1/3} v(t)^{-4/3} v'(t) \\
+    \lambda''(t) &= \frac{-1}{3} (vol \, \Omega)^{1/3} \left[ \frac{-4}{3}v(t)^{-7/3} v'(t)^2 + v(t)^{-4/3}v''(t) \right]
+\end{align*}
+%
+sustituyendo las derivadas de $v$ calculadas previamente y evaluando en $t=0$:
+%
+\begin{align*}
+    \lambda'(0) &= \frac{A(S)}{3 vol \, \Omega}, \\
+    \lambda''(0) &= \frac{4 A(S)^2}{9 (vol\Omega)^{2}} - \frac{2HA(S)}{3 vol \, \Omega} .
 \end{align*}
 
-de nuevo, evaluando en $0$ y sabiendo que $H$ es constante:
-
-\begin{align*}
-    v'(0) &= -A(S) \\
-    v''(0) &= 2HA(S)
-\end{align*}
-
-Ahora podemos notar el \autoref{lambdafunction} como:
-
-\begin{equation*}
-    \lambda(t) = (vol \Omega)^{1/3} v(t)^{-1/3}
-\end{equation*}
-
-y calculamos sus derivadas, que necesitamos para calcular las de $A$:
-
-\begin{align*}
-    \lambda'(t) &= \frac{-1}{3} (vol\Omega)^{1/3} v(t)^{-4/3} v'(t) \\
-    \lambda''(t) &= \frac{-1}{3} (vol\Omega)^{1/3} \left[ \frac{-4}{3}v(t)^{-7/3} v'(t)^2 + v(t)^{-4/3}v''(t) \right]
-\end{align*}
-
-sustituyendo las derivadas de $v$ calculadas previamente y evaluando en $0$:
-
-\begin{align*}
-    \lambda'(0) &= \frac{A(S)}{3 vol \Omega} \\
-    \lambda''(0) &= \frac{4 A(S)^2}{9 (vol\Omega)^{2}} - \frac{2HA(S)}{3 vol\Omega} 
-\end{align*}
-
-Vamos a simplificar ahora las expresiones conseguidas, para ello, utilizando el \autoref{formulaminkowski}, la \textbf{fórmula de Minkowski}, y teniendo en cuenta de nuevo que $H$ es constante, nos queda:
-
+Vamos a simplificar ahora las expresiones conseguidas. Utilizando el \autoref{formulaminkowski}, la \textbf{fórmula de Minkowski}, y teniendo en cuenta de nuevo que $H$ es constante, nos queda:
+%
 \begin{equation}\label{minkowskiauxfunc}
-    A(S) + H\int_S \langle p, N(p) \rangle dp = 0
+    A(S) + H\int_S \langle p, N(p) \rangle \, dp = 0.
 \end{equation}
 
-Aplicando el \textbf{teorema de divergencia clásico} a $S$, su dominio interior $\Omega$ y al campo identidad $X: \bar{\Omega} \longrightarrow \rtres$ dado por $X(t) = t$, para cada $t \in \bar{\Omega}$. Su divergencia es la función constante 3. Luego:
-
+Por otro lado, la expresión para $vol \, \Omega$ en la definición \autoref{volumensuperficiecompacta} nos dice que:
+%
 \begin{equation*}
-    vol \Omega = \frac{-1}{3}\int_S \langle p, N(p) \rangle dp
+    vol \, \Omega = \frac{-1}{3}\int_S \langle p, N(p) \rangle \, dp
+\end{equation*}
+%
+sustituyendo esta información en la \autoref{minkowskiauxfunc}, se deduce que:
+%
+\begin{equation*}
+    A(S) - 3H vol \, \Omega = 0
+\end{equation*}
+%
+de donde:
+%
+\begin{equation*}
+    vol \, \Omega = \frac{A(S)}{3H}.
 \end{equation*}
 
-sustituyendo en \autoref{minkowskiauxfunc}:
-
-\begin{equation*}
-    A(S) - 3Hvol \Omega = 0
-\end{equation*}
-
-despejamos el volumen:
-
-\begin{equation*}
-    vol \Omega = \frac{A(S)}{3H}
-\end{equation*}
-
-Ahora, sustituyendo en las derivadas de $\lambda$, simplificamos:
-
+Ahora, sustituyendo la igualdad previa en las derivadas de $\lambda$, llegamos a:
+%
 \begin{align*}
-    \lambda'(0) &= H \\
-    \lambda''(0) &= 2H^2
+    \lambda'(0) &= H, \\
+    \lambda''(0) &= 2H^2.
 \end{align*}
 
-Por tanto, calculamos las derivadas de \autoref{funcA} que buscábamos:
-
+Ya podemos calcular las derivadas $A'(0)$ y $A''(0)$ a partir de la \autoref{funcA}. Tenemos:
+%
 \begin{align*}
-    A'(t) &= 2\lambda(t)a(t)\lambda'(t) + a'(t)\lambda(t)^2 \\
-    A''(t) &= 2\left [ \lambda'(t)^2a(t) + 2\lambda(t)\lambda'(t)a'(t) + a(t)\lambda(t)\lambda''(t) \right] + a''(t)\lambda(t)^2
+    A'(t) &= 2\lambda(t)a(t)\lambda'(t) + a'(t)\lambda(t)^2, \\
+    A''(t) &= 2\left [ \lambda'(t)^2a(t) + 2\lambda(t)\lambda'(t)a'(t) + a(t)\lambda(t)\lambda''(t) \right] + a''(t)\lambda(t)^2.
+\end{align*}
+%
+sustituyendo los valores calculados de $a'(0)$, $a''(0)$, $\lambda'(0)$ y $\lambda''(0)$, nos queda:
+%
+\begin{align*}
+    A''(0) &= 2\left[ H^2A(S) -4H^2A(S) + 2H^2A(S) \right] + 2\int_S K \, dS \\
+    &= -2H^2A(S) + 2\int_S K \, dS \\
+    &= -2\int_S (H^2-K) \, dS.
 \end{align*}
 
-sustituyendo las ecuaciones calculadas previamente y evaluando en $0$, nos queda:
-
-\begin{align*}
-    A''(0) &= 2\left[ H^2A(S) -4H^2A(S) + 2H^2A(S) \right] + 2\int_S KdS \\
-    &= -2H^2A(S) + 2\int_S KdS \\
-    &= -2\int_S (H^2-K) dS
-\end{align*}
-
-Sabemos que $A''(t) \geq 0$, luego $\int_S (H^2-K) dS \leq 0$, también sabemos que toda superficie cumple $H^2-K \geq 0$ por tanto:
+Sabemos que $A''(0) \geq 0$, luego $\int_S (H^2-K) \, dS \leq 0$. Como por otro lado toda superficie cumple $H^2-K \geq 0$, deducimos que:
 
 \begin{equation*}
-    0 \leq -2\int_S (H^2-K) dS \leq 0
+    0 \leq -2\int_S (H^2-K) dS \leq 0,
 \end{equation*}
-
-luego implica que $H^2-K = 0$ en S. Por tanto, tenemos que $S$ es una superficie compacta, conexa y totalmente umbilical, y por el \autoref{umbilicaltheorem}, \textbf{teorema de clasificación de superficies totalmente umbilicales}, podemos concluir que $S$ es una esfera.
-
+%
+lo que implica que $H^2-K = 0$ en S. Por tanto, tenemos que $S$ es una superficie compacta, conexa y totalmente umbilical, y por el \autoref{umbilicaltheorem}, \textbf{teorema de clasificación de superficies totalmente umbilicales}, podemos concluir que $S$ es una esfera.
 \end{proof}
+
+\paragraph{NOTA.} Una demostración similar funciona en dimensión más alta y permite probar que toda hipersuficie compacta y conexa en $\rmath^n$ minimizando el área (n-1)-dimensional con volumen fijo debe ser una esfera.
