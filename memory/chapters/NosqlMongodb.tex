@@ -155,14 +155,28 @@ La segunda forma para implementar operaciones de agregación es mediante el fram
 
 Las etapas permitidas para este operador se pueden encontrar en la \href{https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/}{documentación del operador}. En nuestra propuesta se proporciona una serie de operadores adicionales que se pueden utilizar en las etapas de \textit{match} y \textit{projection}.
 
-La etapa \textbf{match}, como se describe en su propia documentación, sirve para filtrar los documentos que van a pasar a la siguiente etapa. Selecciona aquellos que cumplan ciertas condiciones descritas mediante los operadores permitidos para esta etapa que pueden verse \href{https://docs.mongodb.com/manual/reference/operator/query/}{aquí}. Los operadores que hemos extendido para trabajar con datos difusos son:
+La etapa \textbf{match}, como se describe en su propia documentación, sirve para filtrar los documentos que van a pasar a la siguiente etapa. Selecciona aquellos que cumplan ciertas condiciones descritas mediante los operadores\footnote{https://docs.mongodb.com/manual/reference/operator/aggregation/} permitidos para esta etapa. Los operadores que hemos extendido para trabajar con datos difusos son:
 
-\begin{itemize}
+\begin{itemize}\label{mongooperators}
     \item \textbf{\$eq}: selecciona los documentos cuyo valor coincida con el especificado.
     \item \textbf{\$gt}: selecciona los documentos cuyo valor sea mayor que el especificado.
     \item \textbf{\$gte}: selecciona los documentos cuyo valor sea mayor o igual que el especificado.
     \item \textbf{\$lt}: selecciona los documentos cuyo valor sea menor que el especificado.
     \item \textbf{\$lte}: selecciona los documentos cuyo valor sea menor o igual que el especificado.
+\end{itemize}
+
+Además de estos, vamos a ver los que nos serán de utilidad para su implementación:
+
+\begin{itemize}
+    \item \textbf{\$and}: Operador lógico, recibe una lista de expresión y filtra aquellos documentos que cumplan con todas ellas.
+    \item \textbf{\$or}: Operador lógico, recibe una lista de expresión y filtra aquellos documentos que cumplan al menos una de ellas.
+    \item \textbf{\$add}: Operador aritmético, recibe una lista de expresiones, que deben de ser evaluadas como un número, y suma todas ellas.
+    \item \textbf{\$substract}: Operador aritmético, recibe una lista de expresiones, que deben de ser evaluadas como un número, y resta todas ellas.
+    \item \textbf{\$multiply}: Operador aritmético, recibe una lista de expresiones, que deben de ser evaluadas como un número, y multiplica todas ellas.
+    \item \textbf{\$divide}: Operador binario aritmético, recibe una lista de 2 expresiones y devuelve la división del primero de ellos entre el segundo.
+    \item \textbf{\$cond}: Operador ternario condicional, recibe una lista de 3 expresiones y permite evalua la segunda o la tercera en función del resultado obtenido en la primera. Este operador nos permite realizar los clásicos \textit{if-else} de cualquier lenguaje de programación.
+    \item \textbf{\$arrayElemAt}: Operador para expresiones con arrays. Recibe una lista de 2 expresiones, donde el primer parámetro es el campo que corresponde con el array y la segunda es el índice del array que se quiere obtener. Devuelve el valor que se encuentre en la posición solicitada del array.
+    \item \textbf{\$expr}\footnote{\url{https://docs.mongodb.com/manual/reference/operator/query/expr/}}: El operador ``expr'' es un operador de consultas, permite el uso\footnote{Uso de operador expr con expresiones condicionales: \url{https://docs.mongodb.com/manual/reference/operator/query/expr/\#using-expr-with-conditional-statements}} de expresiones de agregación en el lenguaje de consultas. El uso que nos interesa es el combinado con el operador ``\$cond''.
 \end{itemize}
 
 La etapa \textbf{projection} sirve para establecer que campos mostrar de la colección resultante. Nos permite tanto eliminar campos del propio documento, como generar y visualizar campos nuevos. En esta parte nos hemos centrado en ampliar la posibilidad de proyectar el grado de cumplimiento para los campos difusos.

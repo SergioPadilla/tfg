@@ -176,7 +176,7 @@ Veamos ahora las propuestas que se han realizado para bases de datos utilizando 
 
 Las distintas propuestas son las dadas por Buckles y Petry en \cite{buckles, buckles2, buckles3} basado en el concepto de relación de similitud, Prade y Testemale en \cite{prade, prade2, prade3, prade4} basada en la teoría de posibilidad, Umano y Fukami en \cite{fukami, fukami2, fukami3, fukami4} basado también en la teoría de la posibilidad, el modelo propuesto por Zemankova y Kaendel en \cite{zemankova, zemankova2} que realiza una representación imperfecta similar a los modelos posibilísticos, pero que adicionalmente desarrolla un lenguaje de manipulación de datos que analiza las relaciones entre posibilidad y certeza. Por último, la propuesta de Medina, Pons y Vila \cite{gefred}, el modelo GEFRED, que pretende unificar todas las propuestas anteriores y dar una solución completa al tratamiento de información imprecisa en base de datos relacional, se basa en lo que llaman \textit{Dominio difuso generalizado} y \textit{relación difusa generalizada}, a través de los cuales, GEFRED redefine los operadores del algebra relacional en el llamado \textit{Álgebra relacional difuso generalizado}. No entramos en detalle de estos operadores pues se trata de lenguaje SQL que no utilizaremos en este trabajo, pero puede verse en \cite{gefred}.
 
-\subsection{Operadores difusos}
+\subsection{Operadores difusos}\label{cdeg}
 
 Para el tratamiento de información difusa, es necesario definir ciertos operadores para poder ejecutar consultas sobre la base de datos. En esta sección veremos los operadores que hemos utilizado para trabajar con esta información y el cómo obtener cada uno de ellos.
 
@@ -302,3 +302,5 @@ Para obtener el grado en que $A$ es \texttt{necesariamente} menor o igual que $B
                     \end{array}  } \right.
 \end{equation}
 \end{definition}
+
+Una representación visual de lo que implica cada uno de estos operadores, puede verse en \cite[p.~172]{tesispepe}.
