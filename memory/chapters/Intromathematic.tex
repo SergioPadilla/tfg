@@ -1,13 +1,62 @@
 \section{Introducción}
 
-En este trabajo se abordará el problema isoperimétrico en $\rtres$. Se demostrará que dado un volumen fijo en $\rtres$, la superficie que encierra dicho volumen con área mínima es la esfera $\unitsphere$. Para llevarlo a cabo, se introducirá la teoría de integración en superficies, las técnicas variacionales y se terminará el trabajo probando que las esferas son las únicas superficies isoperimétricas mediante la prueba de Wente.
+En este trabajo se abordará el problema isoperimétrico en $\rtres$. Se demostrará que dado un volumen fijo en $\rtres$, la superficie que encierra dicho volumen con área mínima es la esfera $\unitsphere$ y que además, es la única.
+
+Se introducirá la teoría de integración en superficies en la que veremos que las propiedades que conocemos para las integrales en el sentido de Lebesgue se extienden para superficies. Haremos una introducción a los entornos tubulares y superficies paralelas para obtener las primeras variaciones del área y del volumen que necesitamos para ver que las superficies isoperimétricas tienen curvatura constante y se terminará el trabajo probando que las esferas son las únicas superficies isoperimétricas mediante la prueba de Wente.
 
 \subsection{Contextualización y descripción del trabajo}
 
-El \textbf{Cálculo variacional} es un problema matemático que estudio la solución a problemas de optimización clásicos. Es sabido, y así se estudia en las asignaturas vistas durante el doble grado, que el problema de encontrar una curva plana con perímetro mínimo para encerrar un área dada tiene cómo solución la circunferencia. Pero, ¿qué pasa en espacios de mayor dimensionalidad?. Cuando estudiamos este problema en $\rtres$, esto es, dado un volumen fijo, ¿Cuál es la superficie de todas las que encierran el volumen con área mínima?, los cálculos se complican, pero es más, este problema se entienda a dimensionalidad $\rmath^n$.
+El \textbf{cálculo variacional} es un problema matemático que estudio la solución a problemas de optimización clásicos. Es sabido, y así se estudia en las asignaturas vistas durante el doble grado, que el problema de encontrar una curva plana con perímetro mínimo para encerrar un área dada tiene cómo solución la circunferencia. Pero, ¿qué pasa en espacios de mayor dimensionalidad?. Cuando estudiamos este problema en $\rtres$, esto es, dado un volumen fijo, ¿Cuál es la superficie de todas las que encierran el volumen con área mínima?, los cálculos se complican, pero es más, este problema se extiende a cualquier dimensionalidad.
 
-Los griegos ya estudiaron el problema isoperimétrico en $\rtres$, sabían que la solución tenía que ser la esfera, pero el primero en probarlo fue H.A. Schwarz usando herramientas de simetrización. Posteriormente, se han realizado otras demostraciones de este problema, pero sin duda, cabe destacar la prueba de A. D. Alexandrov, la cuál se apoya en las propiedades de las soluciones de ciertas ecuaciones en derivadas parciales. Para dar un enfoque más moderno, ya que la demostración de Alexandrov se puede encontrar en casi toda la literatura actual, en este trabajo se dará una demostración alternativa, basada en la prueba de H. Wente en \cite{wenteproof}. Esta demostración tiene un enfoque más geométrico y utiliza técnicas como la clasificación de superficies totalmente umbilicales vista en la asignatura de Curvas y Superficies durante el doble grado.
+La idea de extender el problema a $\rtres$ es encontrar soluciones a problemas que ya se han probado para curvas. Se plantean preguntas como, ¿cuales son las superficies compactas que tienen curvatura de Gauss o media constante? Este problema buscando superficies con curvatura de Gauss constante fue estudiado por F. Minding en 1838, para el caso de superficies compactas, sabemos por el teorema de Hilbert-Liebmann que solo lo cumplen las esferas, esto fue demostrado por H. Liebmann en 1899, fue redescubierto por D. Hilbert en 1901 y puede encontrarse una simplificación de la demostración en \cite{montielrosbook}. El problema de encontrar las superficies compactas con curvatura media constante se plantea más complicado y es A. D. Alexandrov quién publica la demostración del teorema que lleva su nombre en el que demuestra de nuevo que las esferas son las únicas superficies compactas con curvatura media constante.
+
+Los griegos ya estudiaron el \textbf{problema isoperimétrico en $\rtres$}, sabían que la solución tenía que ser la esfera, pero el primero en probarlo fue H.A. Schwarz usando herramientas de simetrización. Posteriormente, se han realizado otras demostraciones de este problema, pero sin duda, cabe destacar la prueba de A. D. Alexandrov, la cuál se apoya en las propiedades de las soluciones de ciertas ecuaciones en derivadas parciales.
+
+En este trabajo, se estudiará todo lo relativo al problema isoperimétrico, se demostrará la desigualdad isoperimétrica basada en la desigualdad de Brunn-Minkowski y se probará que las esferas son las únicas superficies isoperimétricas. Con el objetivo de dar un enfoque más moderno y novedoso, ya que la demostración de Alexandrov se puede encontrar en casi toda la literatura actual, se dará una demostración alternativa, basada en la prueba de H. Wente en \cite{wenteproof}. Esta demostración tiene un enfoque más geométrico y utiliza técnicas como la clasificación de superficies totalmente umbilicales vista en la asignatura de curvas y superficies durante el doble grado.
 
 \subsection{Estructura del trabajo}
 
+El trabajo se estructura en diferentes capítulos con el objetivo de hacer un desarrollo ordenado de la teoría matemática necesaria. La distribución se detalla a continuación.
 
+En el \autoref{chapter:preliminary} introduciremos conceptos básicos que necesitaremos en los capítulos posteriores. La mayoría de ellos son resultados probados durante el doble grado, como por ejemplo el teorema de clasificación de superficies totalmente umbilicales, que nos será fundamental para el último capítulo, otros como el teorema de Brower-Samelson se probarán durante el mismo. Contiene una pequeña sección en la que se habla de diferenciación para funcines que salen de $S\times I$ con $S$ una superficie e $I$ un intervalo, ya que lo necesitaremos a lo largo del trabajo en varias ocasiones. Por último, también se hará una introducción a los entornos tubulares y las superficies paralelas.
+
+En el \autoref{chapter:surfacesintegration} veremos las herramientas de integración en superficies. Veremos como las propiedades de las integrales en el sentido de Lebesgue son extensibles para las superficies. Este capítulo incluye los teorema de la divergencia y por último realizamos algunos cálculos que nos serán de utilidad en los capítulos posteriores, estos incluyen el cálculo del área de una esfera, el volumen de una bola, el volumen encerrado por una superficie paralela y el área de una superficie paralela.
+
+En el \autoref{chapter:isoperimetricinequality} veremos uno de los resultados más importantes de este trabajo. Comenzaremos el capítulo introduciendo algunos conceptos y resultados básicos, como la fórmula de Minkowski y sobre la suma conjuntista, veremos algunas propiedades de esta última y probaremos la desigualda de Minkowski. Con esto, podremos enunciar y demostrar la \textbf{desigualdad isoperimétrica} y algunos resultados directos de la misma. Uno de los resultados más importantes que veremos es que las esferas son superficies isoperimétricas.
+
+Finalmente, en el \autoref{chapter:uniquenesssphere} mostraremos que \textbf{las esferas son las únicas superficies isoperimétricas}. Para llegar a esto, haremos una introducción a las técnicas variacionales, asociaremos a cada función diferenciable $f$ sobre una superficie compacta y conexa $S$ una familia de superficies $S_t(f)$ y calcularemos las derivadas primeras asociadas a los funcionales del área y el volumen. Con estas expresiones y la desigualdad isoperimétrica, podremos probar que si $S$ es isoperimétrica, entonces tiene curvatura media constante. Con esto, podremos probar mediante la prueba de Wente que las esferas son las únicas superficies isoperimétricas.
+
+\subsection{Bibliografía fundamental}
+
+Para llevar a cabo este trabajo se han consultado de forma puntual diversidad de bibliografía, pero cabe destacar tres, que son las que nos han guiado y nos permiten obtener los resultados importantes:
+
+\begin{itemize}
+    \item Curves and Surfaces, por Sebastián Montiel y Antonio Ros \cite{montielrosbook} es la referencia principal para este trabajo, contiene la mayoría de resultados que se prueban en este texto, especialmente se ha consultado para los teoremas de la divergencia y el capítulo donde se prueban las desigualdades de Brunn-Minkowski y desigualdad isoperimétrica.
+    \item A note on the stability theorem of J.L. Barbosa and M.Do Carmo for closed surfaces of constant mean curvature, por H. Wente \cite{wenteproof}, fundamental para la prueba de la unicidad de las esferas como superficies isoperimétricas probada en el \autoref{chapter:uniquenesssphere}.
+    \item El problema isoperimétrico en el espacio euclídeo, por María de los Ángeles Medina Pozo \cite{mastermedinapozo}, esta tesis de master ha sido la base para la estructura del texto y la distribución de capítulos, además de servir de consulta alternativa para entender algunas demostraciones.
+\end{itemize}
+
+\subsection{Objetivos}
+
+El objetivo con el que se comenzó este trabajo fue el estudio completo del problema isoperimétrico en $\rtres$
+
+El trabajo se ha desarrollado por etapas, los objetivos los hemos marcado prácticamente por capítulos, buscando la consecución de objetivos de forma gradual. 
+
+Se ha completado el objetivo de hacer una introducción para recordar conceptos visto en el doble grado en el \autoref{chapter:preliminary} y ver la introducción a los entornos tubulares y superficies paralelas y la demostración del teorema de Brower-Salmelson. Se propuso el objetivo de demostrar en ese mismo capítulo el teorema de Jordan-Brower, que finalmente no se ha llevado a cabo por falta de tiempo.
+
+El objetivo de introducir la teoría de integración en el \autoref{chapter:surfacesintegration} en superficies se ha cumplido en su totalidad.
+
+El objetivo de la desigualdad isoperimétrica \autoref{chapter:isoperimetricinequality} se ha llevado a cabo extendiendo con algunos resultados directos, se han demostrado todos los resultados previos y la desigualdad de Brunn-Minkowski tal y cómo se propuso en un principio.
+
+El \autoref{chapter:uniquenesssphere} se ha modificado completamente, se propuso hacer la demostración de la unicidad de las esferas como superficies isoperimétricas mediante el teorema de Alexandrov. Pero tras una evaluación, se ha decidido mostrar la prueba de Wente ya que su fuente original es un artículo publicado por el autor. Este cambio de objetivos, con el aumento del trabajo que conlleva, ha supuesto llegar con falta de tiempo al final del proyecto y no poder mostrar la demostración de Alexandrov.
+
+A continuación se enumeran las materias del doble grado más relacionadas con este trabajo:
+\begin{itemize}
+\item Curvas y superficies
+\item Geometría I
+\item Geometría II
+\item Geometría III
+\item Análisis Matemático II
+\end{itemize}
+
+\newpage

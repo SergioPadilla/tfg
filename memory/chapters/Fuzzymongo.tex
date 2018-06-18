@@ -145,7 +145,7 @@ obtendríamos:
 
 \section{Implementación}
 
-En esta sección se va a detallar la implementación de los algoritmos necesarios para implementar el comando $fuzzy\_find$. Se va a hacer referencia a las líneas del código incluido en el apéndice \ref{appendix:code}.
+En esta sección se va a detallar la implementación de los algoritmos necesarios para implementar el comando $fuzzy\_find$. Se va a hacer referencia a las líneas del código incluido en el \autoref{appendix:code}.
 
 La implementación se ha realizado en lenguaje Javascript, el motivo principal es preparar scripts que son ejecutables directamente con el comando ``mongo'' especificando la conexión con la base de datos y la ruta al script.
 %
@@ -211,7 +211,7 @@ Y los elementos seleccionados finalmente son los que cumplan:
 \end{align*}
 %
 donde $L_B$ y $U_B$ son los cortes inferior y superior respectivamente para cada documento de la base de datos calculados con las mismas ecuaciones que han calculado $U_{CT}$ y $L_{CT}$ pero con los valores de $B$.
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:feq:start} y \ref{code:feq:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:feq:start} y \ref{code:feq:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$feq}:
@@ -260,7 +260,7 @@ donde $L_B$ y $U_B$ son los cortes inferior y superior respectivamente para cada
     U_B &= T * \delta_B + (1-T)\gamma_B \\
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:nfeq:start} y \ref{code:nfeq:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:nfeq:start} y \ref{code:nfeq:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nfeq}:
@@ -305,7 +305,7 @@ donde $L_B$ es el corte inferior para cada documento de la base de datos dado po
     L_B &= T * \gamma_B + (1-T)\delta_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:fgt:start} y \ref{code:fgt:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:fgt:start} y \ref{code:fgt:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$fgt}:
@@ -344,7 +344,7 @@ donde $L_B$ es el corte inferior para cada documento de la base de datos dado po
     L_B &= T * \alpha_B + (1-T)\beta_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:nfgt:start} y \ref{code:nfgt:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:nfgt:start} y \ref{code:nfgt:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nfgt}:
@@ -383,7 +383,7 @@ donde $L_B$ es el corte inferior para cada documento de la base de datos dado po
     L_B &= T * \gamma_B + (1-T)\delta_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:fgte:start} y \ref{code:fgte:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:fgte:start} y \ref{code:fgte:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$fgte}:
@@ -422,7 +422,7 @@ donde $L_B$ es el corte inferior para cada documento de la base de datos dado po
     L_B &= T * \alpha_B + (1-T)\beta_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:nfgte:start} y \ref{code:nfgte:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:nfgte:start} y \ref{code:nfgte:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nfgte}:
@@ -461,7 +461,7 @@ donde $U_B$ es el corte inferior para cada documento de la base de datos dado po
     U_B &= T * \beta_B + (1-T)\alpha_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:flt:start} y \ref{code:flt:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:flt:start} y \ref{code:flt:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$flt}:
@@ -500,7 +500,7 @@ donde $U_B$ es el corte inferior para cada documento de la base de datos dado po
     U_B &= T * \delta_B + (1-T)\gamma_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:nflt:start} y \ref{code:nflt:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:nflt:start} y \ref{code:nflt:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nflt}:
@@ -539,7 +539,7 @@ donde $U_B$ es el corte inferior para cada documento de la base de datos dado po
     U_B &= T * \beta_B + (1-T)\alpha_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:flte:start} y \ref{code:flte:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:flte:start} y \ref{code:flte:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$flte}:
@@ -578,7 +578,7 @@ donde $U_B$ es el corte inferior para cada documento de la base de datos dado po
     U_B &= T * \delta_B + (1-T)\gamma_B
 \end{align*}
 %
-La implementación de este operador puede verse en el apéndice \ref{appendix:code} entre las líneas \ref{code:nflte:start} y \ref{code:nflte:end}.
+La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:nflte:start} y \ref{code:nflte:end}.
 
 \begin{example}
 Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nflte}:
@@ -591,7 +591,7 @@ Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nflte}:
 
 \subsection{Operadores de proyección}
 
-Con el objetivo de poder proyectar en el resultado final el grado de pertenencia de cada documento para la condición dada, se han implementados todos los operadores de proyección correspondientes, basados en las ecuaciones correspondientes vista en \ref{cdeg}.
+Con el objetivo de poder proyectar en el resultado final el grado de pertenencia de cada documento para la condición dada, se han implementados todos los operadores de proyección correspondientes, véase en el \autoref{appendix:code} líneas \ref{code:projection:start} y \ref{code:projection:end} , basados en las ecuaciones correspondientes vista en \ref{cdeg}.
 
 Para utilizarlos, basta con añadir en la proyección el nombre del atributo difuso que queremos proyectar y añadir la cadena \texttt{'\_cdeg'}, el comando detectará que se quiere proyectar grado de pertenencia y aplicará la función correspondiente para ello.
 

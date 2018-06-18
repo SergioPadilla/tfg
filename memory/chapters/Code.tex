@@ -264,7 +264,7 @@ function nflte(field_name, value, threshold) { |\label{code:nflte:start}|
 //                         //
 /////////////////////////////
 
-function feq_cdeg(field_name, value) {
+function feq_cdeg(field_name, value) { |\label{code:projection:start}|
   return {
     $cond: [
       {
@@ -825,7 +825,7 @@ function nflte_cdeg(field_name, value) {
       }
     ]
   };
-}
+} |\label{code:projection:end}|
 
 ////////////////////////////////
 //                            //
