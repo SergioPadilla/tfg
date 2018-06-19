@@ -1,5 +1,5 @@
 \label{propuesta}
-Una vez introducida la teoría de conjuntos difusos en el capítulo previo y de dar una introducción a las bases de datos no relacionales, vamos a realizar una propuesta para la base de datos NoSQL, MongoDB, para dotarla de capacidad para la el manejo de datos difusos.
+Una vez introducida la teoría de conjuntos difusos en el capítulo previo y de dar una introducción a las bases de datos no relacionales, vamos a realizar una propuesta para la base de datos NoSQL, MongoDB, para dotarla de capacidad para el manejo de datos difusos.
 
 En la literatura podemos encontrar trabajos con propuestas para bases de datos NoSQL, véase \cite{fuzzyquerygraph, fuzzyquerygraph2, fuzzyquerygraph3}, donde se pueden encontrar propuestas para bases de datos basadas en grafos o \cite{fuzzyqueryhbase} donde se habla de modelado de conjuntos difusos en la base de datos HBase. En \cite{fuzzyquerymongo} podemos encontrar una propuesta para realizar consultas difusas en la base de datos MongoDB, el cuál hemos utilizado para sacar algunas ideas sobre las que se basan nuestra propuesta.
 
@@ -10,16 +10,16 @@ El objetivo de la propuesta que se presenta en este trabajo es mantener la compa
 Dependiendo del tipo de dato, acordamos su representación como sigue:
 
 \begin{itemize}
-    \item Datos precisos: Hacen referencia a los datos comunes de MongoDB, enteros, fechas, cadenas de texto, arrays, documentos... Estos datos se seguirán representando con el tipo de dato correspondiente y se trabajará con ellos de forma nativa.
-    \item Datos difusos: Como ya adelantamos en los capítulos previos, la forma de trabajar con datos difusos que hemos utilizado es mediante los números difusos \ref{fuzzynumbers} de tipo \textbf{trapezoides} \ref{trapezoidrepresentation}. Para representar esto en MongoDB hemos utilizado \texttt{arrays} con cuatro elementos de tipo numérico.
+    \item Datos precisos: Hacen referencia a los datos comunes de MongoDB, enteros, fechas, cadenas de texto, arrays, documentos... Estos datos se seguirán representando con el tipo de dato de MongoDB correspondiente y se trabajará con ellos de forma nativa.
+    \item Datos difusos: Como ya adelantamos en los capítulos previos, la forma de trabajar con datos difusos que hemos utilizado es mediante los números difusos \ref{fuzzynumbers} de tipo \textbf{trapezoidal} \ref{trapezoidrepresentation}. Para representar esto en MongoDB hemos utilizado \texttt{arrays} con cuatro elementos de tipo numérico, representando los valores $\alpha$, $\beta$, $\gamma$ y $\delta$, del trapezoide, respectivamente.
 \end{itemize}
 
 \begin{example}
-Vamos a introducir una colección que nos valdrá de ejemplo a lo largo del capítulo para afianzar los conceptos y hacer las demostraciones de las implementaciones que se irán viendo.
+Vamos a introducir una colección que nos valdrá de ejemplo a lo largo del capítulo para ilustrar los conceptos y hacer las demostraciones de las implementaciones que se irán viendo.
 
 El problema que nos planteamos es una base de datos con viviendas. La motivación de este tipo de datos es que algunos de los atributos que utiliza, pueden tratarse fácilmente como difusos, por ejemplo, cuando hablamos del precio o de la superficie de una vivienda, habitualmente en el lenguaje oral es fácil definirlo con un rango de valores o una expresión imprecisa: ``...quiero gastarme entre $110000$€ y $120000$€...'', ``...me gustaría una casa que tenga alrededor de $100m^2$...''.
 
-Un ejemplo de un documento de esta colección quedaría:
+Un ejemplo de un documento de esta colección tendría la estructura siguiente:
 
 \begin{lstlisting}[numbers=none]
 {
@@ -40,11 +40,11 @@ donde los campos \texttt{precio},  \texttt{superficie} y \texttt{habitaciones} s
 
 En \cite{tesismedina} se expuso un módulo para permitir extender la capacidad de un SGBDR clásico para que pueda representar y manipular información imprecisa. En este trabajo se ha realizado una prueba de concepto sobre MongoDB mediante la implementación del comando \textbf{fuzzy\_find}, que nos permitirá realizar consultas sobre una base de datos que contenga datos de tipo difuso.
 
-Para llevar a cabo esto, la utilidad que nos provee MongoDB para \href{https://docs.mongodb.com/manual/tutorial/store-javascript-function-on-server/}{almacenar funciones javascript en el servidor de MongoDB}, nos permite su uso en cualquier contexto javascript.
+Para llevar esto a cabo, utilizaremos la capacidad que nos provee MongoDB para \href{https://docs.mongodb.com/manual/tutorial/store-javascript-function-on-server/}{almacenar funciones javascript en el servidor de MongoDB}, lo que nos permite su uso en cualquier contexto javascript.
 
-Consideramos una primera alternativa de implementación para esa función basada en el uso del operador de agregación \texttt{map-reduce} descrito en \ref{mapreduce}, pero tras unas pruebas con una cantidad de datos relativamente grande, no obteníamos el rendimiento que esperábamos, las consultas eran demasiado lentas y descartamos esta opción en favor de utilizar el operador de agregación \texttt{pipeline}, véase la sección \ref{pipeline}. Este operador proporciona más opciones de utilidad para nuestro propósito, nos permite utilizar índices y nos ofrece un rendimiento muy superior a la opción basada en el uso de \texttt{map-reduce}.
+Inicialmente consideramos una primera alternativa de implementación para esa función basada en el uso del operador de agregación \texttt{map-reduce} descrito en \ref{mapreduce}, pero tras unas pruebas con una cantidad de datos relativamente grande, no obteníamos el rendimiento que esperábamos, las consultas eran demasiado lentas y descartamos esta opción en favor de utilizar el operador de agregación \texttt{pipeline}, véase la sección \ref{pipeline}. Este operador proporciona más opciones de utilidad para nuestro propósito, nos permite utilizar índices y nos ofrece un rendimiento muy superior a la opción basada en el uso de \texttt{map-reduce}.
 
-\texttt{Fuzzy\_find} es un comando de consulta generalizado, en el sentido de que permite expresar consultas clásicas, véase ejemplo~\ref{example:viviendasqueries}, sin cláusulas difusas, y consultas que combinen cláusulas clásicas con cláusulas difusas. De este modo no solo no pierde la funcionalidad de la que mongo provee inicialmente sino que la extiende.
+\texttt{Fuzzy\_find} es un comando de consulta generalizado, en el sentido de que permite expresar consultas clásicas, véase ejemplo~\ref{example:viviendasqueries}, sin cláusulas difusas, y consultas que combinen cláusulas clásicas con cláusulas difusas. De este modo, no solo no pierde la funcionalidad que mongoDB provee inicialmente, sino que la combina y extiende con capacidades para el tratamiento difuso de la información.
 
 \subsection{Sintaxis del comando \texttt{fuzzy\_find}}
 
@@ -155,9 +155,9 @@ La implementación se ha realizado en lenguaje Javascript, el motivo principal e
 %
 de esta forma facilitamos la integración del comando al usuario final.
 
-Para optimizar la búsqueda utilizando el comando \texttt{aggregate}, necesitamos hacer primero una etapa \texttt{match} que filtre lo máximo posible, pues recordemos que esta etapa es la única que aprovechará la indexación para optimizar la búsqueda. Es por esto que no podemos aprovechar directamente las fórmulas para obtener el grado de pertenencia de cada tupla \ref{cdeg} y después evaluar con el umbral deseado, ya que esto obligaría a recorrer todos los documentos de la base de datos antes de filtrar y no sería eficiente. 
+Para optimizar la búsqueda utilizando el comando \texttt{aggregate}, necesitamos hacer primero una etapa \texttt{match} que filtre lo máximo posible, pues recordemos que esta etapa es la única que aprovechará la indexación para optimizar la búsqueda. Es por esto que no podemos aprovechar directamente las fórmulas descritas en \ref{cdeg} para obtener el grado de pertenencia de cada tupla y después evaluar con el umbral deseado, ya que esto obligaría a recorrer todos los documentos de la base de datos antes de filtrar y esto no sería eficiente. 
 
-Vamos a utilizar las técnicas de \textbf{preselección} y \textbf{selección} basadas en las estudiadas en \cite{indexingstrategies}. La técnica de preselección consiste en calcular los cortes superior, \texttt{U\_CT}, e inferior, \texttt{L\_CT}, sobre el trapezoide que se pretende comparar con los de la base de datos, para calcular estos cortes, es necesario el umbral mínimo (grado de pertenencia) que se quiere considerar, veremos como calcular cada uno de ellos dependiendo del operador en cuestión en las secciones posteriores. La técnica de selección, consistirá en evaluar y comparar los mismos cortes calculados sobre los trapezoides restante y comparar directamente con los cortes obtenidos en la etapa de preselección. Véase la figura~\ref{fig:preselection} obtenida de \cite{indexingstrategies} que ilustra cómo funcionan ambas etapas.
+Vamos a utilizar las técnicas de \textbf{preselección} y \textbf{selección} basadas en las estudiadas en \cite{indexingstrategies}. La técnica de preselección consiste en calcular los alfa-cortes inferior, \texttt{L\_CT} y superior, \texttt{U\_CT}, sobre el trapezoide que se pretende comparar con los almacenados en la base de datos. Para calcular estos alfa-cortes, es necesario el umbral mínimo (grado de pertenencia) que se quiere considerar, veremos como calcular cada uno de ellos dependiendo del operador en cuestión en las secciones posteriores. La técnica de selección, consistirá en evaluar y comparar estos alfa-cortes con los alfa-cortes calculados sobre los trapezoides almacenados en la base de datos a consultar, para descartar aquellos trapezoides obtenidos en la etapa de preselección que no cumplan la condición establecida. La etapa de preselección utiliza índices definidos sobre los campos del trapezoide para acelerar el proceso de recuperación, aunque obtenga algunos trapezoides que después sean descartados en el proceso de selección. Véase la figura~\ref{fig:preselection} obtenida de \cite{indexingstrategies} que ilustra cómo funcionan ambas etapas.
 
 \begin{figure}[h]
   \centering
@@ -210,7 +210,7 @@ Y los elementos seleccionados finalmente son los que cumplan:
     U_B &\geq L_{CT} \\
 \end{align*}
 %
-donde $L_B$ y $U_B$ son los cortes inferior y superior respectivamente para cada documento de la base de datos calculados con las mismas ecuaciones que han calculado $U_{CT}$ y $L_{CT}$ pero con los valores de $B$.
+donde $L_B$ y $U_B$ son los cortes inferior y superior respectivamente para cada trapezoide del campo consultado de la base de datos $B$, calculados con las mismas ecuaciones que calculan $U_{CT}$ y $L_{CT}$ pero con los valores de $B$.
 La implementación de este operador puede verse en el \autoref{appendix:code} entre las líneas \ref{code:feq:start} y \ref{code:feq:end}.
 
 \begin{example}
@@ -591,9 +591,9 @@ Veamos un ejemplo de una consulta utilizando el operador \texttt{\$nflte}:
 
 \subsection{Operadores de proyección}
 
-Con el objetivo de poder proyectar en el resultado final el grado de pertenencia de cada documento para la condición dada, se han implementados todos los operadores de proyección correspondientes, véase en el \autoref{appendix:code} líneas \ref{code:projection:start} y \ref{code:projection:end} , basados en las ecuaciones correspondientes vista en \ref{cdeg}.
+Con el objetivo de poder proyectar en el resultado final el grado de pertenencia de cada documento para la condición dada, se han implementados todos los operadores de proyección correspondientes, véase en el \autoref{appendix:code} líneas \ref{code:projection:start} y \ref{code:projection:end} , basados en las ecuaciones correspondientes descritas en \ref{cdeg}.
 
-Para utilizarlos, basta con añadir en la proyección el nombre del atributo difuso que queremos proyectar y añadir la cadena \texttt{'\_cdeg'}, el comando detectará que se quiere proyectar grado de pertenencia y aplicará la función correspondiente para ello.
+Para utilizarlos, basta con añadir en la proyección el nombre del atributo difuso que queremos proyectar y añadir la cadena \texttt{'\_cdeg'}, el comando detectará que se quiere mostrar el grado de pertenencia y aplicará la función correspondiente para ello.
 
 \begin{example}
 Supongamos que queremos obtener todas las viviendas que tengan alrededor de 100$m^2$, teniendo en cuenta que entre $90m^2$ y $110m^2$ nos seguiría interesando pero no queremos que tenga menos de $80m^2$  mayor de $120m^2$, además queremos saber cuáles corresponden mejor con nuestro criterio, obteniendo el grado en que se cumple:
@@ -611,4 +611,106 @@ y obtendríamos:
 {id_inm: 235.0, superficie_cdeg: 0.1}
 \end{lstlisting}
 %
+\end{example}
+
+\begin{example}
+En este ejemplo, vamos a hacer una consulta más completa vamos a combinar una consulta con dos cláusulas difusas y una cláusula nativa, además en una de las dos cláusulas difusas, vamos a especificar solo un valor, de forma que el programa detectará y hará la conversión internamente para trabajar con los datos difusos.
+
+Supongamos una colección \textit{viviendas} con los siguientes documentos:
+\begin{lstlisting}[numbers=none]
+{
+    _id: ObjectId("5b2501805d492f2c6f51a79e"),
+    id_inm: 318.0,
+    tipo: "PISO",
+    precio: [116625.0,129218.0,131771.0,137828.0],
+    habitaciones: [2.0,2.0,3.0,3.0],
+    superficie: [60.0,60.0,60.0,60.0],
+    descripcion: "* CHURRIANA DE LA VEGA, 60 m2 utiles, 2 habitaciones, 1 bano, cocina amueblada, salon, suelos marmol, ascensor, puerta blindada, climalit, exterior, garaje. Ano 2005. Oportunidad!!! Precio: 129.217,60 euros (21.500.000 pts) Ref. 00232 Inm. Aqaba Tlf. 958 26 53 63 / 669 45 41 76."
+}
+{
+    _id: ObjectId("5b2501805d492f2c6f51a79f"),
+    id_inm: 319.0,
+    tipo: "PAREADO",
+    precio: [131760.0,132000.0,136674.0,139381.0],
+    habitaciones: [2.0,2.0,3.0,3.0],
+    superficie: [75.0,75.0,75.0,75.0],
+    descripcion: "* CHURRIANA DE LA VEGA, 75 m2. 2 dormitorios, bano, cocina y salon. Plaza de garaje. Nuevo a estrenar. Buenas calidades. Precio 132.000 euros. Inm. Alhamar Tlf. 958 26 68 90."
+}
+{
+    _id: ObjectId("5b2501805d492f2c6f51a7a0"),
+    id_inm: 321.0,
+    tipo: "PISO",
+    precio: [136568.0,138000.0,138900.0,139268.0],
+    habitaciones: [2.0,2.0,3.0,3.0],
+    superficie: [78.0,78.0,78.0,78.0],
+    descripcion: "* CHURRIANA DE LA VEGA, C/Habana Piso  en construccion de 78 m2,  2 habitaciones,  1 bano, cocina americana, comedor de 21 m2, terraza 6 m2, ,suelos de tarima flotante, pintura lisa, calefaccion totalmente instalada de calor azul.  garaje y trastero, En Construccion, le queda menos de 1 ano. Precio: 138.000,00 euros (22.962.952 pts) Ref:  40323. Inm. Tres Plazas Tlf. 958 25 06 46 / 677 40 97 28."
+}
+\end{lstlisting}
+
+Vamos a construir la consulta paso a paso para ir viendo la diferencia que obtenemos de documentos. Realizamos en primer lugar una consulta con cláusula difusa sobre el campo precio:
+%
+\begin{verbatim}
+fuzzy_find("viviendas", 
+           {precio: {$feq: [130000,140000,150000,160000]}}, 
+           {_id:0, id_inm:1, precio_cdeg:1})
+\end{verbatim}
+%
+y obtenemos el siguiente resultado:
+%
+\begin{lstlisting}[numbers=none]
+{ "id_inm" : 318, "precio_cdeg" : 0.4875132341035063 }
+{ "id_inm" : 319, "precio_cdeg" : 0.7382545053907296 }
+{ "id_inm" : 321, "precio_cdeg" : 0.8939043209876543 }
+\end{lstlisting}
+%
+Podemos comprobar que todos los documentos cumplen la condición porque no hemos marcado ningún umbral, fijemos ahora el umbral a 0.5:
+%
+\begin{verbatim}
+fuzzy_find("viviendas", 
+           {precio: {
+                $feq: [130000,140000,150000,160000], 
+                $thold:0.5
+            }}, 
+           {_id:0, id_inm:1, precio_cdeg:1})
+\end{verbatim}
+%
+y obtenemos el siguiente resultado:
+%
+\begin{lstlisting}[numbers=none]
+{ "id_inm" : 319, "precio_cdeg" : 0.7382545053907296 }
+{ "id_inm" : 321, "precio_cdeg" : 0.8939043209876543 }
+\end{lstlisting}
+%
+Volviendo a la primera consulta (sin especificar umbral), vamos a añadir una segunda cláusula, esta vez nativa para el atributo ``tipo'':
+%
+\begin{verbatim}
+fuzzy_find("viviendas", 
+           {precio: {$feq: [130000,140000,150000,160000]}, 
+            tipo:"PISO"}, 
+           {_id:0, id_inm:1, precio_cdeg:1})
+\end{verbatim}
+%
+y obtenemos el siguiente resultado, como esperábamos:
+%
+\begin{lstlisting}[numbers=none]
+{ "id_inm" : 318, "precio_cdeg" : 0.4875132341035063 }
+{ "id_inm" : 321, "precio_cdeg" : 0.8939043209876543 }
+\end{lstlisting}
+%
+Añadimos ahora una tercera cláusula difusa, para el atributo ``superficie'', especificando un valor simple en lugar de un trapezoide:
+%
+\begin{verbatim}
+fuzzy_find("viviendas", 
+           {precio: {$feq: [130000,140000,150000,160000]}, 
+            tipo:"PISO", 
+            superficie: {$fgt: 70}}, 
+           {_id:0, id_inm:1, 
+            precio_cdeg:1, superficie_cdeg:1})
+\end{verbatim}
+%
+obteniendo:
+%
+\begin{lstlisting}[numbers=none]
+{ "id_inm" : 321, "precio_cdeg" : 0.8939043209876543, "superficie_cdeg" : 1 }
+\end{lstlisting}
 \end{example}
