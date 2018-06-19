@@ -1,14 +1,14 @@
 \section{Introducción}
 
-En este trabajo estudiaremos teoría de conjuntos difusos para modelar matemáticamente información que utilizamos habitualmente para comunicarnos. A partir de ello, realizaremos una extensión de la funcionalidad de MongoDB para trabajar con información imprecisa.
+En este trabajo estudiaremos teoría de conjuntos difusos para modelar matemáticamente información imprecisa que utilizamos habitualmente para comunicarnos. Veremos algunas propuestas de como representar y tratar con este tipo de información en sistemas de bases de datos. A partir de ello, realizaremos una extensión de la funcionalidad del sistema de bases de datos MongoDB para representar y consultar información imprecisa.
 
 \subsection{Contextualización y descripción del trabajo}
 
-Las bases de datos tradicionales almacenan tipos de datos únicos, es decir, almacenan solo un tipo de dato concreto, número, cadena de texto, fecha... pero no están preparados para almacenar los tipos de datos difusos con las que las personas estamos acostumbrados a manejar. Por ejemplo, es muy común referirnos a la altura de una persona mediante etiqueta como "alto", "estatura media", etc, en una base de datos no es posible almacenar esta información ni realizar consultas como "obtén todos las personas altas". 
+Las bases de datos tradicionales almacenan tipos de datos precisos o ``crisp'', es decir, almacenan solo un tipo de dato concreto, número, cadena de texto, fecha... pero no están preparados para almacenar los tipos de datos difusos con las que las personas estamos acostumbrados a tratar. Por ejemplo, es muy común referirnos a la altura de una persona mediante etiqueta como ``alto'', ``estatura media'', etc; en una base de datos no es posible almacenar esta información, ni realizar consultas del tipo "obtén todos las personas altas". 
 
 Otro aspecto a tener en cuenta, es la llegada de las bases de datos NoSQL, que vienen a dar soluciones donde las bases de datos relacionales no llegan. Cada vez es más frecuente el uso de las primeras debido a la gran cantidad de datos que se recopilan hoy en día y la necesidad de explotarlos y sacar información valiosa de ellos, las bases de datos NoSQL suelen ofrecer alternativas más eficientes para estos casos. Es por ello que bases de datos como MongoDB, basada en documentos, es cada vez más usada y ahora mismo una de las más populares, su estructura hace que se adapte perfectamente a las aplicaciones web y su facilidad y versatibilidad de modelado de datos hace que sea una alternativa a tener en cuenta. Además, tiene soporte y librerías para la mayoría de lenguajes de programación utilizados.
 
-El presente trabajo pretende dar una solución de representación de conjuntos difusos en la base de datos NoSQL. Vamos a intentar dar una solución de operaciones ``fuzzy'' similar a la propuesta por Medina en \cite{tesismedina} para bases de datos relacionales, pero en base de datos NoSQL, intentando facilitar la extracción de información difusos y dotar a un sistema experto de la posibilidad de tomar mejores decisiones pudiendo interpretar información que para los humanos es común para expresarse.
+El presente trabajo pretende proponer una solución para la representación y tratamiento de información imprecisa en la base de datos NoSQL. Vamos a intentar dar una solución para operaciones de tipo ``fuzzy'' similar a la propuesta por Medina en \cite{tesismedina} para bases de datos relacionales, pero en bases de datos NoSQL, intentando facilitar la extracción de información difusos y dotar a un sistema experto de la posibilidad de tomar mejores decisiones pudiendo interpretar la información de una manera que los humanos utilizan habitualmente para expresarse.
 
 \subsection{Estructura del trabajo}
 
@@ -16,26 +16,26 @@ Es trabajo está dividido en diferentes capítulos para mejorar la organización
 
 En el \autoref{chapter:nosqlmongodb} daremos una introducción a las bases de datos NoSQL, explicando los diferentes tipos y propuestas que existen. Veremos las principales diferencias con los SGBDR y nos centraremos en explicar la base de datos seleccionada para la propuesta, MongoDB.
 
-En el \autoref{chapter:fuzzysets} veremos la teoría de conjuntos difusos. Se darán las definiciones y resultados necesarios para entender la teoría difusa y poder comprender cómo se va a almacenar en base de datos. Además, veremos distintas propuestas de bases de datos difusas y la definición de los operadores difusos que implementaremos en nuestra propuesta.
+En el \autoref{chapter:fuzzysets} veremos la teoría de conjuntos difusos. Se darán las definiciones y resultados necesarios para entender la teoría difusa y poder comprender cómo se va a almacenar y tratar este tipo de información en un sistema de base de datos. Además, veremos distintas propuestas de bases de datos difusas y la definición de los operadores difusos que implementaremos en nuestra propuesta.
 
-En el \autoref{propuesta} explicaremos la propuesta que hemos realizado para modelar conjuntos difusos en MongoDB. Explicaremos la función \texttt{fuzzy\_find} y los operadores utilizados en ella.
+En el \autoref{propuesta} explicaremos la propuesta que hemos realizado para modelar conjuntos difusos en MongoDB. Explicaremos la función \texttt{fuzzy\_find} mediante la que implementaremos la capacidad de consulta difusa en MongoDB, también describiremos los operadores que ésta proporciona para expresar las consultas difusas.
 
 \subsection{Bibliografía fundamental}
 
 Para este trabajo se han consultado muchas referencias, vamos a destacar entre todas ellas:
 
 \begin{itemize}
-    \item Bases de datos Objeto-relaciones difusas: Modelo, arquitectura y aplicaciones, Tesis doctoral por Carlos D. Barranco, contiene una propuesta de implementación difusa basada en propuesta de \cite{tesismedina}. Además ha sido fundamental en el \autoref{chapter:fuzzysets} para el entendimiento y redacción de la teoría difusa.
-    \item Tratamiento de la imprecisión en bases de datos relacionales: Extensión del modelo y adaptación de los SGBD actuales, tesis doctoral por José Galindo. Fundamental junto con la anterior para los conjuntos y operadores difusos. Tiene unas gráficas para facilitar el entendimiento de los operadores.
-    \item Manual de MongoDB. Utilizado para la implementación de la solución software propuesta.
-    \item Evaluation of indexing strategies for possibilistic queries based on indexing techniques available in traditional RDBMS, por Juan Miguel Medina, Carlos D. Barranco y Olga Pons, en este artículo ha sido utilizado para enteder e implementar el operador \texttt{feq}. Además contiene la estrategia de indexación que se usa para este tipo de implementación.
-    \item Indexing techniques to improve the performance of necessity-based fuzzy queries using classical indexing of RDBMS, por Juan Miguel Medina, Carlos D. Barranco y Olga Pons, el artículo es similar al anterior pero con la medida de necesidad, por lo que ha sido consultado para la implementación de los operadores basados en necesidad.
+    \item \textit{Bases de datos Objeto-relaciones difusas: Modelo, arquitectura y aplicaciones}, Tesis doctoral por Carlos D. Barranco, contiene una propuesta de implementación difusa basada en propuesta de \cite{tesismedina}. Además ha sido fundamental en el \autoref{chapter:fuzzysets} para el entendimiento y redacción de la teoría difusa.
+    \item \textit{Tratamiento de la imprecisión en bases de datos relacionales: Extensión del modelo y adaptación de los SGBD actuales}, tesis doctoral por José Galindo. Fundamental junto con la anterior para los conjuntos y operadores difusos. Tiene unas gráficas para facilitar el entendimiento de los operadores.
+    \item \textit{Manual de MongoDB} \cite{mongodb}. Utilizado para la implementación de la solución software propuesta.
+    \item \textit{Evaluation of indexing strategies for possibilistic queries based on indexing techniques available in traditional RDBMS}, por Juan Miguel Medina, Carlos D. Barranco y Olga Pons \cite{indexingstrategies}, en este artículo ha sido utilizado para enteder e implementar el operador \texttt{feq} que implementa la igualdad difusa basada en la medida de posibilidad. Además contiene la estrategia de indexación que se usa para este tipo de implementación.
+    \item \textit{Indexing techniques to improve the performance of necessity-based fuzzy queries using classical indexing of RDBMS}, por Juan Miguel Medina, Carlos D. Barranco y Olga Pons \cite{indexingneccesary}, el artículo es similar al anterior pero con la medida de necesidad, por lo que ha sido consultado para la implementación de los operadores basados en necesidad.
 \end{itemize}
 
 
 \subsection{Objetivos}
 
-El objetivo que se planteó inicialmente para el trabajo fue hacer una prueba de concepto sobre una base de datos NoSQL para poder trabajar con información imprecisa. Además, se pretendía dar alguna utilidad implementada para la base de datos para poder realizar consultas difusas.
+El objetivo que se planteó inicialmente para el trabajo fue hacer una prueba de concepto sobre una base de datos NoSQL para poder trabajar con información imprecisa. Ello precisaba estudiar la forma en que representar este tipo de información y la construcción de operadores para poder realizar consulta consultas difusas.
 
 El objetivo se ha conseguido completamente, se ha realizado un estudio de las bases de datos NoSQL en el \autoref{chapter:nosqlmongodb}. De ahí se ha elegido MongoDB por su uso extendido en Big Data y en aplicaciones web, además de ser una de las más utilizadas actualmente. Se ha dado una visión completa de la teoría de conjuntos difusos en el \autoref{chapter:fuzzysets}, documentando los números difusos que utilizaremos para representar información difusa en la base de datos. Por último se ha dado la propuesta del operador \texttt{fuzzy\_find} en el \autoref{propuesta} que permite las consultas clásicas de MongoDB pero además ofrece una funcionalidad para realizar consultas con cláusulas difusas.
 
@@ -48,6 +48,7 @@ A continuación se enumeran las materias del doble grado más relacionadas con e
     \item Fundamentos de bases de datos
     \item Inteligencia de negocio
     \item Inferencia estadística y probabilidad
+    \item Desarrollo de Aplicaciones para Internet
 \end{itemize}
 
 \newpage
