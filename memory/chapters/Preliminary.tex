@@ -47,16 +47,16 @@ Los vectores propios no nulos de $A_p$ se llaman \textbf{direcciones principales
 Se define la \textbf{curvatura de Gauss} de $S$ en $p$ como el número real 
 %
 \begin{equation*}
-    K(p)=det A_p=k_1(p)k_2(p)
+    K(p)=det A_p=k_1(p)k_2(p).
 \end{equation*}
 
 Se define la \textbf{curvatura media} de $S$ en $p$ como el número real 
 
 \begin{equation*}
-    H(p)=\frac{1}{2}tr A_p=\frac{k_1(p)+k_2(p)}{2}
+    H(p)=\frac{1}{2}tr A_p=\frac{k_1(p)+k_2(p)}{2}.
 \end{equation*}
 
-Se dice que $S$ es \textbf{una superficie llana} si $K(p)=0$, $\forall p \in S$
+Se dice que $S$ es \textbf{una superficie llana} si $K(p)=0$, $\forall p \in S$.
 
 \begin{definition}[Superficie totalmente umbilical]
 Un punto $p$ es \textbf{umbilical} si $k_1(p)=k_2(p)$.
@@ -67,40 +67,45 @@ Se dice que una superficie $S$ es \textbf{totalmente umbilical} si todos son pun
 Sea $S \subseteq \rtres$ superficie conexa, cerrada y totalmente umbilical. Entonces es un plano o una esfera.
 \end{theorem}
 
-La prueba de este resultado se realizó en la asignatura de curvas y cuperficies.
+Un resultado que usaremos con cierta frecuencia es el siguiente:
 
 \begin{lemma}
 Sea $S$ una superficie compacta y $F: S \longrightarrow \rtres$ una aplicación diferenciable e inyectiva tal que $(dF)_p: T_pS \longrightarrow \rtres$ es inyectiva $\forall p \in S$. Entonces, $S' = F(S)$ es una superficie y $F: S \longrightarrow S'$ es un difeomorfismo. 
 \end{lemma}
 \begin{proof}
-Sabemos que $F$ es continua, $S$ compacta y $\rtres$ es un espacio de Hausdorff, entonces $F: S \longrightarrow \rtres$ es cerrada, luego $F: S \longrightarrow S'$ es continua, cerrada y biyectiva, es decir, un homeomorfismo.
+Sabemos que $F$ es continua, $S$ compacta y $\rtres$ es un espacio de Hausdorff, por lo que $F: S \longrightarrow \rtres$ es cerrada. De este modo $F: S \longrightarrow S'$ es continua, cerrada y biyectiva, es decir, un homeomorfismo.
 
 Veamos que $S'$ es una superficie. Sea $q \in S'$ y $p \in S$ tal que $F(p)=q$. Como $S$ es una superficie, existe una parametrización $X: U \longrightarrow S$ tal que $V = X(U)$ es un entorno abierto de $p$ en $S$. Tomando $V'=F(V)$ tenemos un entorno abierto de $q$ en $S'$. Definimos $X': U \longrightarrow \rtres$ como $X'=F \circ X$. Usando que $(dF)_p$ es inyectiva tenemos que $X'$ define una parametrización de $S'$. Además, es claro que $X'(U) = V'$.
-Finalmente, veamos que $F: S \longrightarrow S'$ es un difeomorfismo. Como es biyectiva y diferenciable, bastará ver que su diferecial es un isomorfismo para todo $p \in S$. Sea $p\in S$ y $(dF)_p: T_pS \longrightarrow T_{F(p)}S'$, es claro que $(dF)_p$ es un isomorfismo por tratarse de un monomorfismo entre dos planos vectoriales. Esto conluye la prueba.
+
+Finalmente, veamos que $F: S \longrightarrow S'$ es un difeomorfismo. Como es biyectiva y diferenciable, bastará ver (gracias al teorema de la función inversa) que su diferencial es un isomorfismo para todo $p \in S$. Sea $p\in S$ y $(dF)_p: T_pS \longrightarrow T_{F(p)}S'$, es claro que $(dF)_p$ es un isomorfismo por tratarse de un monomorfismo entre dos planos vectoriales. Esto concluye la prueba.
 \end{proof}
 
 \section{Diferenciación en $S \times I$}
 
-Veamos algunos resultados básicos para las funciones diferenciables que salen de $S \times I$ con $I$ un intervalo.
+Veamos algunos conceptos y resultados básicos sobre diferenciación para funciones cuyo dominio es $S \times I$ con $S$ una superficie e $I$ un intervalo.
 
 \begin{definition}[Función diferenciable]
-Sea $S$ una superficie y $I \subset \rmath$ un intervalo abierto. Diremos que una función $F: S \times I \longrightarrow \rmath^n$ es \textbf{diferenciable} si para cualquier parametrización $X: U \longrightarrow S$ de $S$, la composición $F \circ (X\times id_I): U \times I \longrightarrow \rmath^n$ es diferenciable en el sentido de Lebesgue.
+Sea $S$ una superficie e $I \subset \rmath$ un intervalo abierto. Diremos que una función $F: S \times I \longrightarrow \rmath^n$ es \textbf{diferenciable} si para cualquier parametrización $X: U \longrightarrow S$, la composición $F \circ (X\times id_I): U \times I \longrightarrow \rmath^n$ es diferenciable en el sentido clásico.
 \end{definition}
 
 \begin{definition}[Diferencial]
-Sea $F: S \times I \longrightarrow \rmath^n$ una función diferencial. Para cada $(p,t) \in S \times I$ se define la \textbf{diferencial de $F$} en $(p,t)$ como la función $(dF)_{(p,t)}: T_pS \times \rmath \longrightarrow \rmath^n$ dada por:
+Sea $F: S \times I \longrightarrow \rmath^n$ una función diferenciable. Para cada $(p,t) \in S \times I$ se define la \textbf{diferencial de $F$} en $(p,t)$ como la función $(dF)_{(p,t)}: T_pS \times \rmath \longrightarrow \rmath^n$ dada por:
 %
 \begin{equation*}
-    (dF)_{(p,t)}(v,a) = \diff{}{s}{s=0} F \big( \alpha(s), t+sa \big), \quad \forall v \in T_pS, \, a \in \rmath
+    (dF)_{(p,t)}(v,a) = \diff{}{s}{s=0} F \big( \alpha(s), t+sa \big), \quad \forall v \in T_pS, \, a \in \rmath,
 \end{equation*}
+%
+donde $\alpha:(-\epsilon, \epsilon) \longrightarrow S$ es cualquier curva con $\alpha(0)=p$ y $\alpha'(0)=v$.
 \end{definition}
 
+No es difícil probar que esta definición es correcta, en el sentido de que no depende de la curva $\alpha$.
+
 \begin{proposition}
-Sea $F: S \times I \longrightarrow \rmath^n$ diferenciable, se define para cada $t\in I$, $F_t: S \longrightarrow \rmath^n$ dada por $F_t(p) = F(p,t)$ para todo $p \in S$. Entonces, $F_t$ es diferenciable para todo $p \in S$.
+Sea $F: S \times I \longrightarrow \rmath^n$ diferenciable. Para cada $t\in I$ se define, $F_t: S \longrightarrow \rmath^n$ dada por $F_t(p) = F(p,t)$ para todo $p \in S$. Entonces, $F_t$ es diferenciable para todo $p \in S$.
 \end{proposition}
 
 \begin{theorem}[Teorema de la función inversa]
-Sea $F: S \times I \longrightarrow \rtres$ una función diferenciable y $(p_0,t_0) \in S \times I$ tal que $(dF)_{(p_0,t_0)} : T_{p_0}S \times \rmath \longrightarrow \rtres$ es un isomorfismo linear. Entonces existe $V$ un entorno abierto de $p_0$ en $S$, $\epsilon > 0$ y un entorno abierto de $F(p_0, t_0)$ en $\rtres$ tal que $F \big( V \times (t_0-\epsilon, t_0+\epsilon) \big) \subset W$ y:
+Sea $F: S \times I \longrightarrow \rtres$ una función diferenciable y $(p_0,t_0) \in S \times I$ tal que $(dF)_{(p_0,t_0)} : T_{p_0}S \times \rmath \longrightarrow \rtres$ es un isomorfismo lineal. Entonces, existe $V$ un entorno abierto de $p_0$ en $S$, $\epsilon > 0$ y un entorno abierto $W$ de $F(p_0, t_0)$ en $\rtres$ tales que $F \big( V \times (t_0-\epsilon, t_0+\epsilon) \big) \subset W$ y:
 %
 \begin{equation*}
     F_{|V \times (t_0-\epsilon, t_0+\epsilon)}: V \times (t_0-\epsilon, t_0+\epsilon) \longrightarrow W
@@ -109,7 +114,7 @@ Sea $F: S \times I \longrightarrow \rtres$ una función diferenciable y $(p_0,t_
 es un difeomorfismo.
 \end{theorem}
 
-Las demostraciones de este teorema y la proposición previa son sencillas.
+Las demostraciones de este teorema y de la proposición previa son sencillas y las omitiremos.
 
 \section{Teorema de Brower-Samelson}
 
@@ -319,6 +324,6 @@ ya que $N_\rho(V)$ es un entorno tubular y, por tanto, $F$ restringida a $(-\rho
 A partir de los entornos tubulares, introduciremos el concepto de superficie paralela para concluir el capítulo.
 
 \begin{definition}[Superficie paralela]
-Sea $\rho > 0$ y sea $N_\rho(S)$ un entorno tubular de la superficie $S$ compacta con $N$ su aplicación de Gauss. Para todo $t \in (-\rho, \rho)$ se define el conjunto $S_t=\{p + tN(p); p \in S\}$ superficie compacta y la aplicación $F_t: S \longrightarrow S_t$ dada por $F_t(p)=p+tN(p)$ es un difeomorfismo.
+Sea $\rho > 0$ y sea $N_\rho(S)$ un entorno tubular de la superficie $S$ compacta con $N$ su aplicación de Gauss. Para todo $t \in (-\rho, \rho)$ se define el conjunto $S_t=\{p + tN(p) \enspace | \enspace p \in S\}$ superficie compacta y la aplicación $F_t: S \longrightarrow S_t$ dada por $F_t(p)=p+tN(p)$ es un difeomorfismo.
 Llamamos a $S_t$ \textbf{superficie paralela} a $S$ a una distancia $t$.
 \end{definition}

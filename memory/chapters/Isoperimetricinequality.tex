@@ -1,13 +1,7 @@
 \label{chapter:isoperimetricinequality}
-En este capítulo vamos a probar uno de los resultados más importantes de este trabajo: la desigualdad isoperimétrica en $\rtres$. Se trata de una relación funcional entre el área de una superficie compacta y conexa, y el volumen que ésta encierra. Su prueba está basada en la desigualdad de Brunn-Minkowski, que probaremos tras una sertie de preliminares.
+En este capítulo vamos a probar uno de los resultados más importantes de este trabajo: la desigualdad isoperimétrica en $\rtres$. Se trata de una relación funcional entre el área de una superficie compacta y conexa, y el volumen que ésta encierra. Su prueba está basada en la desigualdad de Brunn-Minkowski, que probaremos tras una serie de preliminares.
 
-\begin{theorem}[Fórmula de Minkowski]\label{formulaminkowski}
-Sea $S$ una superficie compacta, $N$ el normal unitario interior y $H$ la curvatura media. Entonces:
-
-\begin{equation*}
-    \int_S (1+ \langle p, N(p) \rangle H(p)) \, dp = 0
-\end{equation*}
-\end{theorem}
+\section{Desigualdad de Brunn-Minkoski}
 
 \begin{definition}[Suma conjuntista]
 Si $A, B$ son dos conjuntos de $\rmath^n$, definimos la \textbf{suma conjuntista} $A+B$ como:
@@ -98,18 +92,18 @@ Supongamos primero el caso de paralelepípedos $A = I_1 \times I_2 \times I_3$ y
 \end{equation*}
 %
 y, por tanto:
-
+%
 \begin{equation*}
     \frac{ \left(vol \, A \right)^{1/3} + \left(vol \, B \right)^{1/3}}{\left(vol \, (A+B) \right)^{1/3}} = \left(\displaystyle\prod_{i=1}^3 \frac{a_i}{a_i+b_i} \right)^{1/3} + \left(\displaystyle\prod_{i=1}^3 \frac{b_i}{a_i+b_i} \right)^{1/3}
 \end{equation*}
-
+%
 Además, por la desigualdad de las medias, sabemos que:
-
+%
 \begin{equation*}
     \frac{ \left(vol \, A \right)^{1/3} + \left(vol \, B \right)^{1/3}}{\left(vol \, (A+B) \right)^{1/3}} \leq
     \frac{1}{3} \displaystyle\sum_{i=1}^3 \frac{a_i}{a_i+b_i} + \frac{1}{3} \displaystyle\sum_{i=1}^3 \frac{b_i}{a_i+b_i} = 1.
 \end{equation*}
-
+%
 Para este caso la desigualdad queda probada.
 
 Supongamos ahora el segundo caso; sean $A = \displaystyle\bigcup_{i=1}^n A_i$ y $B = \displaystyle\bigcup_{j=1}^m B_j$ (uniones disjuntas) donde $A_i$, $B_j$ son paralelepípedos como los del primer caso.
@@ -183,6 +177,8 @@ Luego tenemos que $A_n + B_n \subset A + B$ para cada $n \in \nmath$ y, por tant
 Basta con tomar límites con $n$ tendiendo a infinito y tenemos probada la desigualdad para todos los casos.
 \end{proof}
 
+\section{La desigualdad isoperimétrica en $\rtres$}
+
 Con la desigualdad de Brunn-Minkowski demostrada, vamos a probar el resultado más importante de este capítulo.
 \begin{theorem}[Desigualdad Isoperimétrica]
 Sea $S$ una superficie conexa y compacta con dominio interior $\Omega$. Se cumple:
@@ -205,8 +201,8 @@ Aplicando ahora la ya conocida desigualdad de Brunn-Minkowski, tenemos que:
 \begin{equation*}
     vol \, \Omega \geq vol \, (\Omega + B_t) \geq \left[ (vol \, \Omega)^{1/3} + vol \, (B_t)^{1/3} \right]^3, \qquad \forall t \in (0, \epsilon).
 \end{equation*}
-
-Desarrollamos la parte de la derecha y obtenemos:
+%
+desarrollamos la parte de la derecha y obtenemos:
 %
 \begin{equation*}
     vol \, \Omega \geq vol \, \Omega_t + 3(vol \, \Omega_t)^{2/3}(vol \, B_t)^{1/3} + vol \, B_t
@@ -231,16 +227,16 @@ y obtenemos:
     \frac{vol \, \Omega - vol \, \Omega_t}{t} \geq 3 \left( \frac{4\pi}{3} \right)^{1/3} (vol \, \Omega_t)^{2/3}
 \end{equation*}
 
-Conociendo ahora el volumen encerrado entre superficies paralelas calculado en \ref{volumeparallelsurface}, nos queda:
+Conociendo ahora el volumen encerrado entre superficies paralelas calculado en la \autoref{volumeparallelsurface}, nos queda:
 
 \begin{equation*}
-    \frac{tA(S) - t^2\int_S H + \frac{t^3}{3}\int_S K}{t} \geq 3 \left( \frac{4\pi}{3} \right)^{1/3} (vol \, \Omega_t)^{2/3},
+    \frac{tA(S) - t^2\int_S H \, dS + \frac{t^3}{3}\int_S K \, dS}{t} \geq 3 \left( \frac{4\pi}{3} \right)^{1/3} (vol \, \Omega_t)^{2/3},
 \end{equation*}
 %
 es decir:
 %
 \begin{equation*}
-    A(S) - t\int_S H + \frac{t^2}{3}\int_S K \geq 3 \left( \frac{4\pi}{3} \right)^{1/3} (vol \, \Omega_t)^{2/3}, \qquad \forall t \in (0,\epsilon).
+    A(S) - t\int_S H \, dS + \frac{t^2}{3}\int_S K \, dS \geq 3 \left( \frac{4\pi}{3} \right)^{1/3} (vol \, \Omega_t)^{2/3}, \qquad \forall t \in (0,\epsilon).
 \end{equation*}
 
 Tomando límites en ambos lados con $t$ tendiendo a $0$, tenemos:
