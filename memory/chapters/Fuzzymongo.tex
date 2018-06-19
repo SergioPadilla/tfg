@@ -647,6 +647,8 @@ Supongamos una colección \textit{viviendas} con los siguientes documentos:
 }
 \end{lstlisting}
 
+Supongamos que queremos obtener una consulta del tipo: ``Los pisos cuyo precio esté alrededor de 145000 €, pero sin pasar de 160000 € y por no menos de 130000 €, además queremos que la superficie del piso sea mayor de 70 metros cuadrados ''.
+
 Vamos a construir la consulta paso a paso para ir viendo la diferencia que obtenemos de documentos. Realizamos en primer lugar una consulta con cláusula difusa sobre el campo precio:
 %
 \begin{verbatim}
@@ -697,6 +699,8 @@ y obtenemos el siguiente resultado, como esperábamos:
 { "id_inm" : 321, "precio_cdeg" : 0.8939043209876543 }
 \end{lstlisting}
 %
+A pesar de obtener dos resultados que a priori coinciden con la respuesta, gracias al grado de pertenencia, sabemos que el inmueble número 321 se ajusta mejor a nuestros criterios. 
+
 Añadimos ahora una tercera cláusula difusa, para el atributo ``superficie'', especificando un valor simple en lugar de un trapezoide:
 %
 \begin{verbatim}
