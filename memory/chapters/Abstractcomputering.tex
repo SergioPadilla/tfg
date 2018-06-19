@@ -2,8 +2,43 @@
 \pdfbookmark[1]{Abstract}{Abstract}
 \section{Abstract}
 
+This work studies fuzzy set theory to get a mathematic model of imprecise information. Using this model, we will do an extension of MongoDB tools to work with imprecise information. MongoDB is a database categorized as NoSQL database.
 
-\paragraph{Keywords} nosql, mongodb, fuzzy sets, probability, trapezoids, databases, fuzzy query
+We will give an introduction to NoSQL databases, these databases are usually used for Big Data techniques. Also, we will compare NoSQL databases with classic SQL databases. This work shows fuzzy sets theory, its operations and it gives a proposal to include imprecise information in the MongoDB database.
+
+We will finish this work with a software implementation to extend MongoDB operators for match and projection stages. This solution adds support to MongoDB to save and query imprecise information.
+
+\subsection{NoSQL}
+
+NoSQL databases born to solve some performance issues that SQL databases have when information saved is big enough. In general, NoSQL databases are more varied than systems relational databases, that is because some companies are creating databases NoSQL types to solve its particular issues. That behavior, increase NoSQL databases and nowadays exists varied types of NoSQL databases depend on the type of data saved. NoSQL databases types are document-based, key-value, columns, graphs...
+
+NoSQL databases do not have standard SQL language as its query language, instead of this, each NoSQL database has its own query language and its own query operators. Moreover, we will see that NoSQL databases do not guarantee the ACID operations (Atomic, Consistency, Isolate, Durability). We will show what is ACID and how can we categorized NoSQL databases though CAP theorem.
+
+\subsection{MongoDB}
+
+MongoDB is a document-based database, nowadays, it is one of the most used NoSQL databases. MongoDB has an extended use for many of Big Data techniques. MongoDB is a good choice for web applications because of its structure, easy to use and its query language. MongoDB allows to work with data based on JSON-like documents, it is easily modeled for any programming language, even more, the most of programming language has a compatible native type of data. MongoDB has libraries in almost all modern programming languages. This work introduces MongoDB databases and its main operators.
+
+We will show the aggregation operators that MongoDB includes to work with information saved in a database. Our software proposal is based on one of them, the \textit{pipeline} operator. We will see how it works and the main operators that we need to implement our proposal.
+
+\subsection{Fuzzy sets}
+
+Fuzzy sets allow us to get a mathematic model of imprecise information. Current databases only allow to save types of data precise or ``crisp'', but daily, we could see different situations whose we need imprecise information. For instance, when we tag a person as ``young'', we understand that person do not have 80 years, but ``young'' as a concept depending on the context where it is used, the people which are used this terms or even depend on the point of view of the person that uses this term, that is, ``young'' is different for a 15 years person than a 50 years person.
+
+Fuzzy sets try to do a mathematics solution to this different options. They try to give an option to save this information in a database. Due to fuzzy numbers, we could save imprecise information in a database and query it.
+
+This work explains the main properties of fuzzy sets and its main operators to work with them.
+
+\subsection{Fuzzy find}
+
+The command \textbf{fuzzy\_find} is our software proposal to use imprecise information in MongoDB. It is developed in a script written in javascript programming language to store easily this command and its operator directly in MongoDB databases. The main goal of this command is to allow us to do generic queries of MongoDB and extend this functionality with fuzzy operators to query fuzzy data.
+
+We will see the fuzzy operator algorithm implementations to match and projection stages of pipeline aggregation operator. The command \textbf{fuzzy\_find} keep the syntax proposed by MongoDB to its query language and operators. The command \textbf{fuzzy\_find} is simple to use and we will show it with some examples of its use.
+
+Finally, this work will give the restrictions of the command, improvements and future jobs.
+
+
+\paragraph{Keywords} databases, nosql, mongodb, fuzzy sets, possibility, necessity, trapezoidal fuzzy numbers, fuzzy query.
+
 
 \end{otherlanguage}
 
